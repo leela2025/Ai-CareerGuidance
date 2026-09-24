@@ -23,34 +23,82 @@ connectDB();
 
 const app = express();
 
-// Configure CORS
-const allowedOrigins = [
-  process.env.CLIENT_URL,
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'http://127.0.0.1:5173',
-].filter(Boolean);
+// Helper to check if origin is permitted
+const isOriginAllowed = (origin) => {
+  if (!origin) return true; // Requests without origin (curl, mobile, postman, health check)
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, Postman, health checks)
-      if (!origin) return callback(null, true);
-      if (
-        !process.env.CLIENT_URL ||
-        process.env.CLIENT_URL === '*' ||
-        allowedOrigins.indexOf(origin) !== -1 ||
-        process.env.NODE_ENV !== 'production'
-      ) {
-        return callback(null, true);
-      }
-      return callback(new Error('Not allowed by CORS origin security policy'));
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
+  // Wildcard allowed
+  if (process.env.CLIENT_URL === '*') return true;
+
+  // Development mode allows all origins
+  if (process.env.NODE_ENV !== 'production') return true;
+
+  const normalizedOrigin = origin.replace(/\/$/, '');
+
+  // Default permitted origins list
+  const baseAllowed = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'http://localhost:4173',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:4173',
+    'https://ai-career-guidance-lk2tlaqkg-leelas-projects-e073c52d.vercel.app',
+    'https://ai-career-guidance-leelas-projects-e073c52d.vercel.app',
+    'https://ai-career-guidance.vercel.app',
+  ];
+
+  // Add any origins from CLIENT_URL (supports comma-separated list)
+  if (process.env.CLIENT_URL) {
+    const envOrigins = process.env.CLIENT_URL.split(',')
+      .map((u) => u.trim().replace(/\/$/, ''))
+      .filter(Boolean);
+    baseAllowed.push(...envOrigins);
+  }
+
+  if (baseAllowed.includes(normalizedOrigin)) return true;
+
+  // Pattern match for Vercel preview & production deployments (*.vercel.app)
+  try {
+    const parsed = new URL(normalizedOrigin);
+    if (
+      parsed.hostname === 'localhost' ||
+      parsed.hostname === '127.0.0.1' ||
+      parsed.hostname.endsWith('.vercel.app')
+    ) {
+      return true;
+    }
+  } catch (e) {
+    // Malformed origin
+  }
+
+  return false;
+};
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (isOriginAllowed(origin)) {
+      callback(null, true);
+    } else {
+      console.warn(`⚠️ [CORS Policy] Blocked origin: ${origin}`);
+      callback(null, false);
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+  ],
+  exposedHeaders: ['Set-Cookie'],
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Body parsers
 app.use(express.json({ limit: '10mb' }));

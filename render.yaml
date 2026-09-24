@@ -10,3 +10,5 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: CLIENT_URL
+        value: https://ai-career-guidance-lk2tlaqkg-leelas-projects-e073c52d.vercel.app,https://ai-career-guidance-leelas-projects-e073c52d.vercel.app,https://ai-career-guidance.vercel.app,http://localhost:5173

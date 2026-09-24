@@ -18,7 +18,8 @@ const registerUser = async (req, res, next) => {
   try {
     const { name, email, password, role } = req.body;
 
-    const existingUser = await User.findOne({ email: email.toLowerCase() });
+    const normalizedEmail = email.trim().toLowerCase();
+    const existingUser = await User.findOne({ email: normalizedEmail });
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -30,21 +31,26 @@ const registerUser = async (req, res, next) => {
     const userRole = role === 'admin' ? 'admin' : 'student';
 
     const user = await User.create({
-      name,
-      email: email.toLowerCase(),
+      name: name.trim(),
+      email: normalizedEmail,
       password,
       role: userRole,
     });
 
     // Automatically create an initial blank profile for the user
-    await Profile.create({
-      user: user._id,
-      educationLevel: 'B.Tech / B.E.',
-      branch: 'Computer Science & Engineering',
-      graduationYear: new Date().getFullYear().toString(),
-      currentSkills: [],
-      interests: [],
-    });
+    let userProfile = null;
+    try {
+      userProfile = await Profile.create({
+        user: user._id,
+        educationLevel: 'B.Tech / B.E.',
+        branch: 'Computer Science & Engineering',
+        graduationYear: new Date().getFullYear().toString(),
+        currentSkills: [],
+        interests: [],
+      });
+    } catch (profileErr) {
+      console.warn('Initial profile creation note:', profileErr.message);
+    }
 
     const token = generateToken(user._id, user.role);
 
@@ -58,6 +64,7 @@ const registerUser = async (req, res, next) => {
         email: user.email,
         role: user.role,
       },
+      profile: userProfile || null,
     });
   } catch (error) {
     next(error);
@@ -120,6 +127,13 @@ const loginUser = async (req, res, next) => {
 const getMe = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User profile no longer exists in database.',
+      });
+    }
+
     const profile = await Profile.findOne({ user: req.user._id });
 
     res.status(200).json({

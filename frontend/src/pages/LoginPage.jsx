@@ -17,6 +17,13 @@ export const LoginPage = () => {
 
   const from = location.state?.from?.pathname || '/dashboard';
 
+  React.useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('session_expired') === 'true') {
+      setError('Your session has expired. Please log in again.');
+    }
+  }, [location.search]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -26,9 +33,18 @@ export const LoginPage = () => {
       await login(email, password);
       navigate(from, { replace: true });
     } catch (err) {
-      setError(
-        err.response?.data?.message || 'Login failed. Please verify your email and password.'
-      );
+      const data = err.response?.data;
+      if (data?.errors && Array.isArray(data.errors)) {
+        setError(data.errors.map((it) => it.message).join('. '));
+      } else if (data?.message) {
+        setError(data.message);
+      } else if (err.code === 'ECONNABORTED' || err.message?.includes('timeout')) {
+        setError('Server request timed out. Free-tier backend may be waking up, please retry.');
+      } else if (err.code === 'ERR_NETWORK' || !err.response) {
+        setError('Unable to connect to the server. Please check your connection and try again.');
+      } else {
+        setError('Login failed. Please verify your email and password.');
+      }
     } finally {
       setIsSubmitting(false);
     }

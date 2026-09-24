@@ -34,9 +34,18 @@ export const RegisterPage = () => {
         navigate('/onboarding');
       }
     } catch (err) {
-      setError(
-        err.response?.data?.message || 'Registration failed. Please check your credentials.'
-      );
+      const data = err.response?.data;
+      if (data?.errors && Array.isArray(data.errors)) {
+        setError(data.errors.map((it) => it.message).join('. '));
+      } else if (data?.message) {
+        setError(data.message);
+      } else if (err.code === 'ECONNABORTED' || err.message?.includes('timeout')) {
+        setError('Registration request timed out. Backend may be waking up, please retry.');
+      } else if (err.code === 'ERR_NETWORK' || !err.response) {
+        setError('Unable to reach the server. Please check your connection and try again.');
+      } else {
+        setError('Registration failed. Please check your credentials and try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }
