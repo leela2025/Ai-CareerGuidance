@@ -1,0 +1,353 @@
+{
+  "info": {
+    "_postman_id": "7f8b9190-3456-42d1-b51c-8e0c9f134567",
+    "name": "CareerCompassAI API Collection",
+    "description": "Complete production API test suite for CareerCompassAI - AI-powered career guidance, skill gap analysis, personalized roadmaps, and resume evaluation using Claude Sonnet 4.6.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication Module",
+      "item": [
+        {
+          "name": "Register Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alex Chen\",\n  \"email\": \"alex.chen@university.edu\",\n  \"password\": \"Student@123\",\n  \"role\": \"student\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Registers a new student user and returns JWT token."
+          }
+        },
+        {
+          "name": "Login (Auto-Saves Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set(\"token\", jsonData.token);",
+                  "    console.log(\"Saved token to collection variable: \" + jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@careercompass.ai\",\n  \"password\": \"Student@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Authenticates user and auto-saves the received JWT token to the {{token}} collection variable."
+          }
+        },
+        {
+          "name": "Login as Admin (Auto-Saves Admin Token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.token) {",
+                  "    pm.collectionVariables.set(\"token\", jsonData.token);",
+                  "    console.log(\"Saved Admin token to collection variable: \" + jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@careercompass.ai\",\n  \"password\": \"Admin@123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Authenticates admin user to test admin protected analytics endpoints."
+          }
+        },
+        {
+          "name": "Get Current User Profile (Me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "me"]
+            },
+            "description": "Returns currently authenticated user session details."
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Profile Module",
+      "item": [
+        {
+          "name": "Get Student Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["profile"]
+            },
+            "description": "Fetches current student profile details."
+          }
+        },
+        {
+          "name": "Update Student Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"educationLevel\": \"B.Tech / B.E.\",\n  \"branch\": \"Computer Science & Engineering\",\n  \"graduationYear\": \"2026\",\n  \"currentSkills\": [\"JavaScript\", \"React\", \"Node.js\", \"Express\", \"MongoDB\", \"Git\"],\n  \"interests\": [\"Full Stack Development\", \"Cloud Architecture\", \"Generative AI\"],\n  \"resumeText\": \"Alex Chen - Aspiring Full Stack Cloud Engineer\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["profile"]
+            },
+            "description": "Updates degree, branch, current technical skills, and career interests."
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. AI Career Guidance Module",
+      "item": [
+        {
+          "name": "Analyze Career Paths (Claude AI)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customGoal\": \"Full Stack Cloud Developer\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/career/analyze",
+              "host": ["{{baseUrl}}"],
+              "path": ["career", "analyze"]
+            },
+            "description": "Prompts Claude Sonnet 4.6 with student profile to recommend 3-5 career trajectories and prioritize skill gaps."
+          }
+        },
+        {
+          "name": "Get Career Suggestions History",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/career/suggestions",
+              "host": ["{{baseUrl}}"],
+              "path": ["career", "suggestions"]
+            },
+            "description": "Fetches past career suggestions and gap analyses."
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Roadmap Module",
+      "item": [
+        {
+          "name": "Generate Learning Roadmap (Claude AI)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"careerGoal\": \"Full Stack Cloud Developer\",\n  \"skillGaps\": [\"Docker\", \"Kubernetes\", \"TypeScript\", \"AWS\", \"System Design\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/roadmap/generate",
+              "host": ["{{baseUrl}}"],
+              "path": ["roadmap", "generate"]
+            },
+            "description": "Calls Claude AI to transform skill gaps into an ordered learning roadmap with free resources."
+          }
+        },
+        {
+          "name": "Get Active Roadmap",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/roadmap",
+              "host": ["{{baseUrl}}"],
+              "path": ["roadmap"]
+            },
+            "description": "Returns current active roadmap with milestones and progress percentage."
+          }
+        },
+        {
+          "name": "Update Milestone Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/roadmap/ts-01",
+              "host": ["{{baseUrl}}"],
+              "path": ["roadmap", "ts-01"]
+            },
+            "description": "Updates milestone status ('pending' | 'in-progress' | 'completed') and recalculates overall progress %."
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Resume Feedback Module",
+      "item": [
+        {
+          "name": "Analyze Resume (Claude AI)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetRole\": \"Full Stack Cloud Developer\",\n  \"resumeText\": \"Alex Chen\\nSan Francisco, CA • alex.chen@university.edu\\n\\nEDUCATION\\nB.Tech in Computer Science & Engineering (2022-2026), GPA: 3.8/4.0\\n\\nTECHNICAL SKILLS\\nLanguages: JavaScript, TypeScript, Python, SQL\\nFrameworks: React, Node.js, Express, Tailwind CSS, Mongoose\\nTools: Git, Docker, Postman, MongoDB Atlas\\n\\nPROJECTS\\n1. E-Commerce Platform (React, Node.js, MongoDB)\\nBuilt full-stack application with JWT authentication and Stripe payments. Improved query performance by 35% using MongoDB indexing.\\n2. Real-Time Chat System (React, WebSockets)\\nEngineered live socket communication handling multi-user rooms.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resume/analyze",
+              "host": ["{{baseUrl}}"],
+              "path": ["resume", "analyze"]
+            },
+            "description": "Evaluates resume text with Claude Sonnet 4.6 for score, strengths, and improvements."
+          }
+        },
+        {
+          "name": "Get Resume Feedback History",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/resume/history",
+              "host": ["{{baseUrl}}"],
+              "path": ["resume", "history"]
+            },
+            "description": "Fetches past resume critique records."
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Admin Module",
+      "item": [
+        {
+          "name": "Get Institutional Stats (Admin Role Required)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "stats"]
+            },
+            "description": "Aggregated analytics on total users, top career recommendations, common skill deficits, and average scores."
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. System Health",
+      "item": [
+        {
+          "name": "Server Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            },
+            "description": "Checks backend operational status and AI model configuration."
+          }
+        }
+      ]
+    }
+  ]
+}
