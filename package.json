@@ -1,0 +1,14 @@
+{
+  "name": "ai-career-guidance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-Powered Career Guidance & Skill Roadmap Platform",
+  "scripts": {
+    "postinstall": "cd backend && npm install",
+    "build": "cd backend && npm install",
+    "start": "cd backend && npm start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
