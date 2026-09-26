@@ -1,0 +1,250 @@
+[
+  {
+    "skill": "HTML/CSS",
+    "category": "Frontend Development",
+    "prerequisites": [],
+    "assessmentType": "practical-task",
+    "difficulty": "beginner",
+    "description": "Semantic markup, modern layout techniques (Flexbox, Grid), and responsive styling."
+  },
+  {
+    "skill": "DOM basics",
+    "category": "Frontend Development",
+    "prerequisites": ["HTML/CSS"],
+    "assessmentType": "quiz",
+    "difficulty": "beginner",
+    "description": "DOM tree navigation, query selectors, event bubbling, and DOM manipulation."
+  },
+  {
+    "skill": "JavaScript ES6",
+    "category": "Software Engineering",
+    "prerequisites": ["DOM basics"],
+    "assessmentType": "quiz",
+    "difficulty": "beginner",
+    "description": "Arrow functions, destructuring, modules, classes, array methods, and scope."
+  },
+  {
+    "skill": "Async/Promises",
+    "category": "Software Engineering",
+    "prerequisites": ["JavaScript ES6"],
+    "assessmentType": "quiz",
+    "difficulty": "intermediate",
+    "description": "Event loop, asynchronous call stack, Promises, and async/await error handling."
+  },
+  {
+    "skill": "React",
+    "category": "Frontend Development",
+    "prerequisites": ["JavaScript ES6", "HTML/CSS", "DOM basics"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "Component architecture, hooks (useState, useEffect, useMemo), and virtual DOM reconciliation."
+  },
+  {
+    "skill": "State Management (Redux/Zustand)",
+    "category": "Frontend Development",
+    "prerequisites": ["React", "JavaScript ES6"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "Predictable centralized state containers, selectors, dispatchers, and side-effect middleware."
+  },
+  {
+    "skill": "TypeScript",
+    "category": "Software Engineering",
+    "prerequisites": ["JavaScript ES6"],
+    "assessmentType": "quiz",
+    "difficulty": "intermediate",
+    "description": "Static type system, generics, interfaces, unions, and compiler type narrowing."
+  },
+  {
+    "skill": "Node.js/Express",
+    "category": "Backend Development",
+    "prerequisites": ["JavaScript ES6", "Async/Promises"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "Server runtimes, middleware chains, REST routing, streams, and request life cycles."
+  },
+  {
+    "skill": "REST API Design",
+    "category": "Backend Development",
+    "prerequisites": ["Node.js/Express"],
+    "assessmentType": "quiz",
+    "difficulty": "intermediate",
+    "description": "HTTP status codes, idempotency, resource naming, pagination, and error contract conventions."
+  },
+  {
+    "skill": "Database Modeling (SQL/NoSQL)",
+    "category": "Backend Development",
+    "prerequisites": ["REST API Design"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "Relational schemas, normalization, MongoDB embedding vs referencing, and indexing strategy."
+  },
+  {
+    "skill": "GraphQL",
+    "category": "Backend Development",
+    "prerequisites": ["REST API Design", "Node.js/Express"],
+    "assessmentType": "practical-task",
+    "difficulty": "advanced",
+    "description": "Schemas, queries, mutations, resolvers, dataloaders, and N+1 query problem prevention."
+  },
+  {
+    "skill": "Git & Version Control",
+    "category": "DevOps & Tools",
+    "prerequisites": [],
+    "assessmentType": "quiz",
+    "difficulty": "beginner",
+    "description": "Branching strategies, interactive rebasing, merge conflicts, and commit hygiene."
+  },
+  {
+    "skill": "Linux Fundamentals",
+    "category": "DevOps & Tools",
+    "prerequisites": [],
+    "assessmentType": "quiz",
+    "difficulty": "beginner",
+    "description": "File permissions, shell scripting, process monitoring, SSH keys, and system diagnostics."
+  },
+  {
+    "skill": "Computer Networking basics",
+    "category": "DevOps & Tools",
+    "prerequisites": ["Linux Fundamentals"],
+    "assessmentType": "quiz",
+    "difficulty": "intermediate",
+    "description": "TCP/IP, UDP, DNS resolution, HTTP/HTTPS handshakes, SSL/TLS, and reverse proxies."
+  },
+  {
+    "skill": "Docker Basics",
+    "category": "DevOps & Tools",
+    "prerequisites": ["Linux Fundamentals"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "Dockerfiles, layer caching, multi-stage builds, networking, and docker-compose files."
+  },
+  {
+    "skill": "CI/CD Pipelines",
+    "category": "DevOps & Tools",
+    "prerequisites": ["Docker Basics", "Git & Version Control"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "GitHub Actions, automated test execution, semantic versioning, and zero-downtime deployment."
+  },
+  {
+    "skill": "Kubernetes Orchestration",
+    "category": "DevOps & Tools",
+    "prerequisites": ["Docker Basics", "Computer Networking basics"],
+    "assessmentType": "practical-task",
+    "difficulty": "advanced",
+    "description": "Pods, Deployments, Services, Ingress controllers, ConfigMaps, and cluster auto-scaling."
+  },
+  {
+    "skill": "Microservices Architecture",
+    "category": "System Architecture",
+    "prerequisites": ["REST API Design", "Docker Basics"],
+    "assessmentType": "practical-task",
+    "difficulty": "advanced",
+    "description": "Service discovery, API gateways, asynchronous message queues, and distributed tracing."
+  },
+  {
+    "skill": "System Design",
+    "category": "System Architecture",
+    "prerequisites": ["Database Modeling (SQL/NoSQL)", "Computer Networking basics"],
+    "assessmentType": "practical-task",
+    "difficulty": "advanced",
+    "description": "High-availability trade-offs (CAP theorem), horizontal scaling, caching strategies, and load balancing."
+  },
+  {
+    "skill": "Cybersecurity Essentials",
+    "category": "Security",
+    "prerequisites": ["Computer Networking basics", "REST API Design"],
+    "assessmentType": "quiz",
+    "difficulty": "intermediate",
+    "description": "OWASP Top 10 vulnerabilities, JWT security, SQL injection, CORS policy, and CSRF protection."
+  },
+  {
+    "skill": "Python",
+    "category": "Data Science & AI",
+    "prerequisites": [],
+    "assessmentType": "practical-task",
+    "difficulty": "beginner",
+    "description": "Data structures, comprehension, generator functions, OOP, and virtual environments."
+  },
+  {
+    "skill": "Data Structures & Algorithms",
+    "category": "Software Engineering",
+    "prerequisites": ["Python"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "Big-O notation, trees, graphs, dynamic programming, sorting algorithms, and hash tables."
+  },
+  {
+    "skill": "Statistics fundamentals",
+    "category": "Data Science & AI",
+    "prerequisites": [],
+    "assessmentType": "quiz",
+    "difficulty": "beginner",
+    "description": "Distributions, hypothesis testing, p-values, central limit theorem, and variance analysis."
+  },
+  {
+    "skill": "Linear Algebra basics",
+    "category": "Data Science & AI",
+    "prerequisites": [],
+    "assessmentType": "quiz",
+    "difficulty": "beginner",
+    "description": "Matrix multiplication, eigenvalues, eigenvectors, vector dot products, and transformations."
+  },
+  {
+    "skill": "Pandas & Data Wrangling",
+    "category": "Data Science & AI",
+    "prerequisites": ["Python"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "DataFrames, grouping, pivoting, missing value imputation, and vectorized data transformations."
+  },
+  {
+    "skill": "Machine Learning basics",
+    "category": "Data Science & AI",
+    "prerequisites": ["Python", "Statistics fundamentals", "Linear Algebra basics"],
+    "assessmentType": "practical-task",
+    "difficulty": "intermediate",
+    "description": "Supervised vs unsupervised learning, gradient descent, overfitting, cross-validation, and Scikit-Learn."
+  },
+  {
+    "skill": "Deep Learning & Neural Networks",
+    "category": "Data Science & AI",
+    "prerequisites": ["Machine Learning basics", "Linear Algebra basics"],
+    "assessmentType": "practical-task",
+    "difficulty": "advanced",
+    "description": "Backpropagation, activation functions, CNNs, RNNs, PyTorch/TensorFlow, and loss functions."
+  },
+  {
+    "skill": "Natural Language Processing (NLP)",
+    "category": "Data Science & AI",
+    "prerequisites": ["Deep Learning & Neural Networks"],
+    "assessmentType": "practical-task",
+    "difficulty": "advanced",
+    "description": "Tokenization, word embeddings (Word2Vec), Transformer attention mechanisms, and BERT fine-tuning."
+  },
+  {
+    "skill": "Large Language Models & Prompt Engineering",
+    "category": "Data Science & AI",
+    "prerequisites": ["Python", "Machine Learning basics"],
+    "assessmentType": "quiz",
+    "difficulty": "intermediate",
+    "description": "Zero-shot/few-shot prompting, chain-of-thought, hallucination reduction, and context windows."
+  },
+  {
+    "skill": "Vector Databases & RAG",
+    "category": "Data Science & AI",
+    "prerequisites": ["Large Language Models & Prompt Engineering", "Python"],
+    "assessmentType": "practical-task",
+    "difficulty": "advanced",
+    "description": "Cosine similarity embeddings, chunking strategies, Pinecone/ChromaDB indexing, and retrieval synthesis."
+  },
+  {
+    "skill": "SEO & Web Analytics",
+    "category": "Digital Marketing & Growth",
+    "prerequisites": ["HTML/CSS"],
+    "assessmentType": "quiz",
+    "difficulty": "beginner",
+    "description": "Core Web Vitals, metadata, search crawlability, Google Analytics event tracking, and conversion funnels."
+  }
+]

@@ -35,6 +35,39 @@ const resumeFeedbackSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    defenseResult: {
+      questions: [
+        {
+          questionId: { type: String },
+          relatedClaim: { type: String },
+          question: { type: String },
+        },
+      ],
+      userAnswers: [
+        {
+          questionId: { type: String },
+          question: { type: String },
+          answer: { type: String },
+        },
+      ],
+      overallCredibilityScore: { type: Number, default: null },
+      perQuestionFeedback: [
+        {
+          question: { type: String },
+          answer: { type: String },
+          verdict: {
+            type: String,
+            enum: ['convincing', 'vague', 'concerning'],
+          },
+          feedback: { type: String },
+        },
+      ],
+      recommendedResumeEdits: {
+        type: [String],
+        default: [],
+      },
+      completedAt: { type: Date, default: null },
+    },
   },
   {
     timestamps: true,

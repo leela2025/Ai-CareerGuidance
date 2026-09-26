@@ -62,9 +62,15 @@ export const LoginPage = () => {
       <div className="w-full max-w-md">
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-500 items-center justify-center shadow-lg shadow-brand-500/25 mb-4">
-            <Compass className="w-7 h-7 text-white" />
-          </div>
+          <Link to="/" className="inline-block group mb-4">
+            <div className="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-xl inline-flex items-center justify-center group-hover:border-purple-500/40 group-hover:shadow-purple-500/10 transition-all">
+              <img
+                src="/logo-transparent.png"
+                alt="CareerCompassAI Logo"
+                className="h-20 w-auto object-contain mx-auto drop-shadow-[0_0_15px_rgba(168,85,247,0.35)] group-hover:scale-105 transition-transform"
+              />
+            </div>
+          </Link>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Welcome back
           </h1>
@@ -94,8 +100,8 @@ export const LoginPage = () => {
           </div>
         </div>
 
-        {/* Form Card */}
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+        {/* Form Card with fast purposeful entrance */}
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl animate-quick-fade">
           <AlertBanner type="error" message={error} onClose={() => setError('')} />
 
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -117,9 +123,17 @@ export const LoginPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                Password
-              </label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider">
+                  Password
+                </label>
+                <Link
+                  to="/forgot-password"
+                  className="text-xs text-brand-400 hover:text-brand-300 transition-colors font-medium hover:underline"
+                >
+                  Forgot password?
+                </Link>
+              </div>
               <div className="relative">
                 <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5" />
                 <input

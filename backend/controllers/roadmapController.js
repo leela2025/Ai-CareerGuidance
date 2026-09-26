@@ -2,6 +2,7 @@ const Roadmap = require('../models/Roadmap');
 const CareerSuggestion = require('../models/CareerSuggestion');
 const Profile = require('../models/Profile');
 const aiService = require('../services/aiService');
+const skillGraphService = require('../services/skillGraphService');
 
 // @desc    Generate personalized learning roadmap from skill gaps
 // @route   POST /api/roadmap/generate
@@ -136,6 +137,24 @@ const updateMilestoneStatus = async (req, res, next) => {
       });
     }
 
+    // Check dependency gaps if user is marking this milestone as completed
+    let dependencyWarning = null;
+    if (status === 'completed') {
+      const otherCompletedSkills = roadmap.milestones
+        .filter((m) => m.status === 'completed' && m.skillId !== skillId && m._id.toString() !== skillId)
+        .map((m) => m.skillName);
+
+      const gapCheck = skillGraphService.checkDependencyGaps(otherCompletedSkills, milestone.skillName);
+      if (gapCheck.hasGaps) {
+        dependencyWarning = {
+          hasGaps: true,
+          targetSkill: gapCheck.targetSkill,
+          missingPrerequisites: gapCheck.missingPrerequisites,
+          riskExplanation: gapCheck.riskExplanation,
+        };
+      }
+    }
+
     milestone.status = status;
     milestone.completedAt = status === 'completed' ? new Date() : null;
 
@@ -147,6 +166,7 @@ const updateMilestoneStatus = async (req, res, next) => {
       success: true,
       message: `Milestone '${milestone.skillName}' updated to '${status}'`,
       overallProgress: roadmap.overallProgress,
+      dependencyWarning,
       roadmap,
     });
   } catch (error) {

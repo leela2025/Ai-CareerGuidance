@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   CheckCircle,
   Clock,
@@ -8,6 +9,7 @@ import {
   Video,
   Code,
   FolderGit2,
+  ShieldCheck,
 } from 'lucide-react';
 
 export const RoadmapMilestone = ({ milestone, onUpdateStatus, isUpdating }) => {
@@ -84,13 +86,33 @@ export const RoadmapMilestone = ({ milestone, onUpdateStatus, isUpdating }) => {
                 {currentBadge.icon}
                 {currentBadge.label}
               </span>
+              {milestone.verified && (
+                <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm shadow-emerald-500/10">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  Verified ✓
+                </span>
+              )}
             </div>
             <h3 className="text-lg font-bold text-white leading-snug">{skillName}</h3>
           </div>
         </div>
 
-        {/* Status Toggle Buttons */}
-        <div className="flex items-center gap-2 self-end md:self-auto shrink-0">
+        {/* Status Toggle & Prove-It Verification Buttons */}
+        <div className="flex items-center gap-2 self-end md:self-auto shrink-0 flex-wrap">
+          {/* Prove-It Verification CTA */}
+          <Link
+            to={`/skills/${encodeURIComponent(skillName)}/verify`}
+            className={`text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 ${
+              milestone.verified
+                ? 'bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border-emerald-600/40'
+                : 'bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white border-brand-500/40 shadow-sm'
+            }`}
+            title="Take an AI-powered quiz or practical task to verify this skill"
+          >
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>{milestone.verified ? 'Retest Proof' : 'Prove It ✓'}</span>
+          </Link>
+
           {status !== 'completed' && (
             <button
               disabled={isUpdating}

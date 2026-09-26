@@ -1,4 +1,5 @@
 const Profile = require('../models/Profile');
+const SecurityLog = require('../models/SecurityLog');
 
 // @desc    Get current user profile
 // @route   GET /api/profile
@@ -11,6 +12,9 @@ const getProfile = async (req, res, next) => {
       // Auto-create default profile if not already present
       profile = await Profile.create({
         user: req.user._id,
+        lifeStage: 'undergraduate',
+        currentStageDetails: {},
+        constraints: [],
         educationLevel: 'B.Tech / B.E.',
         branch: 'Computer Science & Engineering',
         graduationYear: '2026',
@@ -35,6 +39,9 @@ const getProfile = async (req, res, next) => {
 const updateProfile = async (req, res, next) => {
   try {
     const {
+      lifeStage,
+      currentStageDetails,
+      constraints,
       educationLevel,
       branch,
       graduationYear,
@@ -47,6 +54,11 @@ const updateProfile = async (req, res, next) => {
       user: req.user._id,
     };
 
+    if (lifeStage !== undefined) profileFields.lifeStage = lifeStage;
+    if (currentStageDetails !== undefined) profileFields.currentStageDetails = currentStageDetails;
+    if (Array.isArray(constraints)) {
+      profileFields.constraints = constraints.map((c) => (typeof c === 'string' ? c.trim() : c)).filter(Boolean);
+    }
     if (educationLevel !== undefined) profileFields.educationLevel = educationLevel;
     if (branch !== undefined) profileFields.branch = branch;
     if (graduationYear !== undefined) profileFields.graduationYear = graduationYear;
@@ -59,11 +71,22 @@ const updateProfile = async (req, res, next) => {
       profileFields.interests = interests.map((i) => i.trim()).filter(Boolean);
     }
 
-    let profile = await Profile.findOneAndUpdate(
+    const profile = await Profile.findOneAndUpdate(
       { user: req.user._id },
       { $set: profileFields },
       { new: true, upsert: true, runValidators: true }
     ).populate('user', 'name email role');
+
+    // Audit log
+    await SecurityLog.logAction({
+      userId: req.user._id,
+      action: 'profile-update',
+      req,
+      details: {
+        lifeStage: profile.lifeStage,
+        updatedFields: Object.keys(profileFields).filter((k) => k !== 'user'),
+      },
+    });
 
     res.status(200).json({
       success: true,

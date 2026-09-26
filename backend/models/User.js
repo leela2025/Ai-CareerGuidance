@@ -36,6 +36,35 @@ const userSchema = new mongoose.Schema(
       },
       default: 'student',
     },
+    isMentor: {
+      type: Boolean,
+      default: false,
+      index: true,
+    },
+    mentorProfileId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Mentor',
+      default: null,
+    },
+    avatar: {
+      type: String,
+      default: '',
+    },
+    resetPasswordToken: {
+      type: String,
+      default: null,
+      select: false,
+    },
+    resetPasswordCode: {
+      type: String,
+      default: null,
+      select: false,
+    },
+    resetPasswordExpires: {
+      type: Date,
+      default: null,
+      select: false,
+    },
   },
   {
     timestamps: true,
@@ -54,6 +83,31 @@ userSchema.pre('save', async function () {
 // Instance method to compare password
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
+};
+
+// Instance method to generate and set password reset token and code
+userSchema.methods.getResetPasswordData = function () {
+  const crypto = require('crypto');
+  // Generate random 20-byte token (40 hex chars)
+  const resetToken = crypto.randomBytes(20).toString('hex');
+  // Generate friendly 6-digit numeric OTP code
+  const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+  // Hash and save in DB for security
+  this.resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex');
+
+  this.resetPasswordCode = crypto
+    .createHash('sha256')
+    .update(resetCode)
+    .digest('hex');
+
+  // Valid for 15 minutes
+  this.resetPasswordExpires = Date.now() + 15 * 60 * 1000;
+
+  return { resetToken, resetCode };
 };
 
 module.exports = mongoose.model('User', userSchema);

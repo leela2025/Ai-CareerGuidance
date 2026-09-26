@@ -4,29 +4,111 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 font-sans;
+    @apply bg-zinc-950 text-zinc-100 font-sans;
+  }
+
+  /* Universal accessible keyboard focus ring for tab navigation */
+  :focus-visible {
+    outline: 2px solid #a855f7 !important;
+    outline-offset: 2px !important;
   }
 }
 
-/* Custom scrollbar */
+/* Custom neutral dark scrollbar (zero blue) */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #27272a;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #3f3f46;
 }
 
 .gradient-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15), transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.15), transparent 70%);
+}
+
+/* Purposeful Motion Keyframes */
+@keyframes quickFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stepTransition {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes resultReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Purposeful Utility Classes */
+.animate-quick-fade {
+  animation: quickFade 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 280ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-step-transition {
+  animation: stepTransition 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-result-reveal {
+  animation: resultReveal 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-container-fade {
+  animation: quickFade 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Respect OS prefers-reduced-motion setting */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

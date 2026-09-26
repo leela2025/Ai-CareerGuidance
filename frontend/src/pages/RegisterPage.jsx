@@ -56,17 +56,23 @@ export const RegisterPage = () => {
       <div className="w-full max-w-md">
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-500 items-center justify-center shadow-lg shadow-brand-500/25 mb-4">
-            <Compass className="w-7 h-7 text-white" />
-          </div>
+          <Link to="/" className="inline-block group mb-4">
+            <div className="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-xl inline-flex items-center justify-center group-hover:border-purple-500/40 group-hover:shadow-purple-500/10 transition-all">
+              <img
+                src="/logo-transparent.png"
+                alt="CareerCompassAI Logo"
+                className="h-20 w-auto object-contain mx-auto drop-shadow-[0_0_15px_rgba(168,85,247,0.35)] group-hover:scale-105 transition-transform"
+              />
+            </div>
+          </Link>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Create Your Account
           </h1>
           <p className="text-sm text-slate-400 mt-1">Join CareerCompassAI to launch your skill roadmap</p>
         </div>
 
-        {/* Card */}
-        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl">
+        {/* Card with quick fade */}
+        <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl animate-quick-fade">
           <AlertBanner type="error" message={error} onClose={() => setError('')} />
 
           <form onSubmit={handleSubmit} className="space-y-4">

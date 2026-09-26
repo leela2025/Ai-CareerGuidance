@@ -38,6 +38,17 @@ const seedDatabase = async () => {
     await Roadmap.deleteMany({});
     await ResumeFeedback.deleteMany({});
 
+    // Import Mentor models
+    const Mentor = require('../models/Mentor');
+    const MentorFeedback = require('../models/MentorFeedback');
+    const ConnectionRequest = require('../models/ConnectionRequest');
+    const Conversation = require('../models/Conversation');
+
+    await Mentor.deleteMany({});
+    await MentorFeedback.deleteMany({});
+    await ConnectionRequest.deleteMany({});
+    await Conversation.deleteMany({});
+
     console.log('🌱 Inserting demo users...');
 
     // 1. Create Student User (Alex Chen)
@@ -67,166 +78,478 @@ const seedDatabase = async () => {
     });
     await student2.save();
 
-    console.log('🌱 Inserting student profiles...');
+    // 4. Create Mentor Users
+    const mentorUser1 = new User({
+      name: 'Dr. Aris Vance',
+      email: 'aris.vance@careercompass.ai',
+      password: 'Student@123',
+      role: 'student',
+      isMentor: true,
+    });
+    await mentorUser1.save();
 
-    // Profile for Alex
-    await Profile.create({
+    const mentorUser2 = new User({
+      name: 'Ananya Roy',
+      email: 'ananya.roy@careercompass.ai',
+      password: 'Student@123',
+      role: 'student',
+      isMentor: true,
+    });
+    await mentorUser2.save();
+
+    const mentorUser3 = new User({
+      name: 'Rohan Sharma',
+      email: 'rohan.sharma@careercompass.ai',
+      password: 'Student@123',
+      role: 'student',
+      isMentor: true,
+    });
+    await mentorUser3.save();
+
+    const mentorUser4 = new User({
+      name: 'Neha Kulkarni',
+      email: 'neha.kulkarni@careercompass.ai',
+      password: 'Student@123',
+      role: 'student',
+      isMentor: true,
+    });
+    await mentorUser4.save();
+
+    console.log('🌱 Inserting mentors & profiles...');
+
+    // Create Mentor Profiles
+    const m1 = await Mentor.create({
+      user: mentorUser1._id,
+      type: 'expert',
+      headline: 'Principal Cloud Architect at AWS, 12+ yrs exp | Ex-Microsoft',
+      bio: 'Over a decade of designing distributed cloud systems and hiring software engineers. Passionate about helping university students master system design, Docker containerization, and enterprise AWS deployments.',
+      expertiseTags: ['cloud-architecture', 'system-design', 'aws', 'backend', 'career-growth'],
+      verified: true,
+      availability: 'Weekday Evenings (6 PM - 9 PM IST)',
+      rating: 4.9,
+      totalReviews: 24,
+      totalConversations: 48,
+      companyOrCollege: 'Amazon Web Services (AWS)',
+      yearsOfExperience: '12+ Years',
+    });
+    mentorUser1.mentorProfileId = m1._id;
+    await mentorUser1.save();
+
+    const m2 = await Mentor.create({
+      user: mentorUser2._id,
+      type: 'expert',
+      headline: 'Senior AI Research Scientist | Stanford PhD | Ex-Meta',
+      bio: 'Specializing in Large Language Models, PyTorch pipelines, and applied AI systems. I guide students on bridging academic theoretical ML into production engineering and publishing competitive research.',
+      expertiseTags: ['artificial-intelligence', 'machine-learning', 'python', 'nlp', 'research'],
+      verified: true,
+      availability: 'Weekends (10 AM - 2 PM IST)',
+      rating: 5.0,
+      totalReviews: 18,
+      totalConversations: 36,
+      companyOrCollege: 'Meta AI / Stanford Alum',
+      yearsOfExperience: '8 Years',
+    });
+    mentorUser2.mentorProfileId = m2._id;
+    await mentorUser2.save();
+
+    const m3 = await Mentor.create({
+      user: mentorUser3._id,
+      type: 'peer',
+      headline: 'Switched from Mechanical to SDE-1 at Razorpay (Self-Taught MERN)',
+      bio: 'I was completely lost in mechanical engineering until my final year. Built 4 full-stack projects, practiced DSA consistently, and cracked a Tier-1 tech role with zero formal CS degree. Happy to share my exact roadmap and review resumes!',
+      expertiseTags: ['career-switch', 'mern-stack', 'self-taught', 'fresher-journey', 'motivation'],
+      verified: true,
+      availability: 'Flexible / Daily Evenings',
+      rating: 4.9,
+      totalReviews: 32,
+      totalConversations: 64,
+      companyOrCollege: 'Razorpay (Mechanical to Tech)',
+      yearsOfExperience: '2 Years',
+    });
+    mentorUser3.mentorProfileId = m3._id;
+    await mentorUser3.save();
+
+    const m4 = await Mentor.create({
+      user: mentorUser4._id,
+      type: 'peer',
+      headline: 'Cracked Off-Campus Placement from Tier-3 College | SDE at Flipkart',
+      bio: 'Top companies never visited our campus. I cracked product-based company hiring solely through open-source contributions, rigorous LeetCode consistency, and cold outreach. Ask me how to stand out without brand college pedigree.',
+      expertiseTags: ['tier-3-success', 'off-campus-hiring', 'dsa-prep', 'fresher', 'motivation'],
+      verified: true,
+      availability: 'Saturday & Sunday',
+      rating: 4.9,
+      totalReviews: 29,
+      totalConversations: 55,
+      companyOrCollege: 'Flipkart (Tier-3 College Alum)',
+      yearsOfExperience: '1.5 Years',
+    });
+    mentorUser4.mentorProfileId = m4._id;
+    await mentorUser4.save();
+
+    // Sample reviews for mentors
+    await MentorFeedback.create({
+      mentor: m1._id,
       user: studentUser._id,
-      educationLevel: 'B.Tech / B.E.',
-      branch: 'Computer Science & Engineering',
-      graduationYear: '2026',
-      currentSkills: ['JavaScript', 'React', 'Node.js', 'Express', 'HTML5', 'CSS3', 'Git'],
-      interests: ['Full Stack Development', 'Cloud Architecture', 'Artificial Intelligence'],
-      resumeText: 'Alex Chen\nAspiring Full Stack Engineer\nSkills: JavaScript, React, Node.js, Express, MongoDB\nProjects: E-commerce web platform, Chat app with WebSockets.',
+      rating: 5,
+      comment: 'Dr. Vance gave me pinpoint feedback on my AWS architecture project. Best 30 minutes of career guidance I have had in college.',
     });
 
-    // Profile for Sarah
-    await Profile.create({
+    await MentorFeedback.create({
+      mentor: m3._id,
       user: student2._id,
-      educationLevel: 'B.Tech / B.E.',
-      branch: 'AI & Data Science',
-      graduationYear: '2026',
-      currentSkills: ['Python', 'Pandas', 'Scikit-Learn', 'SQL', 'Tableau', 'FastAPI'],
-      interests: ['Machine Learning', 'Data Engineering', 'NLP'],
-      resumeText: 'Sarah Patel\nData Science & ML enthusiast\nSkills: Python, SQL, Pandas, Scikit-learn\nProjects: Customer Churn Predictor, Sentiment Analysis with BERT.',
+      rating: 5,
+      comment: 'Rohan made me believe that switching into tech without a CS background is completely doable. Super inspiring peer!',
     });
 
-    console.log('🌱 Inserting career suggestions & roadmaps...');
-
-    // Career Suggestion for Alex
-    const careerSuggestion = await CareerSuggestion.create({
+    // Seed one accepted connection & conversation between Alex and Rohan
+    const sampleReq = await ConnectionRequest.create({
       user: studentUser._id,
-      suggestedPaths: [
-        {
-          title: 'Full Stack Cloud Engineer',
-          matchScore: 92,
-          description: 'Combines your solid React and Node.js foundation with cloud containerization and distributed backend systems.',
-          targetRoles: ['Full Stack Developer', 'Cloud Application Engineer', 'MERN Stack Specialist'],
-          marketDemand: 'Very High',
-        },
-        {
-          title: 'Frontend Systems Architect',
-          matchScore: 86,
-          description: 'Focuses deeply on component design systems, modern client-side state management, and high-performance web applications.',
-          targetRoles: ['Frontend Engineer', 'UI/UX Technical Specialist', 'React Developer'],
-          marketDemand: 'High',
-        },
-        {
-          title: 'DevOps & Cloud Automation Specialist',
-          matchScore: 78,
-          description: 'Bridges software engineering and infrastructure via Docker, Kubernetes, CI/CD pipelines, and cloud services.',
-          targetRoles: ['Junior DevOps Engineer', 'Cloud Operations Specialist'],
-          marketDemand: 'High',
-        },
-      ],
-      skillGaps: ['TypeScript', 'Docker', 'Kubernetes', 'Scalable System Design', 'AWS Cloud Services'],
-      aiReasoning: 'Alex shows exemplary proficiency in core MERN stack primitives. To unlock high-paying Tier-1 tech roles, mastering TypeScript, containerization (Docker), and cloud architecture is the highest leverage path.',
+      mentor: m3._id,
+      mentorUser: mentorUser3._id,
+      status: 'accepted',
+      message: 'Hi Rohan! I am learning MERN stack and would love advice on how you transitioned from mechanical engineering.',
+      respondedAt: new Date(),
     });
 
-    // Roadmap for Alex
-    await Roadmap.create({
-      user: studentUser._id,
-      careerGoal: 'Full Stack Cloud Engineer',
-      milestones: [
+    const sampleConv = await Conversation.create({
+      connectionRequest: sampleReq._id,
+      participants: [studentUser._id, mentorUser3._id],
+      messages: [
         {
-          skillId: 'ts-01',
-          skillName: 'TypeScript Fundamentals & Typing React/Node',
-          category: 'Type Safety & Core Languages',
-          status: 'completed',
-          order: 1,
-          completedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-          resources: [
-            { title: 'TypeScript Official Handbook', url: 'https://www.typescriptlang.org/docs/handbook/intro.html', type: 'documentation' },
-            { title: 'TypeScript Course by FreeCodeCamp', url: 'https://www.freecodecamp.org/news/learn-typescript-beginners-guide/', type: 'course' },
-          ],
+          sender: studentUser._id,
+          text: 'Hi Rohan! I am learning MERN stack and would love advice on how you transitioned from mechanical engineering.',
+          timestamp: new Date(Date.now() - 3600000),
+          read: true,
         },
         {
-          skillId: 'docker-02',
-          skillName: 'Docker & Containerization for MERN Apps',
-          category: 'DevOps & Infrastructure',
-          status: 'in-progress',
-          order: 2,
-          resources: [
-            { title: 'Docker Getting Started Tutorial', url: 'https://docs.docker.com/get-started/', type: 'documentation' },
-            { title: 'Containerizing Node.js and MongoDB Apps', url: 'https://nodejs.org/en/docs/guides/nodejs-docker-webapp', type: 'article' },
-          ],
-        },
-        {
-          skillId: 'aws-03',
-          skillName: 'AWS Core Services (EC2, S3, IAM, ECS)',
-          category: 'Cloud Architecture',
-          status: 'pending',
-          order: 3,
-          resources: [
-            { title: 'AWS Cloud Practitioner Essentials', url: 'https://aws.amazon.com/training/digital/aws-cloud-practitioner-essentials/', type: 'course' },
-            { title: 'Deploying MERN Applications on AWS', url: 'https://aws.amazon.com/getting-started/hands-on/deploy-docker-containers/', type: 'project' },
-          ],
-        },
-        {
-          skillId: 'sys-04',
-          skillName: 'Distributed System Design & Microservices Basics',
-          category: 'System Architecture',
-          status: 'pending',
-          order: 4,
-          resources: [
-            { title: 'System Design Primer', url: 'https://github.com/donnemartin/system-design-primer', type: 'documentation' },
-          ],
-        },
-        {
-          skillId: 'cicd-05',
-          skillName: 'Automated CI/CD with GitHub Actions',
-          category: 'Automation & Testing',
-          status: 'pending',
-          order: 5,
-          resources: [
-            { title: 'GitHub Actions Documentation', url: 'https://docs.github.com/en/actions', type: 'documentation' },
-          ],
+          sender: mentorUser3._id,
+          text: 'Hey Alex! Glad to connect. The biggest key was building full-stack apps with TypeScript and deploying them with Docker. Happy to review your GitHub!',
+          timestamp: new Date(Date.now() - 1800000),
+          read: false,
         },
       ],
-      overallProgress: 20,
+      status: 'active',
+      lastMessageAt: new Date(Date.now() - 1800000),
     });
 
-    // Resume Feedback for Alex
-    await ResumeFeedback.create({
-      user: studentUser._id,
-      submittedResumeText: 'Alex Chen\nB.Tech CSE, 2026\nProjects: MERN Stack E-Commerce App, Realtime Chat\nSkills: React, Node, Express, MongoDB, Git',
-      aiScore: 84,
-      targetRole: 'Full Stack Cloud Engineer',
-      strengths: [
-        'Well-defined technical stack with direct relevance to modern web development.',
-        'High-impact projects demonstrating full-stack competencies.',
-        'Clear educational timeline and relevant coursework.',
+    sampleReq.conversation = sampleConv._id;
+    await sampleReq.save();
+
+    // ------------------------------------------------------------------------
+    // Seed PlatformFeedback & SuccessStory Module Data
+    // ------------------------------------------------------------------------
+    const PlatformFeedback = require('../models/PlatformFeedback');
+    const SuccessStory = require('../models/SuccessStory');
+
+    await PlatformFeedback.deleteMany({});
+    await SuccessStory.deleteMany({});
+
+    console.log('🌱 Seeding platform feedback & ratings...');
+    await PlatformFeedback.create([
+      {
+        user: studentUser._id,
+        overallRating: 5,
+        featureRatings: { aiAccuracy: 5, roadmapUsefulness: 5, uiExperience: 5 },
+        comment:
+          'CareerCompassAI transformed my career trajectory. The dynamic roadmap milestone breakdown gave me exact weekly goals that helped me stay focused and land interviews.',
+      },
+      {
+        user: mentorUser3._id, // Rohan Sharma
+        overallRating: 5,
+        featureRatings: { aiAccuracy: 4, roadmapUsefulness: 5, uiExperience: 5 },
+        comment:
+          'The branching journey feature is brilliant. It normalizes changing paths and taking alternative routes instead of treating career choices as permanent traps.',
+      },
+      {
+        user: mentorUser4._id, // Neha Kulkarni
+        overallRating: 4,
+        featureRatings: { aiAccuracy: 4, roadmapUsefulness: 4, uiExperience: 5 },
+        comment:
+          'The real-time mentor connect layer adds immense trust. As someone who switched from mechanical to software, being able to mentor others directly on the platform is fulfilling.',
+      },
+      {
+        user: mentorUser2._id, // Ananya Roy
+        overallRating: 5,
+        featureRatings: { aiAccuracy: 5, roadmapUsefulness: 5, uiExperience: 4 },
+        comment:
+          'Super impressed with the resume keyword gap analysis. It accurately pinpointed system design skills missing from my mentee’s profile.',
+      },
+      {
+        user: mentorUser1._id, // Dr. Aris Vance
+        overallRating: 5,
+        featureRatings: { aiAccuracy: 5, roadmapUsefulness: 5, uiExperience: 5 },
+        comment:
+          'A state-of-the-art career guidance platform that balances machine intelligence with human credibility. Exceptional design and pedagogy.',
+      },
+    ]);
+
+    console.log('🌱 Seeding approved community success stories...');
+    await SuccessStory.create([
+      {
+        user: studentUser._id,
+        title: 'From Confused 12th Grader to Cloud Architect at a Fintech Scale-up',
+        storyText:
+          'Right after 12th grade board exams, I was paralyzed by choices between generic BSc and private engineering colleges. CareerCompassAI suggested a structured pathway focusing on Distributed Systems and AWS certifications. By breaking down multi-year goals into 3-month milestones, I stayed consistent, built real Terraform projects, and cracked a Cloud Architect position right out of college.\n\nThe biggest gamechanger was realizing I did not have to know everything on day one—the roadmap guided me step by step through Linux internals, networking, and microservices.',
+        lifeStageJourney: 'school → engineering → cloud architect',
+        beforeAfter: {
+          before: 'Paralyzed by degree choices with zero technical direction',
+          after: 'AWS Certified Solutions Architect leading fintech cloud migrations',
+        },
+        status: 'approved',
+        featured: true,
+        likes: [studentUser._id, mentorUser1._id, mentorUser3._id],
+        approvedAt: new Date(Date.now() - 86400000 * 10),
+      },
+      {
+        user: mentorUser3._id,
+        title: 'Switching from Mechanical Engineering to MERN Full-Stack Developer in 8 Months',
+        storyText:
+          'I graduated with a mechanical degree and quickly realized core plant jobs offered limited growth. Everyone told me without a Computer Science degree, product startups wouldn’t even open my resume. CareerCompassAI helped me identify exact project gaps and motivated me to build full-stack apps with TypeScript, React, and MongoDB.\n\nAfter 8 months of consistent building and getting my resume analyzed through the AI keyword scanner, I cleared three rounds of technical interviews at TechVentures Ltd. You don’t need a CS degree—you need proof of work and relentless curiosity.',
+        lifeStageJourney: 'undergraduate → career-shift → full-stack engineer',
+        beforeAfter: {
+          before: 'Mechanical grad with 0 lines of code and no tech referrals',
+          after: 'Full-Stack Developer building high-scale MERN microservices',
+        },
+        status: 'approved',
+        featured: true,
+        likes: [studentUser._id, mentorUser2._id, mentorUser4._id, mentorUser1._id],
+        approvedAt: new Date(Date.now() - 86400000 * 7),
+      },
+      {
+        user: mentorUser4._id,
+        title: 'Returning to the Tech Workforce After a 4-Year Caregiver Career Break',
+        storyText:
+          'After taking a four-year hiatus to care for my family, my confidence had hit rock bottom. Tech moved so fast with CI/CD and cloud tools that my old testing skills felt obsolete. CareerCompassAI’s Workforce Re-entry track helped me target modern Cypress, Playwright, and Selenium workflows.\n\nWithin five months of following the customized curriculum and connecting with empathetic mentors on this platform, I rejoined the workforce as a Senior Automation Engineer with flexible remote work.',
+        lifeStageJourney: 're-entering → upskilling → qa automation engineer',
+        beforeAfter: {
+          before: '4-year resume gap and overwhelming imposter syndrome',
+          after: 'Senior QA Automation Engineer with full remote flexibility',
+        },
+        status: 'approved',
+        featured: false,
+        likes: [studentUser._id, mentorUser3._id],
+        approvedAt: new Date(Date.now() - 86400000 * 5),
+      },
+      {
+        user: mentorUser2._id,
+        title: 'Transitioning from Tier-1 Customer Support to Associate Product Manager',
+        storyText:
+          'Answering customer support tickets for two years taught me deep empathy for user pain points, but I lacked formal product framework knowledge. The Lifelong Career Navigator suggested an agile transition path: user journey mapping, SQL data analytics, and PRD writing.\n\nI built internal dashboards at my current company, showcased them to our Head of Product, and secured an internal transfer into Product Management. Don’t underestimate your domain context—turn it into your product superpower!',
+        lifeStageJourney: 'working-professional → career-shift → associate pm',
+        beforeAfter: {
+          before: 'Handling 60+ repetitive customer support tickets per day',
+          after: 'Associate Product Manager designing multi-platform feature roadmaps',
+        },
+        status: 'approved',
+        featured: true,
+        likes: [studentUser._id, mentorUser1._id],
+        approvedAt: new Date(Date.now() - 86400000 * 3),
+      },
+      {
+        user: studentUser._id,
+        title: 'Cracking Remote Open Source Fellowships from a Tier-3 College',
+        storyText:
+          'Coming from a non-metro college with zero on-campus placements from tier-1 firms, I thought competitive exams were my only choice. CareerCompassAI pointed me toward open-source contributions and portfolio building. I contributed documentation, then bug fixes to leading Python libraries, and ultimately earned a paid fellowship that paid higher than campus salaries.',
+        lifeStageJourney: 'undergraduate → tier-3 college → open source fellow',
+        beforeAfter: {
+          before: 'Tier-3 college with no on-campus tech companies visiting',
+          after: 'Global open source fellow collaborating with engineers worldwide',
+        },
+        status: 'approved',
+        featured: false,
+        likes: [mentorUser3._id],
+        approvedAt: new Date(Date.now() - 86400000 * 2),
+      },
+      {
+        user: mentorUser1._id,
+        title: 'From Confusion Over Academic Research to Leading AI Innovation',
+        storyText:
+          'Early in my master’s program, academic papers felt like impenetrable mathematical jargon. A mentor told me: implement the math in code first, understand the intuition, then write the paper. CareerCompassAI’s curriculum approach mirrors this exact learning philosophy and has guided hundreds of my university students into world-class research institutes.',
+        lifeStageJourney: 'undergraduate → masters → ai researcher',
+        beforeAfter: {
+          before: 'Overwhelmed by theoretical math equations and research papers',
+          after: 'AI Research Scientist with 20+ peer-reviewed international publications',
+        },
+        status: 'approved',
+        featured: false,
+        likes: [studentUser._id, mentorUser2._id, mentorUser4._id],
+        approvedAt: new Date(Date.now() - 86400000 * 1),
+      },
+    ]);
+
+    // ------------------------------------------------------------------------
+    // Seed Skill Verification & Reality-Check Layer (Assessments & Projects)
+    // ------------------------------------------------------------------------
+    const SkillAssessment = require('../models/SkillAssessment');
+    const Project = require('../models/Project');
+
+    await SkillAssessment.deleteMany({});
+    await Project.deleteMany({});
+
+    console.log('🌱 Seeding Skill Assessments & Project Reality Checks...');
+
+    // Seed 1: Passed Skill Assessment (JavaScript ES6)
+    await SkillAssessment.create({
+      userId: studentUser._id,
+      skillName: 'JavaScript ES6',
+      assessmentType: 'quiz',
+      status: 'passed',
+      score: 86,
+      attemptNumber: 1,
+      questions: [
+        {
+          question: 'What is the primary difference between var, let, and const in JavaScript ES6?',
+          type: 'mcq',
+          options: ['Scope and reassignment rules', 'Execution speed', 'Memory limit', 'Browser support'],
+          correctAnswer: 'Scope and reassignment rules',
+        },
       ],
-      improvements: [
-        'Quantify project outcomes (e.g., "Reduced database query latency by 35% through indexing").',
-        'Add TypeScript and container tools (Docker) once in progress.',
-        'Include live demo URLs and active GitHub repository hyperlinks.',
-      ],
-      summary: 'Solid foundation for an entry-level Full Stack role. Incorporating measurable impact metrics and cloud deployment links will make this resume stand out to hiring managers.',
+      aiEvaluation: {
+        score: 86,
+        passed: true,
+        specificFeedback: [
+          'Excellent conceptual explanation of lexical scoping and closures.',
+          'Accurately identified edge cases in object destructuring with default parameters.',
+        ],
+        gapsIdentified: ['Minor: deeper consideration of WeakMap garbage collection semantics.'],
+        evaluatedAt: new Date(Date.now() - 86400000 * 2),
+      },
     });
 
-    // Sample Resume Feedback for Sarah
-    await ResumeFeedback.create({
-      user: student2._id,
-      submittedResumeText: 'Sarah Patel\nB.Tech AI & DS, 2026\nProjects: Churn Prediction Model, BERT Sentiment Classifier\nSkills: Python, Pandas, Scikit-Learn, SQL',
-      aiScore: 88,
-      targetRole: 'Machine Learning Engineer',
-      strengths: [
-        'Strong focus on data science algorithms and modern libraries.',
-        'Hands-on machine learning projects addressing real-world classification problems.',
+    // Seed 2: Failed Assessment with Mistake Pattern Analysis (Async/Promises)
+    await SkillAssessment.create({
+      userId: studentUser._id,
+      skillName: 'Async/Promises',
+      assessmentType: 'quiz',
+      status: 'failed',
+      score: 56,
+      attemptNumber: 2,
+      questions: [
+        {
+          question: 'How does Promise.all behave when one of 5 promises rejects?',
+          type: 'mcq',
+          options: ['Rejects immediately with that error', 'Waits for all 5 to settle', 'Returns null', 'Retries 3 times'],
+          correctAnswer: 'Rejects immediately with that error',
+        },
       ],
-      improvements: [
-        'Specify evaluation metrics for models (e.g., F1-score, AUC-ROC).',
-        'Highlight data preprocessing pipelines and feature engineering steps.',
-      ],
-      summary: 'Impressive machine learning portfolio with strong analytical rigour.',
+      aiEvaluation: {
+        score: 56,
+        passed: false,
+        specificFeedback: [
+          'Confused microtask vs macrotask queue sequencing in multiple scenarios.',
+          'Incorrectly assumed that forEach awaits async callbacks sequentially.',
+        ],
+        gapsIdentified: [
+          'Event loop microtask queue drain timing',
+          'Sequential vs concurrent async iterator patterns',
+        ],
+        evaluatedAt: new Date(Date.now() - 86400000 * 1),
+      },
+      mistakeAnalysis: {
+        rootCauseMisconception: 'Conflating asynchronous microtask queuing with synchronous execution ordering.',
+        affectedConcepts: ['Event loop', 'Call stack', 'Promise.all fail-fast short-circuiting'],
+        targetedExplanation: 'Notice how across multiple failed attempts, your choices assumed synchronous immediate execution. In JavaScript, promise callbacks enter the microtask queue and run only after the synchronous call stack is completely drained.',
+        suggestedMicroResource: 'Spend 10 minutes tracing a 5-line async script using console.time and debugger breakpoints.',
+        analyzedAt: new Date(Date.now() - 86400000 * 1),
+      },
     });
 
-    console.log('✅ [Seed Completed Successfully]');
+    // Seed 3: Project with Reality Check and Completed Mock Interview
+    await Project.create({
+      userId: studentUser._id,
+      title: 'Cloud-Based E-Commerce Platform',
+      description:
+        'A full-stack commerce engine featuring responsive product catalogs, JWT-authenticated user sessions, MongoDB compound indexing for high-speed catalog searches, and resilient Stripe checkout processing.',
+      techStack: ['React', 'Node.js', 'Express', 'MongoDB Atlas', 'JWT', 'Stripe'],
+      userRole: 'Sole Developer / Full Stack Lead',
+      claimedComplexity: 'intermediate',
+      realityCheckResult: {
+        realismScore: 88,
+        consistencyFlags: ['Scope and tech stack are balanced and realistic for an intermediate university engineering project.'],
+        honestAssessment:
+          'This project presents a coherent, credible technical narrative. The combination of MERN with JWT and Stripe aligns well with industry standards. Be ready to explain idempotency keys for payment processing.',
+        suggestedFramingImprovements: [
+          'Highlight the compound indexing strategy in MongoDB Atlas to quantify database performance gains.',
+          'Document how network dropouts during checkout were handled gracefully.',
+        ],
+        checkedAt: new Date(Date.now() - 86400000 * 3),
+      },
+      interviewResult: {
+        questions: [
+          {
+            questionId: 'q1',
+            question: 'How do you prevent duplicate order charges if a customer clicks the pay button twice during network latency?',
+            focusArea: 'Transaction Idempotency',
+          },
+          {
+            questionId: 'q2',
+            question: 'Why did you choose compound indexing in MongoDB Atlas, and what were the trade-offs on write performance?',
+            focusArea: 'Database Optimization',
+          },
+        ],
+        answers: [
+          {
+            questionId: 'q1',
+            question: 'How do you prevent duplicate order charges?',
+            answer: 'We generated a unique idempotency key on client form submission and checked Redis before creating the Stripe charge session.',
+          },
+          {
+            questionId: 'q2',
+            question: 'Why compound indexing?',
+            answer: 'Our search queries filtered by category and sorted by price simultaneously; a compound index avoided memory-based sorting.',
+          },
+        ],
+        overallScore: 85,
+        perQuestionFeedback: [
+          {
+            question: 'How do you prevent duplicate order charges?',
+            answer: 'Idempotency key check implemented.',
+            score: 90,
+            feedback: 'Excellent response demonstrating authentic production payment integration understanding.',
+          },
+          {
+            question: 'Why compound indexing?',
+            answer: 'Avoided in-memory sort on catalog queries.',
+            score: 80,
+            feedback: 'Good index justification; also consider mentioning index size overhead on RAM.',
+          },
+        ],
+        readinessVerdict: 'Interview Ready: Demonstrates solid ownership and architectural rationale.',
+        completedAt: new Date(Date.now() - 86400000 * 2),
+      },
+    });
+
+    // Seed 4: Second Project ready for Interview
+    await Project.create({
+      userId: studentUser._id,
+      title: 'Real-Time Collaborative Workspace',
+      description:
+        'A multi-user collaborative canvas allowing simultaneous sketching and note-taking with WebSockets, state synchronizing via Redis Pub/Sub, and Docker Compose orchestration.',
+      techStack: ['React', 'Node.js', 'WebSockets', 'Redis', 'Docker'],
+      userRole: 'Full Stack Engineer',
+      claimedComplexity: 'advanced',
+      realityCheckResult: {
+        realismScore: 80,
+        consistencyFlags: [
+          'Real-time multi-user syncing is an ambitious project; be prepared to defend conflict resolution (e.g. CRDTs or last-write-wins).',
+        ],
+        honestAssessment:
+          'Impressive technical scope. A tech recruiter will immediately probe how you handle disconnected clients and reconnection storms.',
+        suggestedFramingImprovements: [
+          'Specify your conflict resolution model explicitly in the project summary.',
+          'Detail the Docker container build optimizations in your README.',
+        ],
+        checkedAt: new Date(Date.now() - 86400000 * 1),
+      },
+    });
+
+    console.log('✅ [Seed Completed Successfully with Mentors & Chat]');
     console.log('----------------------------------------------------');
     console.log('Demo Credentials for Viva / Evaluation:');
     console.log('👉 Student:  student@careercompass.ai  |  Student@123');
     console.log('👉 Admin:    admin@careercompass.ai    |  Admin@123');
+    console.log('👉 Peer Mentor: rohan.sharma@careercompass.ai | Student@123');
+    console.log('👉 Expert Mentor: aris.vance@careercompass.ai | Student@123');
     console.log('----------------------------------------------------');
 
     await mongoose.connection.close();

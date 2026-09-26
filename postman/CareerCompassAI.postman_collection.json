@@ -348,6 +348,789 @@
           }
         }
       ]
+    },
+    {
+      "name": "8. Lifelong Career Navigator Module",
+      "item": [
+        {
+          "name": "1. Start Lifelong Career Journey",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"forceRestart\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/journey/start",
+              "host": ["{{baseUrl}}"],
+              "path": ["journey", "start"]
+            },
+            "description": "Initializes user lifelong career journey using their profile lifeStage to formulate the first decision point and 3-5 alternative paths."
+          }
+        },
+        {
+          "name": "2. Get Full Journey Tree & History",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/journey",
+              "host": ["{{baseUrl}}"],
+              "path": ["journey"]
+            },
+            "description": "Fetches full ongoing career journey with all stages, decision points, chosen paths, and historical branches."
+          }
+        },
+        {
+          "name": "3. Commit to Path & Advance to Next Stage",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pathTitle\": \"Modern Full Stack Cloud Architecture (MERN + TypeScript)\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/journey/stage_example_123/choose",
+              "host": ["{{baseUrl}}"],
+              "path": ["journey", "stage_example_123", "choose"]
+            },
+            "description": "Commits user to one of the offered alternative paths at the given stageId, generating the sequential next decision point."
+          }
+        },
+        {
+          "name": "4. Branch from Decision Point ('Not Satisfied / Pivot')",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Market shifted heavily toward Generative AI and LLM APIs. Want to pivot into high-compensation AI engineering with lower reliance on legacy frontend.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/journey/stage_example_123/branch",
+              "host": ["{{baseUrl}}"],
+              "path": ["journey", "stage_example_123", "branch"]
+            },
+            "description": "Core Lifelong Navigator feature: branches from ANY past or active decision point with a specified reason without losing historical trajectory."
+          }
+        },
+        {
+          "name": "5. Log Satisfaction Rating (1 to 5 Stars)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"note\": \"Extremely aligned with current industry hiring trends in Bengaluru tech hub.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/journey/stage_example_123/satisfaction",
+              "host": ["{{baseUrl}}"],
+              "path": ["journey", "stage_example_123", "satisfaction"]
+            },
+            "description": "Logs user satisfaction on a committed path to document longitudinal experience."
+          }
+        },
+        {
+          "name": "6. Compare Stage Alternatives Side-by-Side",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/journey/stage_example_123/compare",
+              "host": ["{{baseUrl}}"],
+              "path": ["journey", "stage_example_123", "compare"]
+            },
+            "description": "Returns a structured side-by-side comparison matrix of all alternatives offered at that stage."
+          }
+        }
+      ]
+    },
+    {
+      "name": "9. Security & Audit Module",
+      "item": [
+        {
+          "name": "Get My Security & Activity Audit Trail",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/security/my-activity",
+              "host": ["{{baseUrl}}"],
+              "path": ["security", "my-activity"]
+            },
+            "description": "Fetches the user's personal audit log (logins, registrations, journey decisions, branch operations) with IP and timestamps."
+          }
+        }
+      ]
+    },
+    {
+      "name": "10. Mentors & Messaging",
+      "description": "Unified Mentor Connect & Chat layer. Real-time chat is powered by Socket.IO (join-conversation, send-message, typing, mark-read) with fallback REST endpoints.",
+      "item": [
+        {
+          "name": "1. List Mentors (Filter by type, tag, verified)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/mentors?type=expert&verified=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["mentors"],
+              "query": [
+                { "key": "type", "value": "expert" },
+                { "key": "verified", "value": "true" }
+              ]
+            },
+            "description": "Public directory of mentors filterable by type (expert | peer), tags, and verification status."
+          }
+        },
+        {
+          "name": "2. Get Mentor Profile by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/mentors/{{mentorId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["mentors", "{{mentorId}}"]
+            },
+            "description": "Fetches full mentor profile with bio, rating, total conversations, and past learner reviews."
+          }
+        },
+        {
+          "name": "3. Apply to Become a Mentor",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"peer\",\n  \"headline\": \"Switched from Mechanical to Full-Stack Web Development\",\n  \"bio\": \"Self-taught developer who cracked product-based startup interviews after 8 months of consistent building. Happy to review projects and share motivation!\",\n  \"companyOrCollege\": \"TechVentures Ltd\",\n  \"yearsOfExperience\": 2,\n  \"availability\": \"Weekday evenings 8-10 PM\",\n  \"expertiseTags\": [\"career-switch\", \"mern-stack\", \"resume-review\", \"projects\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/mentors/apply",
+              "host": ["{{baseUrl}}"],
+              "path": ["mentors", "apply"]
+            },
+            "description": "Allows a registered user to apply as a peer motivator (auto-approved) or expert (admin review)."
+          }
+        },
+        {
+          "name": "4. Verify Expert Mentor (Admin Only)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"verified\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/mentors/{{mentorId}}/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "mentors", "{{mentorId}}", "verify"]
+            },
+            "description": "Admin endpoint to review and officially verify an expert mentor's credentials."
+          }
+        },
+        {
+          "name": "5. Send Connection Request to Mentor",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mentorId\": \"{{mentorId}}\",\n  \"message\": \"Hello! I am a 3rd year student aiming for a cloud architecture role. I would love 15 minutes of guidance on which AWS certs actually matter for entry-level hiring.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/connections/request",
+              "host": ["{{baseUrl}}"],
+              "path": ["connections", "request"]
+            },
+            "description": "Sends a connection request with introductory note. Rate-limited to prevent spam."
+          }
+        },
+        {
+          "name": "6. Get My Connections (Sent & Incoming)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/connections/mine",
+              "host": ["{{baseUrl}}"],
+              "path": ["connections", "mine"]
+            },
+            "description": "Returns both sent requests (for learners) and incoming requests (for mentors) with status and conversation IDs."
+          }
+        },
+        {
+          "name": "7. Respond to Connection Request (Accept/Decline)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{mentorToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"accepted\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/connections/{{connectionRequestId}}/respond",
+              "host": ["{{baseUrl}}"],
+              "path": ["connections", "{{connectionRequestId}}", "respond"]
+            },
+            "description": "Mentor accepts or declines. On accept, automatically provisions a Conversation room."
+          }
+        },
+        {
+          "name": "8. Get Conversation & Message History",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/conversations/{{conversationId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["conversations", "{{conversationId}}"]
+            },
+            "description": "Fetches messages for the conversation. Strictly enforces participant authorization."
+          }
+        },
+        {
+          "name": "9. Post Message Fallback (REST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Thank you so much! That makes complete sense. I will start preparing for the SAA-C03 exam.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/conversations/{{conversationId}}/messages",
+              "host": ["{{baseUrl}}"],
+              "path": ["conversations", "{{conversationId}}", "messages"]
+            },
+            "description": "REST fallback endpoint for sending messages if WebSocket connection is unavailable."
+          }
+        },
+        {
+          "name": "10. Submit Mentor Feedback & Rating",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conversationId\": \"{{conversationId}}\",\n  \"rating\": 5,\n  \"comment\": \"Exceptional guidance! Helped me streamline my portfolio and gave me clear realistic expectations.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/mentors/{{mentorId}}/feedback",
+              "host": ["{{baseUrl}}"],
+              "path": ["mentors", "{{mentorId}}", "feedback"]
+            },
+            "description": "Allows mentee to rate (1-5) and review their mentor, automatically updating average rating."
+          }
+        }
+      ]
+    },
+    {
+      "name": "11. Feedback & Stories Module",
+      "description": "Platform-wide feedback ratings and moderated community success stories.",
+      "item": [
+        {
+          "name": "1. Submit or Update Platform Feedback",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"overallRating\": 5,\n  \"featureRatings\": {\n    \"aiAccuracy\": 5,\n    \"roadmapUsefulness\": 5,\n    \"uiExperience\": 5\n  },\n  \"comment\": \"CareerCompassAI gave me the structured weekly checkpoints I needed to build my cloud portfolio and clear tech interviews.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/feedback/platform",
+              "host": ["{{baseUrl}}"],
+              "path": ["feedback", "platform"]
+            },
+            "description": "Submits overall 1-5 rating, optional feature ratings, and comment. Automatically updates if submitted within 30 days."
+          }
+        },
+        {
+          "name": "2. Get Platform Feedback Summary (Public)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/feedback/platform/summary",
+              "host": ["{{baseUrl}}"],
+              "path": ["feedback", "platform", "summary"]
+            },
+            "description": "Returns aggregated platform metrics (average rating, count, distribution, per-feature averages) for landing page display."
+          }
+        },
+        {
+          "name": "3. Get My Platform Feedback",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/feedback/platform/mine",
+              "host": ["{{baseUrl}}"],
+              "path": ["feedback", "platform", "mine"]
+            },
+            "description": "Retrieves the logged-in user's previously submitted feedback to pre-fill the form."
+          }
+        },
+        {
+          "name": "4. Get All Platform Feedback (Admin Only)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/feedback/platform",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "feedback", "platform"]
+            },
+            "description": "Admin review view of all individual user ratings, feature evaluations, and comments."
+          }
+        },
+        {
+          "name": "5. Submit a Personal Success Story",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"From Non-CS Mechanical Graduate to Backend Engineer in 8 Months\",\n  \"storyText\": \"I graduated with a mechanical degree and felt overwhelmed by software hiring requirements. CareerCompassAI gave me a clear progression from Node.js basics to Docker microservices. After 8 months of following the roadmap and practicing ATS-friendly resume keyword alignment, I cleared technical interviews at a high-growth startup.\",\n  \"lifeStageJourney\": \"undergraduate → career-shift → software engineer\",\n  \"beforeAfter\": {\n    \"before\": \"Mechanical grad with 0 lines of code\",\n    \"after\": \"Backend Developer building scalable microservices\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/stories",
+              "host": ["{{baseUrl}}"],
+              "path": ["stories"]
+            },
+            "description": "Submits a personal career story for admin moderation. Saved as pending."
+          }
+        },
+        {
+          "name": "6. Get Approved Stories (Public Feed)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stories?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["stories"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" }
+              ]
+            },
+            "description": "Public feed of approved success stories, sorted by featured stories first."
+          }
+        },
+        {
+          "name": "7. Get Single Story Detail View",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/stories/{{storyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["stories", "{{storyId}}"]
+            },
+            "description": "Full view of an approved story narrative with transformation card and like count."
+          }
+        },
+        {
+          "name": "8. Get My Submitted Stories",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/stories/mine",
+              "host": ["{{baseUrl}}"],
+              "path": ["stories", "mine"]
+            },
+            "description": "Lists the logged-in user's own stories with moderation status (pending/approved/rejected)."
+          }
+        },
+        {
+          "name": "9. Toggle Like on a Story",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/stories/{{storyId}}/like",
+              "host": ["{{baseUrl}}"],
+              "path": ["stories", "{{storyId}}", "like"]
+            },
+            "description": "Toggles a like on an approved story. Only 1 like per authenticated user."
+          }
+        },
+        {
+          "name": "10. Get Stories Awaiting Moderation (Admin Only)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/admin/stories/pending?status=pending",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "stories", "pending"],
+              "query": [
+                { "key": "status", "value": "pending" }
+              ]
+            },
+            "description": "Admin review queue for pending community stories."
+          }
+        },
+        {
+          "name": "11. Moderate Story (Approve, Reject, Feature)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\",\n  \"featured\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/stories/{{storyId}}/moderate",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "stories", "{{storyId}}", "moderate"]
+            },
+            "description": "Admin endpoint to approve/reject a story and toggle featured badge."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Skill Verification & Reality-Check Layer",
+      "item": [
+        {
+          "name": "1. Check Skill Prerequisites (Dependency Detector)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skillName\": \"React\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/skills/check-dependencies",
+              "host": ["{{baseUrl}}"],
+              "path": ["skills", "check-dependencies"]
+            },
+            "description": "Checks if the user has confirmed prerequisites for a target skill before marking it complete."
+          }
+        },
+        {
+          "name": "2. Get Full Roadmap Dependency Health Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/skills/dependency-report",
+              "host": ["{{baseUrl}}"],
+              "path": ["skills", "dependency-report"]
+            },
+            "description": "Scans user's entire roadmap to detect shaky foundations and missing prerequisites."
+          }
+        },
+        {
+          "name": "3. Get Skill Graph Reference Data",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/skills/graph",
+              "host": ["{{baseUrl}}"],
+              "path": ["skills", "graph"]
+            },
+            "description": "Returns static skill graph nodes and prerequisite relationships."
+          }
+        },
+        {
+          "name": "4. Start Prove-It Skill Assessment",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"difficultyLevel\": \"intermediate\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/skills/React/start-assessment",
+              "host": ["{{baseUrl}}"],
+              "path": ["skills", "React", "start-assessment"]
+            },
+            "description": "Generates a conceptual quiz or practical task without revealing correct answers."
+          }
+        },
+        {
+          "name": "5. Submit Skill Assessment for Honest Evaluation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assessmentId\": \"{{assessmentId}}\",\n  \"answers\": [\n    {\n      \"questionIndex\": 0,\n      \"selectedAnswer\": \"React relies on shallow reference equality (Object.is) to detect state changes and schedule reconciliation renders; mutating in place breaks this comparison.\"\n    },\n    {\n      \"questionIndex\": 1,\n      \"selectedAnswer\": \"The effect captures stale closures, referencing outdated state or prop values from initial renders.\"\n    },\n    {\n      \"questionIndex\": 2,\n      \"selectedAnswer\": \"When passing callbacks to memoized child components (React.memo) that rely on reference equality to prevent expensive re-renders.\"\n    },\n    {\n      \"questionIndex\": 3,\n      \"textAnswer\": \"In controlled components, input value is derived from React state and updated via onChange. In uncontrolled components, DOM maintains input state directly via ref.\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/skills/React/submit-assessment",
+              "host": ["{{baseUrl}}"],
+              "path": ["skills", "React", "submit-assessment"]
+            },
+            "description": "Evaluates user submission against honest >=70 threshold. Marks roadmap milestone as verified if passed; diagnoses root misconception if repeatedly failed."
+          }
+        },
+        {
+          "name": "6. Get Skill Assessment History",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/skills/React/assessment-history",
+              "host": ["{{baseUrl}}"],
+              "path": ["skills", "React", "assessment-history"]
+            },
+            "description": "Returns past attempts and scores for a specific skill."
+          }
+        },
+        {
+          "name": "7. Get Learning Mistake Root-Cause Analysis",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/skills/Async%2FPromises/mistake-analysis",
+              "host": ["{{baseUrl}}"],
+              "path": ["skills", "Async%2FPromises", "mistake-analysis"]
+            },
+            "description": "Diagnoses the underlying conceptual misconception causing repeated assessment failures."
+          }
+        },
+        {
+          "name": "8. Get Verification Aggregate Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/skills/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["skills", "stats"]
+            },
+            "description": "Returns verification ratio and passed assessment count for dashboard widget."
+          }
+        },
+        {
+          "name": "9. Start Resume Defense Test",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/resume/{{resumeFeedbackId}}/defense/start",
+              "host": ["{{baseUrl}}"],
+              "path": ["resume", "{{resumeFeedbackId}}", "defense", "start"]
+            },
+            "description": "Extracts specific claims from resume and generates pointed interviewer follow-up questions."
+          }
+        },
+        {
+          "name": "10. Submit Resume Defense Answers",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"answers\": [\n    {\n      \"questionId\": \"q1\",\n      \"answer\": \"We measured database latency using MongoDB Atlas query profiler and Postman Newman runs, observing average response drop from 180ms to 115ms after adding a compound index on userId and status.\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/resume/{{resumeFeedbackId}}/defense/submit",
+              "host": ["{{baseUrl}}"],
+              "path": ["resume", "{{resumeFeedbackId}}", "defense", "submit"]
+            },
+            "description": "Evaluates candidate defense answers for credibility, specificity, and ownership."
+          }
+        },
+        {
+          "name": "11. Get Resume Defense Credibility Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/resume/{{resumeFeedbackId}}/defense",
+              "host": ["{{baseUrl}}"],
+              "path": ["resume", "{{resumeFeedbackId}}", "defense"]
+            },
+            "description": "Retrieves completed resume defense report with credibility score and recommended edits."
+          }
+        },
+        {
+          "name": "12. Submit Project for Reality Check",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Cloud-Based E-Commerce Platform\",\n  \"description\": \"Engineered a full-stack web application handling product listings, shopping cart state with Redux, RESTful Express APIs with JWT auth, and compound indexing on MongoDB Atlas.\",\n  \"techStack\": [\"React\", \"Node.js\", \"Express\", \"MongoDB Atlas\", \"Stripe\"],\n  \"userRole\": \"Sole Developer\",\n  \"claimedComplexity\": \"intermediate\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects"]
+            },
+            "description": "Submits a project to the reality-check and mock interview pipeline."
+          }
+        },
+        {
+          "name": "13. List User Projects",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects/mine",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "mine"]
+            },
+            "description": "Lists all projects submitted by user with reality-check and interview status."
+          }
+        },
+        {
+          "name": "14. Run Project Reality Check",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects/{{projectId}}/reality-check",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}", "reality-check"]
+            },
+            "description": "Evaluates project claims and architecture consistency against claimed complexity."
+          }
+        },
+        {
+          "name": "15. Start Project Mock Interview",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects/{{projectId}}/interview/start",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}", "interview", "start"]
+            },
+            "description": "Generates technical interview questions probing project decisions and trade-offs."
+          }
+        },
+        {
+          "name": "16. Submit Project Interview Answers",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"answers\": [\n    {\n      \"questionId\": \"q1\",\n      \"answer\": \"We implemented unique idempotency keys on checkout submissions to prevent duplicate Stripe charges during network re-transmissions.\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects/{{projectId}}/interview/submit",
+              "host": ["{{baseUrl}}"],
+              "path": ["projects", "{{projectId}}", "interview", "submit"]
+            },
+            "description": "Evaluates project mock interview responses for readiness and technical ownership."
+          }
+        }
+      ]
     }
   ]
 }

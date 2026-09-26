@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { ScoreGauge } from '../components/resume/ScoreGauge';
 import { FeedbackList } from '../components/resume/FeedbackList';
+import { ResumeDefenseTest } from '../components/resume/ResumeDefenseTest';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { AlertBanner } from '../components/common/AlertBanner';
 
@@ -196,7 +197,7 @@ TECHNICAL PROJECTS
         {/* Right Pane: AI Score & Report */}
         <div className="lg:col-span-7 space-y-6">
           {activeFeedback ? (
-            <>
+            <div className="space-y-6 animate-result-reveal">
               {/* Score Gauge */}
               <ScoreGauge
                 score={activeFeedback.aiScore}
@@ -208,6 +209,14 @@ TECHNICAL PROJECTS
                 strengths={activeFeedback.strengths}
                 improvements={activeFeedback.improvements}
                 summary={activeFeedback.summary}
+              />
+
+              {/* Feature 4: Resume Defense Test */}
+              <ResumeDefenseTest
+                resumeFeedback={activeFeedback}
+                onDefenseUpdated={(newDefense) => {
+                  setActiveFeedback({ ...activeFeedback, defenseResult: newDefense });
+                }}
               />
 
               {/* Past Evaluations History */}
@@ -241,7 +250,7 @@ TECHNICAL PROJECTS
                   </div>
                 </div>
               )}
-            </>
+            </div>
           ) : (
             <div className="h-full min-h-[450px] bg-slate-900/60 border border-dashed border-slate-800 rounded-3xl p-12 flex flex-col items-center justify-center text-center space-y-4">
               <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center">

@@ -55,6 +55,14 @@ const milestoneSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    verified: {
+      type: Boolean,
+      default: false,
+    },
+    verifiedAt: {
+      type: Date,
+      default: null,
+    },
   },
   { _id: true }
 );
