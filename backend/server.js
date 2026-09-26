@@ -29,6 +29,7 @@ const feedbackRoutes = require('./routes/feedbackRoutes');
 const storyRoutes = require('./routes/storyRoutes');
 const skillRoutes = require('./routes/skillRoutes');
 const projectRoutes = require('./routes/projectRoutes');
+const notificationRoutes = require('./routes/notificationRoutes');
 
 // Model imports for Socket.IO authentication & persistence
 const User = require('./models/User');
@@ -143,6 +144,7 @@ app.use('/api/feedback', feedbackRoutes);
 app.use('/api/stories', storyRoutes);
 app.use('/api/skills', skillRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // Error Handling Middleware
 app.use(notFound);

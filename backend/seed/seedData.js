@@ -38,16 +38,18 @@ const seedDatabase = async () => {
     await Roadmap.deleteMany({});
     await ResumeFeedback.deleteMany({});
 
-    // Import Mentor models
+    // Import Mentor & Notification models
     const Mentor = require('../models/Mentor');
     const MentorFeedback = require('../models/MentorFeedback');
     const ConnectionRequest = require('../models/ConnectionRequest');
     const Conversation = require('../models/Conversation');
+    const Notification = require('../models/Notification');
 
     await Mentor.deleteMany({});
     await MentorFeedback.deleteMany({});
     await ConnectionRequest.deleteMany({});
     await Conversation.deleteMany({});
+    await Notification.deleteMany({});
 
     console.log('🌱 Inserting demo users...');
 
@@ -186,6 +188,88 @@ const seedDatabase = async () => {
     mentorUser4.mentorProfileId = m4._id;
     await mentorUser4.save();
 
+    // Create 3 Pending Expert Mentors for Admin Verification Queue Demo
+    const pendingUser1 = new User({
+      name: 'Dr. Rajesh Sen',
+      email: 'rajesh.sen@careercompass.ai',
+      password: 'Student@123',
+      role: 'student',
+      isMentor: true,
+    });
+    await pendingUser1.save();
+
+    const pendingMentor1 = await Mentor.create({
+      user: pendingUser1._id,
+      type: 'expert',
+      headline: 'VP of Engineering at Fintech Unicorn | Ex-Goldman Sachs, 15+ yrs exp',
+      bio: 'Leading high-frequency transaction engines and distributed financial microservices. I am passionate about mentoring final-year students on scalable distributed system design, clean coding practices, and navigating corporate technical interviews.',
+      expertiseTags: ['fintech', 'distributed-systems', 'microservices', 'leadership', 'java'],
+      verified: false,
+      status: 'pending',
+      availability: 'Weekends (4 PM - 7 PM IST)',
+      rating: 5.0,
+      totalReviews: 0,
+      totalConversations: 0,
+      companyOrCollege: 'Fintech Unicorn (Ex-Goldman Sachs)',
+      yearsOfExperience: '15+ Years',
+    });
+    pendingUser1.mentorProfileId = pendingMentor1._id;
+    await pendingUser1.save();
+
+    const pendingUser2 = new User({
+      name: 'Aanya Sharma',
+      email: 'aanya.sharma@careercompass.ai',
+      password: 'Student@123',
+      role: 'student',
+      isMentor: true,
+    });
+    await pendingUser2.save();
+
+    const pendingMentor2 = await Mentor.create({
+      user: pendingUser2._id,
+      type: 'expert',
+      headline: 'Senior Staff Data Platform Engineer at Uber | Apache Spark Contributor',
+      bio: '8+ years orchestrating petabyte-scale streaming pipelines with Apache Kafka, Spark, and Databricks. Looking to guide ambitious engineers transitioning from basic Python scripting to production big data engineering and vector search infra.',
+      expertiseTags: ['data-engineering', 'apache-spark', 'kafka', 'big-data', 'python'],
+      verified: false,
+      status: 'pending',
+      availability: 'Tuesday & Thursday Evenings',
+      rating: 5.0,
+      totalReviews: 0,
+      totalConversations: 0,
+      companyOrCollege: 'Uber / Ex-Grab',
+      yearsOfExperience: '8+ Years',
+    });
+    pendingUser2.mentorProfileId = pendingMentor2._id;
+    await pendingUser2.save();
+
+    const pendingUser3 = new User({
+      name: 'Karan Verma',
+      email: 'karan.verma@careercompass.ai',
+      password: 'Student@123',
+      role: 'student',
+      isMentor: true,
+    });
+    await pendingUser3.save();
+
+    const pendingMentor3 = await Mentor.create({
+      user: pendingUser3._id,
+      type: 'expert',
+      headline: 'Staff Security Architect at Palo Alto Networks | CISSP, OSCP Certified',
+      bio: '10 years defending cloud perimeters, threat modeling Kubernetes clusters, and running red-team penetration tests. Eager to help university students build defensible portfolios and master secure development fundamentals.',
+      expertiseTags: ['cybersecurity', 'cloud-security', 'penetration-testing', 'kubernetes-security', 'devsecops'],
+      verified: false,
+      status: 'pending',
+      availability: 'Saturdays (11 AM - 3 PM IST)',
+      rating: 5.0,
+      totalReviews: 0,
+      totalConversations: 0,
+      companyOrCollege: 'Palo Alto Networks',
+      yearsOfExperience: '10 Years',
+    });
+    pendingUser3.mentorProfileId = pendingMentor3._id;
+    await pendingUser3.save();
+
     // Sample reviews for mentors
     await MentorFeedback.create({
       mentor: m1._id,
@@ -234,6 +318,34 @@ const seedDatabase = async () => {
 
     sampleReq.conversation = sampleConv._id;
     await sampleReq.save();
+
+    // Seed Demo Notifications for In-App Notification Bell
+    await Notification.create([
+      {
+        user: studentUser._id,
+        title: 'Connection Accepted! 💬',
+        message: 'Rohan Sharma accepted your mentorship connection request. You can now chat directly in Connections.',
+        type: 'connection-accepted',
+        link: '/connections',
+        read: false,
+      },
+      {
+        user: studentUser._id,
+        title: 'Welcome to CareerCompassAI! 🧭',
+        message: 'Your AI-powered career roadmap and verification engine is ready to explore.',
+        type: 'system',
+        link: '/roadmap',
+        read: true,
+      },
+      {
+        user: adminUser._id,
+        title: '3 Expert Mentor Applications Pending ⏳',
+        message: 'Dr. Rajesh Sen, Aanya Sharma, and Karan Verma applied for Verified Expert status.',
+        type: 'mentor-status',
+        link: '/admin/mentors',
+        read: false,
+      },
+    ]);
 
     // ------------------------------------------------------------------------
     // Seed PlatformFeedback & SuccessStory Module Data

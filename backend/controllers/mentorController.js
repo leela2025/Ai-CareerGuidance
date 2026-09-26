@@ -4,6 +4,7 @@ const ConnectionRequest = require('../models/ConnectionRequest');
 const Conversation = require('../models/Conversation');
 const MentorFeedback = require('../models/MentorFeedback');
 const SecurityLog = require('../models/SecurityLog');
+const { sendNotification } = require('../services/notificationService');
 
 /**
  * @desc    Get all mentors with filtering (type, tag, verified, search)
@@ -24,8 +25,14 @@ const getMentors = async (req, res, next) => {
       query.expertiseTags = { $in: [new RegExp(tag, 'i')] };
     }
 
-    if (verified !== undefined && verified !== '') {
-      query.verified = verified === 'true';
+    // Exclude rejected mentors from public directory
+    query.status = { $ne: 'rejected' };
+
+    // In public directory: experts must be verified; peers can be active
+    if (!type && verified === undefined) {
+      query.$or = [{ type: 'expert', verified: true }, { type: 'peer' }];
+    } else if (type === 'expert' && verified === undefined) {
+      query.verified = true;
     }
 
     if (search && search.trim()) {
@@ -186,6 +193,7 @@ const applyMentor = async (req, res, next) => {
     // Peer mentors are auto-approved; expert mentors require admin verification
     const isPeer = type.toLowerCase() === 'peer';
     const isVerified = isPeer ? true : false;
+    const initialStatus = isPeer ? 'approved' : 'pending';
 
     mentor = await Mentor.create({
       user: userId,
@@ -194,6 +202,7 @@ const applyMentor = async (req, res, next) => {
       bio: bio.trim(),
       expertiseTags: tagsArray,
       verified: isVerified,
+      status: initialStatus,
       availability: availability?.trim() || 'Flexible / Weekday Evenings',
       companyOrCollege: companyOrCollege?.trim() || '',
       yearsOfExperience: yearsOfExperience?.trim() || '',
@@ -230,6 +239,114 @@ const applyMentor = async (req, res, next) => {
 };
 
 /**
+ * @desc    Get all pending expert mentor applications (Admin Only)
+ * @route   GET /api/admin/mentors/pending
+ * @access  Private / Admin
+ */
+const getAdminPendingMentors = async (req, res, next) => {
+  try {
+    const pendingMentors = await Mentor.find({
+      type: 'expert',
+      $or: [{ status: 'pending' }, { verified: false, status: { $ne: 'rejected' } }],
+    })
+      .populate('user', 'name email avatar role')
+      .sort({ createdAt: -1 })
+      .lean();
+
+    res.status(200).json({
+      success: true,
+      count: pendingMentors.length,
+      mentors: pendingMentors.map((m) => ({
+        id: m._id,
+        user: {
+          id: m.user?._id,
+          name: m.user?.name || 'Applicant',
+          email: m.user?.email || '',
+          avatar: m.user?.avatar || '',
+        },
+        type: m.type,
+        headline: m.headline,
+        bio: m.bio,
+        expertiseTags: m.expertiseTags || [],
+        verified: m.verified,
+        status: m.status || (m.verified ? 'approved' : 'pending'),
+        availability: m.availability,
+        companyOrCollege: m.companyOrCollege,
+        yearsOfExperience: m.yearsOfExperience,
+        createdAt: m.createdAt,
+      })),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Get all mentors with stats for admin overview (Admin Only)
+ * @route   GET /api/admin/mentors/all
+ * @access  Private / Admin
+ */
+const getAdminAllMentors = async (req, res, next) => {
+  try {
+    const mentors = await Mentor.find({})
+      .populate('user', 'name email avatar role')
+      .sort({ createdAt: -1 })
+      .lean();
+
+    const totalMentors = mentors.length;
+    const totalExperts = mentors.filter((m) => m.type === 'expert').length;
+    const totalPeers = mentors.filter((m) => m.type === 'peer').length;
+    const pendingCount = mentors.filter(
+      (m) =>
+        m.type === 'expert' &&
+        (!m.verified || m.status === 'pending') &&
+        m.status !== 'rejected'
+    ).length;
+    const verifiedExpertsCount = mentors.filter((m) => m.type === 'expert' && m.verified).length;
+    const rejectedCount = mentors.filter((m) => m.status === 'rejected').length;
+
+    res.status(200).json({
+      success: true,
+      stats: {
+        totalMentors,
+        totalExperts,
+        totalPeers,
+        pendingCount,
+        verifiedExpertsCount,
+        rejectedCount,
+      },
+      mentors: mentors.map((m) => ({
+        id: m._id,
+        user: {
+          id: m.user?._id,
+          name: m.user?.name || 'Mentor',
+          email: m.user?.email || '',
+          avatar: m.user?.avatar || '',
+        },
+        type: m.type,
+        headline: m.headline,
+        bio: m.bio,
+        expertiseTags: m.expertiseTags || [],
+        verified: m.verified,
+        status: m.status || (m.verified ? 'approved' : 'pending'),
+        rejectionReason: m.rejectionReason || '',
+        availability: m.availability,
+        rating: m.rating,
+        totalReviews: m.totalReviews,
+        totalConversations: m.totalConversations,
+        companyOrCollege: m.companyOrCollege,
+        yearsOfExperience: m.yearsOfExperience,
+        createdAt: m.createdAt,
+        verifiedAt: m.verifiedAt,
+        rejectedAt: m.rejectedAt,
+      })),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
  * @desc    Verify or unverify an expert mentor (Admin Only)
  * @route   PATCH /api/admin/mentors/:id/verify
  * @access  Private / Admin
@@ -247,12 +364,79 @@ const verifyMentor = async (req, res, next) => {
       });
     }
 
-    mentor.verified = verified !== false;
+    const isVerifying = verified !== false;
+    mentor.verified = isVerifying;
+    mentor.status = isVerifying ? 'approved' : 'rejected';
+    if (isVerifying) {
+      mentor.verifiedAt = new Date();
+      mentor.verifiedBy = req.user._id;
+      mentor.rejectionReason = '';
+    }
     await mentor.save();
+
+    // Trigger In-App Notification to Applicant
+    if (isVerifying) {
+      await sendNotification({
+        userId: mentor.user?._id || mentor.user,
+        title: 'Verified Expert Mentor Approved! 🎉',
+        message:
+          'Congratulations! Your Expert Mentor application has been officially verified by an administrator. You now have the Verified Expert badge in the mentor directory.',
+        type: 'mentor-status',
+        link: '/mentors',
+      });
+    }
 
     res.status(200).json({
       success: true,
       message: `Mentor verification status updated to ${mentor.verified ? 'Verified' : 'Unverified'}.`,
+      mentor,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Reject a mentor application with reason (Admin Only)
+ * @route   PATCH /api/admin/mentors/:id/reject
+ * @access  Private / Admin
+ */
+const rejectMentor = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { rejectionReason } = req.body;
+
+    const mentor = await Mentor.findById(id).populate('user', 'name email');
+    if (!mentor) {
+      return res.status(404).json({
+        success: false,
+        message: 'Mentor not found.',
+      });
+    }
+
+    mentor.verified = false;
+    mentor.status = 'rejected';
+    mentor.rejectionReason =
+      rejectionReason?.trim() ||
+      'Application details did not meet our expert verification criteria.';
+    mentor.rejectedAt = new Date();
+    mentor.rejectedBy = req.user._id;
+    await mentor.save();
+
+    // Trigger In-App Notification to Applicant
+    await sendNotification({
+      userId: mentor.user?._id || mentor.user,
+      title: 'Mentor Application Update',
+      message: `Your Expert Mentor application was reviewed. Status: Rejected.${
+        mentor.rejectionReason ? ' Reason: ' + mentor.rejectionReason : ''
+      } You may update your profile credentials and reapply.`,
+      type: 'mentor-status',
+      link: '/mentors/apply',
+    });
+
+    res.status(200).json({
+      success: true,
+      message: 'Mentor application has been rejected.',
       mentor,
     });
   } catch (error) {
@@ -441,6 +625,15 @@ const respondConnectionRequest = async (req, res, next) => {
       }
 
       request.conversation = conversation._id;
+
+      // In-app notification to student
+      await sendNotification({
+        userId: request.user,
+        title: 'Mentorship Request Accepted! 💬',
+        message: 'Your mentorship connection request has been accepted. You can now chat directly with your mentor.',
+        type: 'connection-accepted',
+        link: '/connections',
+      });
     }
 
     await request.save();
@@ -643,6 +836,9 @@ module.exports = {
   getMentorById,
   applyMentor,
   verifyMentor,
+  rejectMentor,
+  getAdminPendingMentors,
+  getAdminAllMentors,
   createConnectionRequest,
   getMyConnections,
   respondConnectionRequest,

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import api from '../api/axios';
 import {
   ShieldCheck,
@@ -25,9 +26,14 @@ import { AlertBanner } from '../components/common/AlertBanner';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { StarRating } from '../components/common/StarRating';
+import { MentorVerificationSection } from '../components/admin/MentorVerificationSection';
 
-export const AdminDashboardPage = () => {
-  const [activeTab, setActiveTab] = useState('analytics'); // 'analytics' | 'stories' | 'feedback'
+export const AdminDashboardPage = ({ defaultTab }) => {
+  const location = useLocation();
+  const initialTab =
+    defaultTab || (location.pathname.includes('/mentors') ? 'mentors' : 'analytics');
+  const [activeTab, setActiveTab] = useState(initialTab); // 'analytics' | 'stories' | 'feedback' | 'mentors'
+  const [pendingMentorsCount, setPendingMentorsCount] = useState(0);
 
   // Tab 1: Stats
   const [stats, setStats] = useState(null);
@@ -49,7 +55,19 @@ export const AdminDashboardPage = () => {
 
   useEffect(() => {
     fetchAdminStats();
+    fetchPendingMentorsCount();
   }, []);
+
+  const fetchPendingMentorsCount = async () => {
+    try {
+      const res = await api.get('/admin/mentors/pending');
+      if (res.data.success) {
+        setPendingMentorsCount(res.data.count || res.data.mentors?.length || 0);
+      }
+    } catch (e) {
+      // ignore
+    }
+  };
 
   useEffect(() => {
     if (activeTab === 'stories') {
@@ -212,6 +230,23 @@ export const AdminDashboardPage = () => {
         >
           <Heart className="w-4 h-4" />
           <span>Platform Feedback</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('mentors')}
+          className={`flex items-center gap-2 pb-3 px-4 font-semibold text-sm transition-all border-b-2 cursor-pointer ${
+            activeTab === 'mentors'
+              ? 'border-purple-500 text-purple-400'
+              : 'border-transparent text-zinc-400 hover:text-zinc-200'
+          }`}
+        >
+          <ShieldCheck className="w-4 h-4" />
+          <span>Mentor Verification</span>
+          {pendingMentorsCount > 0 && (
+            <span className="px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold bg-amber-500 text-zinc-950 animate-pulse">
+              {pendingMentorsCount}
+            </span>
+          )}
         </button>
       </div>
 
@@ -566,6 +601,9 @@ export const AdminDashboardPage = () => {
           )}
         </div>
       )}
+
+      {/* TAB 4: MENTOR VERIFICATION */}
+      {activeTab === 'mentors' && <MentorVerificationSection />}
     </div>
   );
 };

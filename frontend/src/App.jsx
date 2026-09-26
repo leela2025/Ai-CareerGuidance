@@ -219,6 +219,14 @@ export function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/admin/mentors"
+                element={
+                  <ProtectedRoute requireAdmin={true}>
+                    <AdminDashboardPage defaultTab="mentors" />
+                  </ProtectedRoute>
+                }
+              />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFoundPage />} />

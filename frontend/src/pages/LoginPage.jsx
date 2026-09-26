@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Compass, Lock, Mail, ArrowRight, UserCheck, Shield } from 'lucide-react';
+import { Compass, Lock, Mail, ArrowRight } from 'lucide-react';
 import { AlertBanner } from '../components/common/AlertBanner';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 
@@ -50,13 +50,6 @@ export const LoginPage = () => {
     }
   };
 
-  // Instant 1-Click Demo Logins for Viva & Evaluation
-  const handleQuickLogin = (demoEmail, demoPassword) => {
-    setEmail(demoEmail);
-    setPassword(demoPassword);
-    setError('');
-  };
-
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
@@ -75,29 +68,6 @@ export const LoginPage = () => {
             Welcome back
           </h1>
           <p className="text-sm text-slate-400 mt-1">Sign in to your CareerCompassAI student portal</p>
-        </div>
-
-        {/* 1-Click Demo Credentials Box (Examiner Friendly) */}
-        <div className="mb-6 p-4 rounded-2xl bg-slate-900 border border-slate-800 shadow-md">
-          <span className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2.5">
-            ⚡ Quick 1-Click Demo Credentials:
-          </span>
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => handleQuickLogin('student@careercompass.ai', 'Student@123')}
-              className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-brand-950/60 hover:bg-brand-900/60 text-brand-300 border border-brand-800/80 text-xs font-semibold transition-colors"
-            >
-              <UserCheck className="w-3.5 h-3.5" /> Demo Student
-            </button>
-            <button
-              type="button"
-              onClick={() => handleQuickLogin('admin@careercompass.ai', 'Admin@123')}
-              className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-amber-950/60 hover:bg-amber-900/60 text-amber-300 border border-amber-800/80 text-xs font-semibold transition-colors"
-            >
-              <Shield className="w-3.5 h-3.5" /> Demo Admin
-            </button>
-          </div>
         </div>
 
         {/* Form Card with fast purposeful entrance */}
