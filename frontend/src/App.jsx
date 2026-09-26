@@ -38,7 +38,12 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 export function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <div className="min-h-screen flex flex-col bg-zinc-950 text-zinc-100 selection:bg-brand-500 selection:text-white">
           <Navbar />
           <main className="flex-1">

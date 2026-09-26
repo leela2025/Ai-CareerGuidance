@@ -204,13 +204,13 @@ export const WorkflowVisualizer3D = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Animation Loop
+    // Animation Loop (High-precision timer without deprecated THREE.Clock)
     let animationId;
-    let clock = new THREE.Clock();
+    const startTime = performance.now();
 
     const animate = () => {
       animationId = requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
+      const t = (performance.now() - startTime) * 0.001;
 
       // Animate flowing pulses along the curve
       const posAttr = pulseGeo.attributes.position;

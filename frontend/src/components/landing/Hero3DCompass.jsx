@@ -192,11 +192,11 @@ export const Hero3DCompass = () => {
       };
       window.addEventListener('resize', handleResize);
 
-      // Animation Loop
-      let clock = new THREE.Clock();
+      // Animation Loop (High-precision timer without deprecated THREE.Clock)
+      const startTime = performance.now();
       const animate = () => {
         animationFrameId = requestAnimationFrame(animate);
-        const elapsedTime = clock.getElapsedTime();
+        const elapsedTime = (performance.now() - startTime) * 0.001;
 
         // Smooth mouse inertia
         currentRotationX += (targetRotationX - currentRotationX) * 0.05;
