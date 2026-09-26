@@ -210,10 +210,10 @@ export const HeroBackground = () => {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* 3D Vanta Canvas Container for Desktop */}
+      {/* 3D Network Canvas Container for Desktop */}
       <div
-        ref={vantaRef}
-        className="absolute inset-0 opacity-35 mix-blend-screen transition-opacity duration-1000"
+        ref={mountRef}
+        className="absolute inset-0 opacity-40 mix-blend-screen transition-opacity duration-1000"
       />
 
       {/* Sleek Gradient Overlay to blend seamlessly into zinc-950 */}
