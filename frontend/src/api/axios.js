@@ -81,6 +81,18 @@ api.interceptors.response.use(
         }
       }
     }
+
+    // Graceful fallback for notifications if backend deployment is pending
+    if (error.response?.status === 404 && error.config?.url?.includes('/notifications')) {
+      return Promise.resolve({
+        data: {
+          success: true,
+          notifications: [],
+          unreadCount: 0,
+        },
+      });
+    }
+
     return Promise.reject(error);
   }
 );

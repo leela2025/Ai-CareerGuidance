@@ -12,10 +12,31 @@ import {
   Check,
 } from 'lucide-react';
 
+  const DEFAULT_NOTIFICATIONS = [
+    {
+      id: 'default-welcome',
+      title: 'Welcome to CareerCompassAI',
+      message: 'Your lifelong AI career navigation profile is active. Explore your personalized trajectory.',
+      type: 'info',
+      link: '/journey',
+      read: false,
+      createdAt: new Date().toISOString(),
+    },
+    {
+      id: 'default-roadmap',
+      title: 'Roadmap & Verification Ready',
+      message: 'Dynamic skill verification and milestone tracking are enabled.',
+      type: 'roadmap',
+      link: '/roadmap',
+      read: false,
+      createdAt: new Date(Date.now() - 3600000).toISOString(),
+    },
+  ];
+
 export const NotificationBell = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [notifications, setNotifications] = useState([]);
-  const [unreadCount, setUnreadCount] = useState(0);
+  const [notifications, setNotifications] = useState(DEFAULT_NOTIFICATIONS);
+  const [unreadCount, setUnreadCount] = useState(2);
   const [loading, setLoading] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -26,29 +47,23 @@ export const NotificationBell = () => {
     if (!endpointAvailableRef.current) return;
     try {
       const res = await api.get('/notifications');
-      if (res.data?.success) {
-        setNotifications(res.data.notifications || []);
-        setUnreadCount(res.data.unreadCount || 0);
+      if (res.data?.success && Array.isArray(res.data.notifications) && res.data.notifications.length > 0) {
+        setNotifications(res.data.notifications);
+        setUnreadCount(res.data.unreadCount ?? res.data.notifications.filter((n) => !n.read).length);
       }
     } catch (e) {
       if (e.response?.status === 404) {
-        // Backend service is still deploying or notifications route is not yet active
         endpointAvailableRef.current = false;
       }
     }
   };
 
+  // Only poll if endpoint was successfully reachable
   useEffect(() => {
-    fetchNotifications();
-
-    // Poll every 45 seconds for live updates if supported
-    const interval = setInterval(() => {
-      if (endpointAvailableRef.current) {
-        fetchNotifications();
-      }
-    }, 45000);
-    return () => clearInterval(interval);
-  }, []);
+    if (isOpen && endpointAvailableRef.current) {
+      fetchNotifications();
+    }
+  }, [isOpen]);
 
   // Handle outside click
   useEffect(() => {
@@ -64,28 +79,34 @@ export const NotificationBell = () => {
   }, [isOpen]);
 
   const handleMarkAsRead = async (id, link) => {
-    try {
-      await api.patch(`/notifications/${id}/read`);
-      setNotifications((prev) =>
-        prev.map((n) => (n.id === id ? { ...n, read: true } : n))
-      );
-      setUnreadCount((prev) => Math.max(0, prev - 1));
-      setIsOpen(false);
-      if (link) {
-        navigate(link);
+    setNotifications((prev) =>
+      prev.map((n) => (n.id === id ? { ...n, read: true } : n))
+    );
+    setUnreadCount((prev) => Math.max(0, prev - 1));
+    setIsOpen(false);
+    if (link) {
+      navigate(link);
+    }
+
+    if (endpointAvailableRef.current && !id.startsWith('default-')) {
+      try {
+        await api.patch(`/notifications/${id}/read`);
+      } catch (e) {
+        // Silently handle if backend is offline/deploying
       }
-    } catch (e) {
-      // ignore
     }
   };
 
   const handleMarkAllRead = async () => {
-    try {
-      await api.patch('/notifications/read-all');
-      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
-      setUnreadCount(0);
-    } catch (e) {
-      // ignore
+    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+    setUnreadCount(0);
+
+    if (endpointAvailableRef.current) {
+      try {
+        await api.patch('/notifications/read-all');
+      } catch (e) {
+        // Silently handle if backend is offline/deploying
+      }
     }
   };
 
