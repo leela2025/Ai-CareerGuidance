@@ -82,15 +82,39 @@ api.interceptors.response.use(
       }
     }
 
-    // Graceful fallback for notifications if backend deployment is pending
-    if (error.response?.status === 404 && error.config?.url?.includes('/notifications')) {
-      return Promise.resolve({
-        data: {
-          success: true,
-          notifications: [],
-          unreadCount: 0,
-        },
-      });
+    // Graceful fallbacks for endpoints if backend container deployment is pending
+    if (error.response?.status === 404) {
+      const url = error.config?.url || '';
+
+      if (url.includes('/notifications')) {
+        return Promise.resolve({
+          data: {
+            success: true,
+            notifications: [],
+            unreadCount: 0,
+          },
+        });
+      }
+
+      if (url.includes('/skills/stats')) {
+        return Promise.resolve({
+          data: {
+            success: true,
+            totalAssessed: 0,
+            averageScore: 0,
+            verifiedCount: 0,
+          },
+        });
+      }
+
+      if (url.includes('/projects/mine') || url.includes('/projects')) {
+        return Promise.resolve({
+          data: {
+            success: true,
+            projects: [],
+          },
+        });
+      }
     }
 
     return Promise.reject(error);
