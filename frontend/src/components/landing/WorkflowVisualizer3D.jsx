@@ -16,13 +16,13 @@ import { Button } from '../ui/button';
 /**
  * WorkflowVisualizer3D — ThreeUI Product Workflow System
  *
- * Visual Storytelling (Zero-Blue Palette: Electric Violet, Neon Emerald, Warm Amber, Lime):
- * Stage 1: Profile (Academic & Skill Ingestion - Lavender Violet)
- * Stage 2: AI Analysis (Claude Sonnet 4.6 Engine - Electric Purple)
- * Stage 3: Career Match (Quantified Trajectories - Vivid Emerald)
- * Stage 4: Skill Gaps (Prioritized Missing Tools - Warm Amber)
- * Stage 5: Roadmap (Phased Milestones - Lime Green)
- * Stage 6: Growth (ATS 92/100 & Placement - Deep Emerald)
+ * Visual Storytelling (Forest Green & Warm Gold Palette - Zero Blue):
+ * Stage 1: Profile (Academic & Skill Ingestion - Warm Gold Light)
+ * Stage 2: AI Analysis (Claude Sonnet 4.6 Engine - Forest Green Light)
+ * Stage 3: Career Match (Quantified Trajectories - Warm Gold Primary)
+ * Stage 4: Skill Gaps (Prioritized Missing Tools - Deep Gold/Bronze)
+ * Stage 5: Roadmap (Phased Milestones - Bright Forest Green)
+ * Stage 6: Growth (ATS 92/100 & Placement - Deep Forest Green)
  */
 export const WorkflowVisualizer3D = () => {
   const [activeStage, setActiveStage] = useState(0);
@@ -39,8 +39,8 @@ export const WorkflowVisualizer3D = () => {
       title: 'Student Profile',
       tagline: 'Academic & Skill Ingestion',
       icon: <GraduationCap className="w-4 h-4" />,
-      color: '#c084fc',
-      colorHex: 0xc084fc,
+      color: '#E8C468',
+      colorHex: 0xE8C468,
       description:
         'Input your university degree, branch, current semester, and existing coding capabilities to establish a baseline.',
     },
@@ -50,8 +50,8 @@ export const WorkflowVisualizer3D = () => {
       title: 'AI Analysis',
       tagline: 'Claude Sonnet 4.6 Engine',
       icon: <Sparkles className="w-4 h-4" />,
-      color: '#a855f7',
-      colorHex: 0xa855f7,
+      color: '#2D6A4F',
+      colorHex: 0x2D6A4F,
       description:
         'Claude Sonnet 4.6 synthesizes your profile against modern 2025 tech market demands with strict JSON schema verification.',
     },
@@ -61,8 +61,8 @@ export const WorkflowVisualizer3D = () => {
       title: 'Career Match',
       tagline: 'Quantified Trajectories',
       icon: <Target className="w-4 h-4" />,
-      color: '#10b981',
-      colorHex: 0x10b981,
+      color: '#D4A017',
+      colorHex: 0xD4A017,
       description:
         'Surfaces 3–5 tailored industry roles with compatibility scores, salary benchmarks, and hiring trends.',
     },
@@ -72,8 +72,8 @@ export const WorkflowVisualizer3D = () => {
       title: 'Skill Gaps',
       tagline: 'Prioritized Missing Tools',
       icon: <AlertTriangle className="w-4 h-4" />,
-      color: '#f59e0b',
-      colorHex: 0xf59e0b,
+      color: '#A67C00',
+      colorHex: 0xA67C00,
       description:
         'Reveals critical missing competencies ranked by hiring urgency, eliminating wasted time on outdated tutorials.',
     },
@@ -83,8 +83,8 @@ export const WorkflowVisualizer3D = () => {
       title: 'Roadmap',
       tagline: 'Phased Milestones',
       icon: <Map className="w-4 h-4" />,
-      color: '#84cc16',
-      colorHex: 0x84cc16,
+      color: '#40C281',
+      colorHex: 0x40C281,
       description:
         'Generates weekly actionable learning goals linked to verified free documentation, official courses, and real projects.',
     },
@@ -94,8 +94,8 @@ export const WorkflowVisualizer3D = () => {
       title: 'Career Growth',
       tagline: 'ATS & Placement Proof',
       icon: <TrendingUp className="w-4 h-4" />,
-      color: '#059669',
-      colorHex: 0x059669,
+      color: '#1B4332',
+      colorHex: 0x1B4332,
       description:
         'Continuous progress tracking, automated ATS resume scoring (0–100), and job application readiness.',
     },
@@ -147,13 +147,13 @@ export const WorkflowVisualizer3D = () => {
     const tubeMesh = new THREE.Mesh(tubeGeo, tubeMat);
     scene.add(tubeMesh);
 
-    // Glowing Laser Pulse along the curve (Emerald)
+    // Glowing Laser Pulse along the curve (Warm Gold)
     const pulseCount = 14;
     const pulsePositions = new Float32Array(pulseCount * 3);
     const pulseGeo = new THREE.BufferGeometry();
     pulseGeo.setAttribute('position', new THREE.BufferAttribute(pulsePositions, 3));
     const pulseMat = new THREE.PointsMaterial({
-      color: 0x10b981, // Vibrant Emerald
+      color: 0xD4A017, // Warm Gold Accent
       size: 0.35,
       transparent: true,
       opacity: 0.9,
@@ -282,8 +282,8 @@ export const WorkflowVisualizer3D = () => {
       <div className="relative w-full h-[220px] sm:h-[260px] bg-zinc-900/60 rounded-3xl border border-zinc-800/80 backdrop-blur-xl overflow-hidden shadow-2xl mb-8">
         <div ref={mountRef} className="w-full h-full" />
 
-        {/* Ambient Top Glow (Purple/Emerald) */}
-        <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-96 h-28 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Ambient Top Glow (Forest Green & Warm Gold) */}
+        <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-96 h-28 bg-[#D4A017]/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Active Node Floating HUD Pin */}
         <div className="absolute top-4 left-6 flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-950/80 border border-zinc-800 text-[11px] font-mono text-zinc-300">
@@ -309,7 +309,7 @@ export const WorkflowVisualizer3D = () => {
               onClick={() => setActiveStage(idx)}
               className={`flex flex-col text-left p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-zinc-900/90 border-zinc-700 shadow-xl shadow-zinc-950/60 ring-1 ring-purple-500/50 -translate-y-1'
+                  ? 'bg-zinc-900/90 border-zinc-700 shadow-xl shadow-zinc-950/60 ring-1 ring-accent-500/50 -translate-y-1'
                   : 'bg-zinc-900/40 border-zinc-800/80 hover:bg-zinc-900/70 hover:border-zinc-700/60 text-zinc-400'
               }`}
             >
@@ -415,7 +415,7 @@ export const WorkflowVisualizer3D = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                     <span className="font-mono text-zinc-300">student_academic_profile.json</span>
                   </div>
-                  <span className="text-[10px] text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20 font-mono">
+                  <span className="text-[10px] text-accent-400 bg-accent-500/10 px-2 py-0.5 rounded border border-accent-500/20 font-mono">
                     Baseline Verified
                   </span>
                 </div>
@@ -444,7 +444,7 @@ export const WorkflowVisualizer3D = () => {
 
                 <div className="flex items-center justify-between text-xs text-zinc-400 pt-2">
                   <span>Target Industry Domain: <strong className="text-white">Cloud Architecture & Full Stack</strong></span>
-                  <span className="text-emerald-400 flex items-center gap-1 font-mono">
+                  <span className="text-brand-400 flex items-center gap-1 font-mono">
                     <CheckCircle2 className="w-3.5 h-3.5" /> 100% Ingested
                   </span>
                 </div>
@@ -456,26 +456,26 @@ export const WorkflowVisualizer3D = () => {
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 space-y-4 font-mono text-xs shadow-inner">
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-purple-400 animate-spin-slow" />
+                    <Sparkles className="w-4 h-4 text-accent-400 animate-spin-slow" />
                     <span className="text-zinc-300 font-bold">Claude Sonnet 4.6 • Reasoning Protocol</span>
                   </div>
-                  <span className="text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded border border-purple-500/20 text-[10px]">
+                  <span className="text-accent-300 bg-accent-500/10 px-2 py-0.5 rounded border border-accent-500/20 text-[10px]">
                     Strict JSON Engine
                   </span>
                 </div>
 
                 <div className="p-3 rounded-xl bg-zinc-900/90 border border-zinc-800 text-zinc-300 space-y-1.5 overflow-x-auto text-[11px] leading-relaxed">
                   <p className="text-zinc-500">// Vector match against 2025 Industry Tech Rubrics</p>
-                  <p><span className="text-purple-400">POST</span> /api/career/analyze</p>
-                  <p className="text-emerald-400">✔ Degree alignment: 94.2% (Computer Science)</p>
-                  <p className="text-emerald-400">✔ Core foundations: Data Structures, OOP, Web APIs</p>
-                  <p className="text-amber-400">⚠ Detected Critical Gap: Container Orchestration & Distributed Systems</p>
-                  <p className="text-purple-300">→ Synthesizing 3 Optimal Trajectories + Sequence Roadmaps...</p>
+                  <p><span className="text-accent-400">POST</span> /api/career/analyze</p>
+                  <p className="text-brand-400">✔ Degree alignment: 94.2% (Computer Science)</p>
+                  <p className="text-brand-400">✔ Core foundations: Data Structures, OOP, Web APIs</p>
+                  <p className="text-accent-400">⚠ Detected Critical Gap: Container Orchestration & Distributed Systems</p>
+                  <p className="text-accent-300">→ Synthesizing 3 Optimal Trajectories + Sequence Roadmaps...</p>
                 </div>
 
                 <div className="flex items-center justify-between pt-2 text-[11px] text-zinc-400">
                   <span>Inference latency: <strong className="text-white">1.18s</strong></span>
-                  <span className="text-purple-400">Deterministic Temperature: 0.3</span>
+                  <span className="text-accent-400">Deterministic Temperature: 0.3</span>
                 </div>
               </div>
             )}
@@ -485,20 +485,20 @@ export const WorkflowVisualizer3D = () => {
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 space-y-3 shadow-inner">
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80 text-xs">
                   <span className="font-bold text-white flex items-center gap-2">
-                    <Target className="w-4 h-4 text-emerald-400" />
+                    <Target className="w-4 h-4 text-brand-400" />
                     Top Recommended Trajectories
                   </span>
-                  <span className="text-[10px] text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
+                  <span className="text-[10px] text-brand-300 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-500/20 font-mono">
                     3 Matches Surfaced
                   </span>
                 </div>
 
                 {/* Match 1 */}
-                <div className="p-3.5 rounded-xl bg-zinc-900/90 border border-emerald-500/30 flex items-center justify-between">
+                <div className="p-3.5 rounded-xl bg-zinc-900/90 border border-brand-500/30 flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-sm text-white">Cloud DevOps Engineer</span>
-                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold uppercase font-mono">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-brand-500/20 text-brand-300 font-bold uppercase font-mono">
                         Top Fit
                       </span>
                     </div>
@@ -507,7 +507,7 @@ export const WorkflowVisualizer3D = () => {
                     </span>
                   </div>
                   <div className="text-right">
-                    <span className="text-xl font-extrabold text-emerald-400 font-mono">94%</span>
+                    <span className="text-xl font-extrabold text-brand-400 font-mono">94%</span>
                     <span className="text-[10px] text-zinc-400 block font-mono">Match Score</span>
                   </div>
                 </div>
@@ -519,7 +519,7 @@ export const WorkflowVisualizer3D = () => {
                     <span className="text-xs text-zinc-400 block mt-0.5">High direct synergy with React & Node background.</span>
                   </div>
                   <div className="text-right">
-                    <span className="text-lg font-bold text-purple-300 font-mono">91%</span>
+                    <span className="text-lg font-bold text-accent-300 font-mono">91%</span>
                     <span className="text-[10px] text-zinc-400 block font-mono">Match Score</span>
                   </div>
                 </div>
@@ -531,7 +531,7 @@ export const WorkflowVisualizer3D = () => {
                     <span className="text-xs text-zinc-400 block mt-0.5">Requires additional vector DB and Python model training.</span>
                   </div>
                   <div className="text-right">
-                    <span className="text-lg font-bold text-pink-300 font-mono">86%</span>
+                    <span className="text-lg font-bold text-accent-400 font-mono">86%</span>
                     <span className="text-[10px] text-zinc-400 block font-mono">Match Score</span>
                   </div>
                 </div>
@@ -543,50 +543,50 @@ export const WorkflowVisualizer3D = () => {
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 space-y-3.5 shadow-inner">
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80 text-xs">
                   <span className="font-bold text-white flex items-center gap-2">
-                    <AlertTriangle className="w-4 h-4 text-amber-400" />
+                    <AlertTriangle className="w-4 h-4 text-accent-400" />
                     Target Role: Cloud DevOps Engineer Skill Gaps
                   </span>
-                  <span className="text-[10px] text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 font-mono">
+                  <span className="text-[10px] text-accent-300 bg-accent-500/10 px-2 py-0.5 rounded border border-accent-500/20 font-mono">
                     4 High Impact Missing
                   </span>
                 </div>
 
                 <div className="space-y-2">
-                  <div className="p-3 rounded-xl bg-zinc-900/80 border border-amber-500/30 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-zinc-900/80 border border-accent-500/30 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-rose-500" />
+                      <span className="w-2 h-2 rounded-full bg-[#9B2C2C]" />
                       <div>
                         <span className="text-sm font-bold text-white">Docker Containerization</span>
                         <p className="text-xs text-zinc-400">Required in 92% of junior DevOps postings.</p>
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-rose-400 bg-rose-500/10 px-2 py-1 rounded font-mono">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#E8A5A5] bg-[#9B2C2C]/20 px-2 py-1 rounded font-mono">
                       Critical
                     </span>
                   </div>
 
                   <div className="p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-amber-400" />
+                      <span className="w-2 h-2 rounded-full bg-accent-400" />
                       <div>
                         <span className="text-sm font-bold text-white">Kubernetes Pod Architecture</span>
                         <p className="text-xs text-zinc-400">Microservice orchestration baseline.</p>
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2 py-1 rounded font-mono">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-accent-400 bg-accent-500/10 px-2 py-1 rounded font-mono">
                       High Priority
                     </span>
                   </div>
 
                   <div className="p-3 rounded-xl bg-zinc-900/80 border border-zinc-800 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                      <span className="w-2 h-2 rounded-full bg-brand-400" />
                       <div>
                         <span className="text-sm font-bold text-white">CI/CD Automation (GitHub Actions)</span>
                         <p className="text-xs text-zinc-400">Automated build and test pipelines.</p>
                       </div>
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded font-mono">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-2 py-1 rounded font-mono">
                       Medium
                     </span>
                   </div>
@@ -599,18 +599,18 @@ export const WorkflowVisualizer3D = () => {
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 space-y-3.5 shadow-inner">
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80 text-xs">
                   <span className="font-bold text-white flex items-center gap-2">
-                    <Map className="w-4 h-4 text-emerald-400" />
+                    <Map className="w-4 h-4 text-brand-400" />
                     Personalized 4-Phase Roadmap
                   </span>
-                  <span className="text-[10px] text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
+                  <span className="text-[10px] text-brand-300 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-500/20 font-mono">
                     Interactive Checkpoints
                   </span>
                 </div>
 
                 <div className="space-y-2.5">
-                  <div className="p-3 rounded-xl bg-zinc-900/90 border border-emerald-500/30 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-zinc-900/90 border border-brand-500/30 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold font-mono">
+                      <div className="w-5 h-5 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center text-xs font-bold font-mono">
                         ✓
                       </div>
                       <div>
@@ -622,24 +622,24 @@ export const WorkflowVisualizer3D = () => {
                         </div>
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono text-emerald-400 font-bold">100%</span>
+                    <span className="text-[10px] font-mono text-brand-400 font-bold">100%</span>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-zinc-900/90 border border-emerald-500/40 flex items-center justify-between">
+                  <div className="p-3 rounded-xl bg-zinc-900/90 border border-brand-500/40 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold animate-pulse font-mono">
+                      <div className="w-5 h-5 rounded-full bg-accent-500/20 text-accent-400 flex items-center justify-center text-xs font-bold animate-pulse font-mono">
                         2
                       </div>
                       <div>
                         <span className="text-xs font-bold text-white">
                           Phase 2: Docker Multi-Stage Builds & Compose
                         </span>
-                        <div className="flex items-center gap-2 mt-0.5 text-[10px] text-emerald-300">
+                        <div className="flex items-center gap-2 mt-0.5 text-[10px] text-accent-300">
                           <span>Docker Official Docs & Tutorials</span> • <span>In Progress (60%)</span>
                         </div>
                       </div>
                     </div>
-                    <span className="text-[10px] font-mono text-emerald-400 font-bold">ACTIVE</span>
+                    <span className="text-[10px] font-mono text-accent-400 font-bold">ACTIVE</span>
                   </div>
 
                   <div className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800 flex items-center justify-between opacity-80">
@@ -667,23 +667,23 @@ export const WorkflowVisualizer3D = () => {
               <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 space-y-4 shadow-inner">
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800/80 text-xs">
                   <span className="font-bold text-white flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-emerald-400" />
+                    <TrendingUp className="w-4 h-4 text-brand-400" />
                     Automated Placement Readiness & ATS Scoring
                   </span>
-                  <span className="text-[10px] text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-mono">
+                  <span className="text-[10px] text-brand-300 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-500/20 font-mono">
                     Placement Verified
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
-                  <div className="p-4 rounded-xl bg-zinc-900/90 border border-emerald-500/30 text-center">
+                  <div className="p-4 rounded-xl bg-zinc-900/90 border border-brand-500/30 text-center">
                     <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider block">
                       ATS Benchmark Score
                     </span>
-                    <span className="text-4xl font-extrabold text-emerald-400 font-mono my-1 block">
+                    <span className="text-4xl font-extrabold text-brand-400 font-mono my-1 block">
                       92<span className="text-lg text-zinc-400">/100</span>
                     </span>
-                    <span className="text-[11px] text-emerald-300 font-medium font-mono">
+                    <span className="text-[11px] text-accent-300 font-medium font-mono">
                       Top 8% of CS Applicants
                     </span>
                   </div>
@@ -691,15 +691,15 @@ export const WorkflowVisualizer3D = () => {
                   <div className="space-y-2 text-xs">
                     <div className="flex items-center justify-between p-2 rounded-lg bg-zinc-900 border border-zinc-800">
                       <span className="text-zinc-300">Target Role Keyword Match:</span>
-                      <strong className="text-emerald-400 font-mono">94%</strong>
+                      <strong className="text-brand-400 font-mono">94%</strong>
                     </div>
                     <div className="flex items-center justify-between p-2 rounded-lg bg-zinc-900 border border-zinc-800">
                       <span className="text-zinc-300">Action Verb Density:</span>
-                      <strong className="text-emerald-400 font-mono">Optimal</strong>
+                      <strong className="text-brand-400 font-mono">Optimal</strong>
                     </div>
                     <div className="flex items-center justify-between p-2 rounded-lg bg-zinc-900 border border-zinc-800">
                       <span className="text-zinc-300">Overall Placement Confidence:</span>
-                      <strong className="text-purple-300 font-mono">High</strong>
+                      <strong className="text-accent-300 font-mono">High</strong>
                     </div>
                   </div>
                 </div>

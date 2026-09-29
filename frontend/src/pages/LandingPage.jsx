@@ -79,16 +79,16 @@ export const LandingPage = () => {
     }
   };
 
-  // Careers & Skills ticker items (Vibrant Purple & Emerald Tags - Zero Blue)
+  // Careers & Skills ticker items (Forest Green & Warm Gold Tags - Zero Blue)
   const tickerItems = [
-    { name: 'Cloud & DevOps Architect', tag: '$115k Avg', icon: <Layers className="w-4 h-4 text-emerald-400" /> },
-    { name: 'Full-Stack Software Engineer', tag: 'High Demand', icon: <Code2 className="w-4 h-4 text-purple-400" /> },
-    { name: 'AI & Machine Learning Engineer', tag: 'Top Growth', icon: <Cpu className="w-4 h-4 text-pink-400" /> },
+    { name: 'Cloud & DevOps Architect', tag: '$115k Avg', icon: <Layers className="w-4 h-4 text-brand-400" /> },
+    { name: 'Full-Stack Software Engineer', tag: 'High Demand', icon: <Code2 className="w-4 h-4 text-accent-400" /> },
+    { name: 'AI & Machine Learning Engineer', tag: 'Top Growth', icon: <Cpu className="w-4 h-4 text-brand-300" /> },
     { name: 'Backend Distributed Systems', tag: 'Core Tech', icon: <Terminal className="w-4 h-4 text-amber-400" /> },
-    { name: 'Data Scientist & Analytics', tag: 'Data Ops', icon: <BarChart3 className="w-4 h-4 text-lime-400" /> },
-    { name: 'Cybersecurity Analyst', tag: 'Zero Trust', icon: <ShieldCheck className="w-4 h-4 text-rose-400" /> },
-    { name: 'React & Frontend Architect', tag: 'Web 3.0', icon: <FolderGit2 className="w-4 h-4 text-purple-400" /> },
-    { name: 'Mobile App Engineer (iOS/Android)', tag: 'Native/Cross', icon: <Target className="w-4 h-4 text-emerald-400" /> },
+    { name: 'Data Scientist & Analytics', tag: 'Data Ops', icon: <BarChart3 className="w-4 h-4 text-brand-400" /> },
+    { name: 'Cybersecurity Analyst', tag: 'Zero Trust', icon: <ShieldCheck className="w-4 h-4 text-accent-300" /> },
+    { name: 'React & Frontend Architect', tag: 'Web 3.0', icon: <FolderGit2 className="w-4 h-4 text-accent-400" /> },
+    { name: 'Mobile App Engineer (iOS/Android)', tag: 'Native/Cross', icon: <Target className="w-4 h-4 text-brand-400" /> },
   ];
 
   return (
@@ -97,7 +97,7 @@ export const LandingPage = () => {
       {/* 1. HERO SECTION (ThreeUI 3D Compass + Fixed Headline Animation)           */}
       {/* ========================================================================= */}
       <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-zinc-800/80">
-        {/* Subtle Ambient Backdrop (Violet/Emerald Glow) */}
+        {/* Subtle Ambient Backdrop (Forest Green/Warm Gold Glow) */}
         <HeroBackground />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,10 +106,10 @@ export const LandingPage = () => {
             <div className="lg:col-span-7 text-center lg:text-left">
               {/* Monospaced Precision Badge with Official Logo & Highlighted Project Name */}
               <div className="inline-flex items-center gap-2 mb-6">
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-purple-500/30 shadow-[0_0_20px_rgba(168,85,247,0.2)] backdrop-blur-md">
-                  <img src="/logo-icon.png" alt="CareerCompassAI Logo" className="w-5 h-5 object-contain inline-block drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
-                  <span className="font-extrabold text-sm tracking-tight bg-gradient-to-r from-white via-purple-100 to-emerald-400 bg-clip-text text-transparent">
-                    CareerCompass<span className="text-emerald-400">AI</span>
+                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-accent-500/30 shadow-[0_0_20px_rgba(212,160,23,0.2)] backdrop-blur-md">
+                  <img src="/logo-icon.png" alt="CareerCompassAI Logo" className="w-5 h-5 object-contain inline-block drop-shadow-[0_0_8px_rgba(212,160,23,0.6)]" />
+                  <span className="font-extrabold text-sm tracking-tight bg-gradient-to-r from-white via-accent-100 to-accent-400 bg-clip-text text-transparent">
+                    CareerCompass<span className="text-brand-400">AI</span>
                   </span>
                   <span className="text-zinc-600 font-mono text-xs">•</span>
                   <span className="text-xs text-zinc-300 font-mono tracking-wide">Next-Gen Career Intelligence</span>
@@ -119,7 +119,7 @@ export const LandingPage = () => {
               {/* Rock-solid Hero Title with Highlighted Project Name */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-white mb-6">
                 <span className="block text-lg sm:text-xl lg:text-2xl font-mono tracking-wider text-zinc-400 font-medium mb-3">
-                  Powered by <span className="bg-gradient-to-r from-purple-400 via-indigo-300 to-emerald-400 bg-clip-text text-transparent font-extrabold">CareerCompassAI</span>
+                  Powered by <span className="bg-gradient-to-r from-accent-400 via-accent-300 to-brand-400 bg-clip-text text-transparent font-extrabold">CareerCompassAI</span>
                 </span>
                 <SplitText
                   text="Your AI-Powered Path to the Right Career"
@@ -129,7 +129,7 @@ export const LandingPage = () => {
 
               {/* Subheading explaining the actual product */}
               <p className="text-base sm:text-lg lg:text-xl text-zinc-300 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed mb-8">
-                <span className="text-white font-semibold underline decoration-purple-500/40">CareerCompassAI</span> bridges the gap between university coursework and high-paying industry tech roles with personalized AI skill gap analysis and step-by-step verified learning roadmaps.
+                <span className="text-white font-semibold underline decoration-accent-500/40">CareerCompassAI</span> bridges the gap between university coursework and high-paying industry tech roles with personalized AI skill gap analysis and step-by-step verified learning roadmaps.
               </p>
 
               {/* CTA Buttons */}
@@ -155,11 +155,11 @@ export const LandingPage = () => {
               {/* Disciplined Feature Tags */}
               <div className="mt-10 pt-6 border-t border-zinc-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-zinc-400 font-mono">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                  <CheckCircle2 className="w-4 h-4 text-brand-400" />
                   <span>CS & Engineering Focus</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                  <CheckCircle2 className="w-4 h-4 text-accent-400" />
                   <span>100% Free & Open Access</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -217,7 +217,7 @@ export const LandingPage = () => {
           {/* Problem Card 1 */}
           <SpotlightCard className="flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-5 font-mono text-sm font-bold">
+              <div className="w-10 h-10 rounded-xl bg-accent-500/10 border border-accent-500/20 text-accent-400 flex items-center justify-center mb-5 font-mono text-sm font-bold">
                 01
               </div>
               <h3 className="text-xl font-bold text-white mb-2.5">
@@ -238,7 +238,7 @@ export const LandingPage = () => {
           {/* Problem Card 2 */}
           <SpotlightCard className="flex flex-col justify-between">
             <div>
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-5 font-mono text-sm font-bold">
+              <div className="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center mb-5 font-mono text-sm font-bold">
                 02
               </div>
               <h3 className="text-xl font-bold text-white mb-2.5">
@@ -270,7 +270,7 @@ export const LandingPage = () => {
               </p>
             </div>
             <div className="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800 text-xs text-zinc-300 flex items-start gap-2.5">
-              <Zap className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <Zap className="w-4 h-4 text-brand-400 shrink-0 mt-0.5" />
               <span>
                 <strong className="text-white">Product Solution:</strong> Phased milestone roadmaps with free verified documentation + automated ATS resume evaluation.
               </span>
@@ -314,10 +314,10 @@ export const LandingPage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Card 1: AI Trajectory Matching (Purple Accent) */}
-          <Card className="hover:border-purple-500/50 group">
+          {/* Card 1: AI Trajectory Matching (Warm Gold Accent) */}
+          <Card className="hover:border-accent-500/50 group">
             <CardHeader>
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-accent-500/10 border border-accent-500/20 text-accent-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Target className="w-6 h-6" />
               </div>
               <CardTitle>AI Career Trajectory Matching</CardTitle>
@@ -339,10 +339,10 @@ export const LandingPage = () => {
             </CardContent>
           </Card>
 
-          {/* Card 2: Interactive Skill Roadmaps (Emerald Accent) */}
-          <Card className="hover:border-emerald-500/50 group">
+          {/* Card 2: Interactive Skill Roadmaps (Forest Green Accent) */}
+          <Card className="hover:border-brand-500/50 group">
             <CardHeader>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Map className="w-6 h-6" />
               </div>
               <CardTitle>Interactive Skill Roadmaps</CardTitle>
@@ -364,10 +364,10 @@ export const LandingPage = () => {
             </CardContent>
           </Card>
 
-          {/* Card 3: ATS Resume Benchmarking (Emerald/Amber Accent) */}
-          <Card className="hover:border-emerald-500/50 group">
+          {/* Card 3: ATS Resume Benchmarking (Forest Green / Warm Gold Accent) */}
+          <Card className="hover:border-brand-500/50 group">
             <CardHeader>
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <FileCheck className="w-6 h-6" />
               </div>
               <CardTitle>ATS Resume Benchmarking</CardTitle>
@@ -442,7 +442,7 @@ export const LandingPage = () => {
           {/* Card 6: Role-Secured JWT Architecture (Rose Accent - Zero Blue) */}
           <Card className="hover:border-rose-500/50 group">
             <CardHeader>
-              <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 text-accent-300 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <CardTitle>Role-Secured JWT Architecture</CardTitle>
@@ -472,7 +472,7 @@ export const LandingPage = () => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-zinc-800/80">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <Badge variant="brand" className="mb-3 font-mono">
-            <Heart className="w-3.5 h-3.5 mr-1 text-rose-400 fill-rose-400" /> Real Community Outcomes
+            <Heart className="w-3.5 h-3.5 mr-1 text-accent-300 fill-rose-400" /> Real Community Outcomes
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
             Proven Outcomes & Honest User Feedback
@@ -485,7 +485,7 @@ export const LandingPage = () => {
 
         {/* Feedback Statistics Row (From Database) */}
         {feedbackSummary && feedbackSummary.totalCount > 0 ? (
-          <div className="bg-gradient-to-br from-zinc-900/90 via-zinc-900/60 to-purple-950/20 border border-zinc-800 rounded-3xl p-8 mb-12 shadow-xl">
+          <div className="bg-gradient-to-br from-zinc-900/90 via-zinc-900/60 to-brand-950/30 border border-zinc-800 rounded-3xl p-8 mb-12 shadow-xl">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
               {/* Overall Score */}
               <div className="text-center md:text-left md:border-r border-zinc-800 pr-4">
@@ -507,7 +507,7 @@ export const LandingPage = () => {
 
               {/* Feature 1 */}
               <div className="p-4 rounded-2xl bg-zinc-950/60 border border-zinc-800/80">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 block mb-1">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-accent-400 block mb-1">
                   AI Accuracy
                 </span>
                 <span className="text-2xl font-bold text-white">
@@ -522,7 +522,7 @@ export const LandingPage = () => {
 
               {/* Feature 2 */}
               <div className="p-4 rounded-2xl bg-zinc-950/60 border border-zinc-800/80">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 block mb-1">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-brand-400 block mb-1">
                   Roadmap Value
                 </span>
                 <span className="text-2xl font-bold text-white">
@@ -537,7 +537,7 @@ export const LandingPage = () => {
 
               {/* Feature 3 */}
               <div className="p-4 rounded-2xl bg-zinc-950/60 border border-zinc-800/80">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-blue-400 block mb-1">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-accent-300 block mb-1">
                   UI & Usability
                 </span>
                 <span className="text-2xl font-bold text-white">
@@ -558,11 +558,11 @@ export const LandingPage = () => {
           <div>
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-purple-400" /> Featured Journeys from Real Learners
+                <Sparkles className="w-5 h-5 text-accent-400" /> Featured Journeys from Real Learners
               </h3>
               <Link
                 to="/stories"
-                className="text-xs font-semibold text-purple-400 hover:text-purple-300 flex items-center gap-1"
+                className="text-xs font-semibold text-accent-400 hover:text-accent-300 flex items-center gap-1"
               >
                 View all stories <ArrowRight className="w-3.5 h-3.5" />
               </Link>
@@ -572,7 +572,7 @@ export const LandingPage = () => {
               {featuredStories.map((story) => (
                 <div
                   key={story.id}
-                  className="bg-zinc-900/80 rounded-2xl p-6 border border-zinc-800 hover:border-purple-500/40 transition-all flex flex-col justify-between shadow-lg"
+                  className="bg-zinc-900/80 rounded-2xl p-6 border border-zinc-800 hover:border-accent-500/40 transition-all flex flex-col justify-between shadow-lg"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-3">
@@ -587,14 +587,14 @@ export const LandingPage = () => {
                     </div>
 
                     <h4 className="text-base font-bold text-white mb-2 line-clamp-2">
-                      <Link to={`/stories/${story.id}`} className="hover:text-purple-400">
+                      <Link to={`/stories/${story.id}`} className="hover:text-accent-400">
                         {story.title}
                       </Link>
                     </h4>
 
                     {story.beforeAfter?.after && (
-                      <div className="p-2.5 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-xs text-emerald-300 mb-3 font-medium flex items-start gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                      <div className="p-2.5 rounded-xl bg-brand-950/20 border border-brand-500/20 text-xs text-brand-300 mb-3 font-medium flex items-start gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-brand-400 shrink-0 mt-0.5" />
                         <span className="line-clamp-1">{story.beforeAfter.after}</span>
                       </div>
                     )}
@@ -611,7 +611,7 @@ export const LandingPage = () => {
                     </span>
                     <Link
                       to={`/stories/${story.id}`}
-                      className="text-xs font-semibold text-purple-400 hover:text-purple-300"
+                      className="text-xs font-semibold text-accent-400 hover:text-accent-300"
                     >
                       Read Story →
                     </Link>
@@ -626,11 +626,11 @@ export const LandingPage = () => {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link to="/stories">
             <Button variant="outline" className="border-zinc-800 text-zinc-300 hover:bg-zinc-900">
-              <BookOpen className="w-4 h-4 mr-2 text-purple-400" /> Browse Success Stories
+              <BookOpen className="w-4 h-4 mr-2 text-accent-400" /> Browse Success Stories
             </Button>
           </Link>
           <Link to="/feedback">
-            <Button className="bg-purple-600 hover:bg-purple-500 text-white">
+            <Button className="bg-brand-600 hover:bg-brand-500 text-white">
               <Heart className="w-4 h-4 mr-2" /> Share Platform Feedback
             </Button>
           </Link>
@@ -680,7 +680,7 @@ export const LandingPage = () => {
       {/* ========================================================================= */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
         <div className="relative rounded-3xl bg-gradient-to-b from-brand-900/40 via-zinc-900 to-zinc-950 border border-brand-500/30 p-10 sm:p-16 lg:p-20 overflow-hidden shadow-2xl">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-gradient-to-r from-purple-600/20 via-emerald-500/20 to-transparent blur-3xl pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[350px] bg-gradient-to-r from-brand-600/20 via-accent-500/20 to-transparent blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl mx-auto">
             <img

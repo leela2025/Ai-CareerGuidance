@@ -6,7 +6,7 @@ export const CareerCard = ({ path, onSelectRole }) => {
 
   // Determine score color
   const getScoreColor = (score) => {
-    if (score >= 90) return 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10';
+    if (score >= 90) return 'text-brand-400 border-brand-500/30 bg-brand-500/10';
     if (score >= 80) return 'text-accent-400 border-accent-500/30 bg-accent-500/10';
     if (score >= 70) return 'text-brand-400 border-brand-500/30 bg-brand-500/10';
     return 'text-amber-400 border-amber-500/30 bg-amber-500/10';
@@ -16,7 +16,7 @@ export const CareerCard = ({ path, onSelectRole }) => {
     switch (demand) {
       case 'Exponential':
       case 'Very High':
-        return 'bg-purple-950/60 text-purple-300 border-purple-800';
+        return 'bg-brand-950/60 text-brand-300 border-brand-800';
       case 'High':
         return 'bg-accent-950/60 text-accent-300 border-accent-800';
       default:

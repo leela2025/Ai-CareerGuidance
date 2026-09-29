@@ -92,12 +92,12 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
     switch (verdict) {
       case 'convincing':
         return {
-          bg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+          bg: 'bg-brand-500/20 text-brand-300 border-brand-500/40',
           label: 'Convincing & Grounded',
         };
       case 'vague':
         return {
-          bg: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+          bg: 'bg-accent-500/20 text-accent-300 border-accent-500/40',
           label: 'Vague • Needs Specifics',
         };
       default:
@@ -114,13 +114,13 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
 
       {/* STATE 1: INITIAL CTA CARD (If not currently running active test) */}
       {!isActive && !defenseResult && (
-        <div className="bg-gradient-to-r from-purple-950/40 via-zinc-900 to-indigo-950/40 border border-purple-500/30 rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-gradient-to-r from-brand-950/40 via-zinc-900 to-accent-950/20 border border-brand-500/30 rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 inline-flex">
-                <ShieldAlert className="w-4 h-4 text-purple-300" />
+              <span className="p-1.5 rounded-lg bg-accent-500/20 text-accent-300 border border-accent-500/30 inline-flex">
+                <ShieldAlert className="w-4 h-4 text-accent-300" />
               </span>
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-accent-400">
                 Reality-Check Scrutiny • Beyond Keyword Scoring
               </span>
             </div>
@@ -135,7 +135,7 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
           <button
             onClick={startDefense}
             disabled={loading}
-            className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-sm shadow-xl shadow-purple-600/30 transition-all flex items-center gap-2 shrink-0 disabled:opacity-50"
+            className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold text-sm shadow-xl shadow-brand-600/30 transition-all flex items-center gap-2 shrink-0 disabled:opacity-50"
           >
             {loading ? (
               <LoadingSpinner message="Selecting claims..." size="sm" />
@@ -152,11 +152,11 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
 
       {/* STATE 2: SEQUENTIAL Q&A FLOW */}
       {isActive && questions.length > 0 && (
-        <div className="bg-zinc-900 border border-purple-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl shadow-purple-950/30 animate-quick-fade">
+        <div className="bg-zinc-900 border border-brand-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl shadow-brand-950/30 animate-quick-fade">
           {/* Header with Progress Tracker */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
             <div>
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-accent-400">
                 Resume Defense Test • Question {currentIdx + 1} of {questions.length}
               </div>
               <h3 className="text-lg font-bold text-white mt-0.5">
@@ -171,9 +171,9 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
                   key={i}
                   className={`w-2.5 h-2.5 rounded-full transition-all ${
                     i === currentIdx
-                      ? 'w-7 bg-purple-500'
+                      ? 'w-7 bg-accent-500'
                       : answers[questions[i]?.questionId]?.trim()
-                      ? 'bg-emerald-500'
+                      ? 'bg-brand-500'
                       : 'bg-zinc-800'
                   }`}
                 />
@@ -188,14 +188,14 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
               <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-bold">
                 Targeted Resume Claim:
               </span>
-              <p className="text-sm font-semibold text-purple-200 italic">
+              <p className="text-sm font-semibold text-accent-200 italic">
                 "{questions[currentIdx]?.relatedClaim}"
               </p>
             </div>
 
             {/* The interviewer's pointed question */}
-            <div className="bg-purple-950/20 border border-purple-500/30 rounded-2xl p-5 space-y-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-purple-400 font-bold flex items-center gap-1.5">
+            <div className="bg-accent-950/20 border border-accent-500/30 rounded-2xl p-5 space-y-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-accent-400 font-bold flex items-center gap-1.5">
                 <HelpCircle className="w-4 h-4" /> Interviewer Probe:
               </span>
               <h4 className="text-base sm:text-lg font-bold text-white leading-relaxed">
@@ -218,7 +218,7 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
                   })
                 }
                 placeholder="Walk through how you measured metrics, architectural decisions, and trade-offs in detail..."
-                className="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 focus:border-purple-500 rounded-2xl text-xs sm:text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors resize-none"
+                className="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 focus:border-accent-500 rounded-2xl text-xs sm:text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-accent-500 transition-colors resize-none"
               />
             </div>
           </div>
@@ -237,7 +237,7 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
             {currentIdx < questions.length - 1 ? (
               <button
                 onClick={() => setCurrentIdx(currentIdx + 1)}
-                className="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all flex items-center gap-2"
+                className="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold transition-all flex items-center gap-2"
               >
                 <span>Next Question</span>
                 <ArrowRight className="w-4 h-4" />
@@ -246,7 +246,7 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
               <button
                 onClick={handleSubmit}
                 disabled={submitting}
-                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold shadow-lg transition-all flex items-center gap-2 disabled:opacity-50"
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white text-xs font-bold shadow-lg transition-all flex items-center gap-2 disabled:opacity-50"
               >
                 {submitting ? (
                   <LoadingSpinner message="Auditing answers..." size="sm" />
@@ -268,11 +268,11 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
           {/* Header Banner */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-800">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-purple-500/20 border border-purple-500/30 text-purple-300 flex items-center justify-center shrink-0">
+              <div className="w-14 h-14 rounded-2xl bg-accent-500/20 border border-accent-500/30 text-accent-300 flex items-center justify-center shrink-0">
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <div>
-                <div className="text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
+                <div className="text-xs font-mono font-bold uppercase tracking-wider text-accent-400">
                   Resume Defense Audit Report
                 </div>
                 <h3 className="text-2xl font-black text-white">Credibility & Depth Evaluation</h3>
@@ -314,7 +314,7 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
                     "{item.answer}"
                   </div>
 
-                  <div className="text-xs text-purple-200/90 italic pl-3 border-l-2 border-purple-500/50">
+                  <div className="text-xs text-accent-200/90 italic pl-3 border-l-2 border-accent-500/50">
                     "{item.feedback}"
                   </div>
                 </div>
@@ -324,14 +324,14 @@ export const ResumeDefenseTest = ({ resumeFeedback, onDefenseUpdated }) => {
 
           {/* Recommended Edits */}
           {defenseResult.recommendedResumeEdits?.length > 0 && (
-            <div className="bg-amber-950/20 border border-amber-500/30 rounded-2xl p-5 space-y-3">
-              <div className="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold flex items-center gap-1.5">
+            <div className="bg-accent-950/20 border border-accent-500/30 rounded-2xl p-5 space-y-3">
+              <div className="text-xs font-mono uppercase tracking-wider text-accent-400 font-bold flex items-center gap-1.5">
                 <Edit3 className="w-4 h-4" /> Recommended Resume Bullet Edits:
               </div>
               <ul className="space-y-2 text-xs text-zinc-300">
                 {defenseResult.recommendedResumeEdits.map((edit, idx) => (
                   <li key={idx} className="flex items-start gap-2 bg-zinc-950/60 p-2.5 rounded-xl border border-zinc-800">
-                    <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-accent-400 shrink-0 mt-0.5" />
                     <span>{edit}</span>
                   </li>
                 ))}

@@ -107,12 +107,12 @@ export const PlatformFeedbackPage = () => {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-12 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-2xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-300 text-xs font-medium mb-3">
             <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400" /> Platform Feedback & Experience
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -153,7 +153,7 @@ export const PlatformFeedbackPage = () => {
 
             <div className="flex flex-wrap gap-3 justify-center">
               <Link to="/stories">
-                <Button className="bg-purple-600 hover:bg-purple-500 text-white font-medium">
+                <Button className="bg-brand-600 hover:bg-brand-500 text-white font-medium">
                   <BookOpen className="w-4 h-4 mr-2" /> Explore Success Stories
                 </Button>
               </Link>
@@ -171,8 +171,8 @@ export const PlatformFeedbackPage = () => {
             className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-md space-y-6"
           >
             {isPreviousSubmission && (
-              <div className="p-3 rounded-xl bg-purple-950/30 border border-purple-800/40 text-xs text-purple-300 flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-purple-400 shrink-0" />
+              <div className="p-3 rounded-xl bg-accent-950/30 border border-accent-800/40 text-xs text-accent-300 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-accent-400 shrink-0" />
                 <span>
                   You previously reviewed CareerCompassAI. Submitting this form will update your
                   existing feedback.
@@ -205,7 +205,7 @@ export const PlatformFeedbackPage = () => {
               {/* Row A: AI Accuracy */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-zinc-950/50 rounded-xl border border-zinc-800/60">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-purple-600/20 text-purple-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-accent-500/20 text-accent-400 flex items-center justify-center">
                     <Sparkles className="w-4 h-4" />
                   </div>
                   <div>
@@ -245,7 +245,7 @@ export const PlatformFeedbackPage = () => {
               {/* Row C: UI / Platform Experience */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-zinc-950/50 rounded-xl border border-zinc-800/60">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-300 flex items-center justify-center">
                     <Layers className="w-4 h-4" />
                   </div>
                   <div>
@@ -279,7 +279,7 @@ export const PlatformFeedbackPage = () => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="e.g. The milestone checkpoints helped me prepare for off-campus interviews. I'd love to see more system design practice questions in the roadmap..."
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-accent-500"
               />
               <p className="text-[11px] text-zinc-500 mt-1">
                 Your comments are reviewed directly by our product & engineering team.
@@ -296,7 +296,7 @@ export const PlatformFeedbackPage = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium px-6 py-2.5 rounded-xl shadow-lg shadow-purple-900/30"
+                className="bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-medium px-6 py-2.5 rounded-xl shadow-lg shadow-brand-900/30"
               >
                 {isSubmitting ? (
                   <LoadingSpinner size="sm" text="Submitting..." />

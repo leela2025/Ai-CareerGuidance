@@ -155,7 +155,7 @@ export const ForgotPasswordPage = () => {
         {/* Brand Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-block group mb-4">
-            <div className="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-xl inline-flex items-center justify-center group-hover:border-purple-500/40 group-hover:shadow-purple-500/10 transition-all">
+            <div className="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-xl inline-flex items-center justify-center group-hover:border-accent-500/40 group-hover:shadow-accent-500/10 transition-all">
               <img
                 src="/logo-transparent.png"
                 alt="CareerCompassAI Logo"
@@ -176,7 +176,7 @@ export const ForgotPasswordPage = () => {
         {/* Form Card */}
         <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
           {/* Subtle gradient corner accent */}
-          <div className="absolute -top-16 -right-16 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl pointer-events-none" />
+          <div className="absolute -top-16 -right-16 w-32 h-32 bg-accent-500/10 rounded-full blur-2xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl pointer-events-none" />
 
           <AlertBanner type="error" message={error} onClose={() => setError('')} />
@@ -202,15 +202,15 @@ export const ForgotPasswordPage = () => {
               </div>
 
               {/* Demo 1-Click Fill Hint for evaluators */}
-              <div className="p-3 rounded-xl bg-purple-950/30 border border-purple-800/40 text-xs text-purple-300 flex items-center justify-between">
+              <div className="p-3 rounded-xl bg-accent-950/30 border border-accent-800/40 text-xs text-accent-300 flex items-center justify-between">
                 <span className="flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                  <Sparkles className="w-3.5 h-3.5 text-accent-400" />
                   Demo account ready
                 </span>
                 <button
                   type="button"
                   onClick={() => setEmail('student@careercompass.ai')}
-                  className="text-xs font-semibold text-purple-400 hover:text-purple-300 underline"
+                  className="text-xs font-semibold text-accent-400 hover:text-accent-300 underline"
                 >
                   Use student@careercompass.ai
                 </button>
@@ -247,22 +247,22 @@ export const ForgotPasswordPage = () => {
             <form onSubmit={handleResetPassword} className="space-y-4">
               {/* Generated Code Notification Box (Offline / Demo Friendly) */}
               {generatedCode && (
-                <div className="p-3.5 rounded-2xl bg-zinc-950 border border-emerald-500/40 shadow-inner">
+                <div className="p-3.5 rounded-2xl bg-zinc-950 border border-brand-500/40 shadow-inner">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1.5">
+                    <span className="text-xs font-semibold text-brand-400 flex items-center gap-1.5">
                       <ShieldCheck className="w-4 h-4" /> Verification Code (15 min expiry)
                     </span>
                     <button
                       type="button"
                       onClick={handleQuickFillCode}
-                      className="text-xs px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 transition-colors flex items-center gap-1 font-mono font-medium"
+                      className="text-xs px-2.5 py-1 rounded-md bg-brand-500/20 text-brand-300 hover:bg-brand-500/30 transition-colors flex items-center gap-1 font-mono font-medium"
                     >
-                      {copiedCode ? <Check className="w-3 h-3 text-emerald-300" /> : <Copy className="w-3 h-3" />}
+                      {copiedCode ? <Check className="w-3 h-3 text-brand-300" /> : <Copy className="w-3 h-3" />}
                       {copiedCode ? 'Filled' : 'Auto Fill'}
                     </button>
                   </div>
                   <div className="mt-2 flex items-center justify-between bg-zinc-900 px-3 py-1.5 rounded-xl border border-zinc-800">
-                    <span className="font-mono text-lg font-bold tracking-widest text-emerald-400">
+                    <span className="font-mono text-lg font-bold tracking-widest text-brand-400">
                       {generatedCode}
                     </span>
                     <span className="text-[11px] text-zinc-400">Instant Demo Code</span>
@@ -343,7 +343,7 @@ export const ForgotPasswordPage = () => {
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2
                     className={`w-3.5 h-3.5 ${
-                      newPassword.length >= 6 ? 'text-emerald-400' : 'text-slate-600'
+                      newPassword.length >= 6 ? 'text-brand-400' : 'text-zinc-600'
                     }`}
                   />
                   <span>At least 6 characters</span>
@@ -352,8 +352,8 @@ export const ForgotPasswordPage = () => {
                   <CheckCircle2
                     className={`w-3.5 h-3.5 ${
                       newPassword && newPassword === confirmPassword
-                        ? 'text-emerald-400'
-                        : 'text-slate-600'
+                        ? 'text-brand-400'
+                        : 'text-zinc-600'
                     }`}
                   />
                   <span>Passwords match</span>
@@ -363,7 +363,7 @@ export const ForgotPasswordPage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full mt-2 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-brand-600 hover:from-emerald-500 hover:to-brand-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full mt-2 py-3 px-4 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold text-sm shadow-lg shadow-brand-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <LoadingSpinner message="Updating Password..." size="sm" />
@@ -396,7 +396,7 @@ export const ForgotPasswordPage = () => {
           {/* STEP 3: Success Screen */}
           {step === 3 && (
             <div className="text-center py-4 space-y-5">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/10">
+              <div className="w-16 h-16 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 flex items-center justify-center mx-auto shadow-lg shadow-brand-500/10">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <div className="space-y-2">

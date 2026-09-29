@@ -14,7 +14,7 @@ import {
 
 export const CareerCharts = ({ topCareers = [], topSkillGaps = [] }) => {
   // Palette for chart items
-  const PIE_COLORS = ['#4f46e5', '#0d9488', '#f59e0b', '#ec4899', '#8b5cf6', '#06b6d4'];
+  const PIE_COLORS = ['#1B4332', '#D4A017', '#2D6A4F', '#E8C468', '#0F2A1D', '#A67C00'];
 
   const customTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -45,16 +45,16 @@ export const CareerCharts = ({ topCareers = [], topSkillGaps = [] }) => {
               <BarChart data={topCareers} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
                 <XAxis
                   dataKey="title"
-                  stroke="#64748b"
+                  stroke="#5B6F63"
                   fontSize={11}
                   tickLine={false}
                   interval={0}
                   angle={-15}
                   textAnchor="end"
                 />
-                <YAxis stroke="#64748b" fontSize={11} tickLine={false} />
+                <YAxis stroke="#5B6F63" fontSize={11} tickLine={false} />
                 <Tooltip content={customTooltip} />
-                <Bar dataKey="count" name="Times Suggested" fill="#4f46e5" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="count" name="Times Suggested" fill="#2D6A4F" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           ) : (
@@ -90,7 +90,7 @@ export const CareerCharts = ({ topCareers = [], topSkillGaps = [] }) => {
                 </Pie>
                 <Tooltip content={customTooltip} />
                 <Legend
-                  wrapperStyle={{ fontSize: '11px', color: '#94a3b8' }}
+                  wrapperStyle={{ fontSize: '11px', color: '#5B6F63' }}
                   layout="horizontal"
                   verticalAlign="bottom"
                   align="center"

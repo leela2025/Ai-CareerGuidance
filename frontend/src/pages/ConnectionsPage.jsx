@@ -108,7 +108,7 @@ export const ConnectionsPage = () => {
         );
       case 'completed':
         return (
-          <Badge className="bg-blue-500/15 text-blue-400 border-blue-500/30 font-medium">
+          <Badge className="bg-accent-500/20 text-accent-300 border-accent-500/40 font-medium">
             <CheckCircle2 className="w-3.5 h-3.5 mr-1" /> Completed
           </Badge>
         );
@@ -135,14 +135,14 @@ export const ConnectionsPage = () => {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-10 px-4 sm:px-6 lg:px-8 relative">
       {/* Background Glow */}
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-16 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-2.5">
-              <MessageSquare className="w-7 h-7 text-purple-400" /> Mentorship Connections
+              <MessageSquare className="w-7 h-7 text-accent-400" /> Mentorship Connections
             </h1>
             <p className="text-zinc-400 text-sm mt-1">
               Manage your 1-on-1 mentorship requests, status updates, and active chat rooms.
@@ -152,12 +152,12 @@ export const ConnectionsPage = () => {
           <div className="flex items-center gap-3">
             <Link to="/mentors">
               <Button variant="outline" className="border-zinc-800 text-zinc-300 hover:bg-zinc-900">
-                <Users className="w-4 h-4 mr-2 text-purple-400" /> Explore Mentors
+                <Users className="w-4 h-4 mr-2 text-accent-400" /> Explore Mentors
               </Button>
             </Link>
             {!user?.isMentor && (
               <Link to="/mentors/apply">
-                <Button className="bg-purple-600 hover:bg-purple-500 text-white">
+                <Button className="bg-brand-600 hover:bg-brand-500 text-white">
                   <Sparkles className="w-4 h-4 mr-2" /> Become a Mentor
                 </Button>
               </Link>
@@ -177,7 +177,7 @@ export const ConnectionsPage = () => {
             onClick={() => setActiveTab('sent')}
             className={`flex items-center gap-2 pb-3 px-4 font-medium text-sm transition-all border-b-2 ${
               activeTab === 'sent'
-                ? 'border-purple-500 text-purple-400 font-semibold'
+                ? 'border-accent-500 text-accent-400 font-semibold'
                 : 'border-transparent text-zinc-400 hover:text-zinc-200'
             }`}
           >
@@ -192,14 +192,14 @@ export const ConnectionsPage = () => {
             onClick={() => setActiveTab('incoming')}
             className={`flex items-center gap-2 pb-3 px-4 font-medium text-sm transition-all border-b-2 relative ${
               activeTab === 'incoming'
-                ? 'border-purple-500 text-purple-400 font-semibold'
+                ? 'border-accent-500 text-accent-400 font-semibold'
                 : 'border-transparent text-zinc-400 hover:text-zinc-200'
             }`}
           >
             <Inbox className="w-4 h-4" />
             <span>Incoming Inquiries</span>
             {incomingPendingCount > 0 ? (
-              <span className="ml-1.5 px-2 py-0.5 rounded-full text-xs bg-purple-600 text-white font-semibold">
+              <span className="ml-1.5 px-2 py-0.5 rounded-full text-xs bg-accent-500 text-[#0F2A1D] font-bold">
                 {incomingPendingCount} new
               </span>
             ) : (
@@ -222,7 +222,7 @@ export const ConnectionsPage = () => {
                   through interviews, degree choices, or career transitions.
                 </p>
                 <Link to="/mentors">
-                  <Button className="bg-purple-600 hover:bg-purple-500 text-white">
+                  <Button className="bg-brand-600 hover:bg-brand-500 text-white">
                     <Users className="w-4 h-4 mr-2" /> Find a Mentor
                   </Button>
                 </Link>
@@ -236,7 +236,7 @@ export const ConnectionsPage = () => {
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex items-start gap-4">
                       {/* Mentor Avatar */}
-                      <div className="w-12 h-12 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center flex-shrink-0 text-purple-400 font-bold overflow-hidden">
+                      <div className="w-12 h-12 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center flex-shrink-0 text-accent-400 font-bold overflow-hidden">
                         {req.mentorUser?.avatar ? (
                           <img
                             src={req.mentorUser.avatar}
@@ -258,7 +258,7 @@ export const ConnectionsPage = () => {
                               <ShieldCheck className="w-3 h-3 mr-1" /> Expert
                             </Badge>
                           ) : (
-                            <Badge className="bg-purple-500/15 text-purple-300 border-purple-500/30 text-[11px] px-2 py-0.5">
+                            <Badge className="bg-accent-500/20 text-accent-300 border-accent-500/30 text-[11px] px-2 py-0.5">
                               <Sparkles className="w-3 h-3 mr-1" /> Peer Motivator
                             </Badge>
                           )}
@@ -291,7 +291,7 @@ export const ConnectionsPage = () => {
                     <div className="flex items-center gap-2 sm:self-center flex-shrink-0">
                       {req.status === 'accepted' && (
                         <Link to={`/messages/${req.conversation}`}>
-                          <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-md">
+                          <Button className="bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white shadow-md">
                             <MessageSquare className="w-4 h-4 mr-2" /> Open Chat
                           </Button>
                         </Link>
@@ -326,7 +326,7 @@ export const ConnectionsPage = () => {
                 </p>
                 {!user?.isMentor && (
                   <Link to="/mentors/apply" className="mt-4 inline-block">
-                    <Button className="bg-purple-600 hover:bg-purple-500 text-white">
+                    <Button className="bg-brand-600 hover:bg-brand-500 text-white">
                       <Sparkles className="w-4 h-4 mr-2" /> Apply as a Mentor
                     </Button>
                   </Link>
@@ -341,7 +341,7 @@ export const ConnectionsPage = () => {
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex items-start gap-4">
                       {/* Learner Avatar */}
-                      <div className="w-12 h-12 rounded-xl bg-purple-900/30 border border-purple-500/30 flex items-center justify-center flex-shrink-0 text-purple-300 font-bold overflow-hidden">
+                      <div className="w-12 h-12 rounded-xl bg-brand-900/30 border border-brand-500/30 flex items-center justify-center flex-shrink-0 text-accent-300 font-bold overflow-hidden">
                         {req.user?.avatar ? (
                           <img
                             src={req.user.avatar}
@@ -410,7 +410,7 @@ export const ConnectionsPage = () => {
                         </>
                       ) : req.status === 'accepted' ? (
                         <Link to={`/messages/${req.conversation}`}>
-                          <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-md">
+                          <Button className="bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white shadow-md">
                             <MessageSquare className="w-4 h-4 mr-2" /> Open Conversation
                           </Button>
                         </Link>

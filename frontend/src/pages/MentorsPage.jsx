@@ -153,13 +153,13 @@ export const MentorsPage = () => {
             to="/connections"
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 text-xs font-semibold transition-all"
           >
-            <MessageSquare className="w-4 h-4 text-purple-400" />
+            <MessageSquare className="w-4 h-4 text-accent-400" />
             <span>My Connections & Chat</span>
           </Link>
 
           <Link
             to="/mentors/apply"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-md transition-all"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-md transition-all"
           >
             <Sparkles className="w-4 h-4" />
             <span>Become a Mentor</span>
@@ -182,7 +182,7 @@ export const MentorsPage = () => {
             }}
             className={`px-4 py-2 rounded-xl transition-all ${
               activeTab === 'all'
-                ? 'bg-purple-600 text-white font-bold shadow-md'
+                ? 'bg-brand-600 text-white font-bold shadow-md'
                 : 'text-zinc-400 hover:text-white'
             }`}
           >
@@ -197,7 +197,7 @@ export const MentorsPage = () => {
             }}
             className={`px-4 py-2 rounded-xl flex items-center gap-1.5 transition-all ${
               activeTab === 'expert'
-                ? 'bg-purple-600 text-white font-bold shadow-md'
+                ? 'bg-brand-600 text-white font-bold shadow-md'
                 : 'text-zinc-400 hover:text-white'
             }`}
           >
@@ -213,7 +213,7 @@ export const MentorsPage = () => {
             }}
             className={`px-4 py-2 rounded-xl flex items-center gap-1.5 transition-all ${
               activeTab === 'peer'
-                ? 'bg-purple-600 text-white font-bold shadow-md'
+                ? 'bg-brand-600 text-white font-bold shadow-md'
                 : 'text-zinc-400 hover:text-white'
             }`}
           >
@@ -231,7 +231,7 @@ export const MentorsPage = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by topic, role, company..."
-              className="w-full pl-10 pr-4 py-2 bg-zinc-900 border border-zinc-800 focus:border-purple-500 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors"
+              className="w-full pl-10 pr-4 py-2 bg-zinc-900 border border-zinc-800 focus:border-accent-500 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-accent-500 transition-colors"
             />
           </div>
           <Button type="submit" size="sm" variant="outline" className="text-xs">
@@ -254,7 +254,7 @@ export const MentorsPage = () => {
               onClick={() => setSelectedTag(isSelected ? '' : tag)}
               className={`px-3 py-1.5 rounded-xl border shrink-0 transition-all ${
                 isSelected
-                  ? 'bg-purple-500/20 text-purple-300 border-purple-500/50 font-bold'
+                  ? 'bg-accent-500/20 text-accent-300 border-accent-500/50 font-bold'
                   : 'bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:border-zinc-700 hover:text-zinc-200'
               }`}
             >
@@ -301,13 +301,13 @@ export const MentorsPage = () => {
             return (
               <div
                 key={mentor.id}
-                className="rounded-3xl p-6 bg-zinc-900/80 border border-zinc-800 hover:border-purple-500/40 hover:shadow-xl hover:shadow-purple-500/5 transition-all flex flex-col justify-between group"
+                className="rounded-3xl p-6 bg-zinc-900/80 border border-zinc-800 hover:border-accent-500/40 hover:shadow-xl hover:shadow-accent-500/5 transition-all flex flex-col justify-between group"
               >
                 <div>
                   {/* Top Card Bar */}
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-accent-500 text-white font-bold flex items-center justify-center text-sm shadow-md shrink-0">
+                      <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-accent-500 text-white font-bold flex items-center justify-center text-sm shadow-md shrink-0">
                         {mentor.user?.avatar ? (
                           <img
                             src={mentor.user.avatar}
@@ -320,7 +320,7 @@ export const MentorsPage = () => {
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <h3 className="font-bold text-white text-base group-hover:text-purple-300 transition-colors">
+                          <h3 className="font-bold text-white text-base group-hover:text-accent-300 transition-colors">
                             {mentor.user?.name}
                           </h3>
                           {mentor.verified && isExpert && (
@@ -423,7 +423,7 @@ export const MentorsPage = () => {
           <div className="bg-zinc-900 border border-zinc-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl animate-in fade-in zoom-in-95">
             <div className="flex items-center justify-between pb-4 border-b border-zinc-800 mb-6">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                <div className="p-2 rounded-xl bg-accent-500/10 text-accent-400 border border-accent-500/20">
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
@@ -461,7 +461,7 @@ export const MentorsPage = () => {
                   value={requestMessage}
                   onChange={(e) => setRequestMessage(e.target.value)}
                   placeholder="Explain what specific challenges or decisions you need advice on (e.g. cloud roadmap, transitioning streams, mock resume feedback)..."
-                  className="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 focus:border-purple-500 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors resize-none leading-relaxed"
+                  className="w-full px-4 py-3 bg-zinc-950 border border-zinc-800 focus:border-accent-500 rounded-xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-accent-500 transition-colors resize-none leading-relaxed"
                 />
               </div>
 

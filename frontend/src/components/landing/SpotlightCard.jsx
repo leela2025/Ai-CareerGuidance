@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils";
 export const SpotlightCard = ({
   children,
   className = "",
-  spotlightColor = "rgba(168, 85, 247, 0.18)",
+  spotlightColor = "rgba(212, 160, 23, 0.16)",
   ...props
 }) => {
   const divRef = useRef(null);

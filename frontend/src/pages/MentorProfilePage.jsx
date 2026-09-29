@@ -125,7 +125,7 @@ export const MentorProfilePage = () => {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-10 px-4 sm:px-6 lg:px-8 relative">
       {/* Background Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Navigation Breadcrumb */}
@@ -138,7 +138,7 @@ export const MentorProfilePage = () => {
           </Link>
           <Link to="/connections">
             <Button variant="outline" size="sm" className="border-zinc-800 text-zinc-300 hover:bg-zinc-900">
-              <MessageSquare className="w-3.5 h-3.5 mr-1.5 text-purple-400" /> My Connections
+              <MessageSquare className="w-3.5 h-3.5 mr-1.5 text-accent-400" /> My Connections
             </Button>
           </Link>
         </div>
@@ -158,7 +158,7 @@ export const MentorProfilePage = () => {
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
             {/* Avatar / Photo */}
             <div className="relative flex-shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-emerald-500 p-0.5 shadow-lg">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-tr from-brand-600 via-accent-500 to-brand-400 p-0.5 shadow-lg">
                 <div className="w-full h-full bg-zinc-950 rounded-[14px] flex items-center justify-center overflow-hidden">
                   {mentor.user?.avatar ? (
                     <img
@@ -167,7 +167,7 @@ export const MentorProfilePage = () => {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <span className="text-3xl font-bold bg-gradient-to-br from-purple-400 to-emerald-400 bg-clip-text text-transparent">
+                    <span className="text-3xl font-bold bg-gradient-to-br from-accent-400 to-brand-400 bg-clip-text text-transparent">
                       {mentor.user?.name?.slice(0, 2).toUpperCase() || 'ME'}
                     </span>
                   )}
@@ -195,7 +195,7 @@ export const MentorProfilePage = () => {
                 ) : (
                   <span
                     title="Peer Motivator"
-                    className="flex items-center justify-center w-8 h-8 rounded-full bg-purple-500 text-white shadow-md ring-4 ring-zinc-900"
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-600 text-white shadow-md ring-4 ring-zinc-900"
                   >
                     <HeartHandshake className="w-5 h-5" />
                   </span>
@@ -216,7 +216,7 @@ export const MentorProfilePage = () => {
                     {mentor.verified ? 'Verified Expert' : 'Expert (Review)'}
                   </Badge>
                 ) : (
-                  <Badge className="bg-purple-500/15 text-purple-300 border-purple-500/30 font-medium">
+                  <Badge className="bg-accent-500/20 text-accent-300 border-accent-500/40 font-medium">
                     <Sparkles className="w-3.5 h-3.5 mr-1" /> Peer Motivator
                   </Badge>
                 )}
@@ -270,14 +270,14 @@ export const MentorProfilePage = () => {
             {/* Action CTA */}
             <div className="w-full md:w-auto flex md:flex-col justify-end gap-3 mt-2 md:mt-0">
               {isSelf ? (
-                <div className="bg-purple-950/30 border border-purple-800/40 rounded-xl p-3 text-center text-xs text-purple-300">
-                  <UserCheck className="w-5 h-5 mx-auto mb-1 text-purple-400" />
+                <div className="bg-accent-950/30 border border-accent-800/40 rounded-xl p-3 text-center text-xs text-accent-300">
+                  <UserCheck className="w-5 h-5 mx-auto mb-1 text-accent-400" />
                   This is your mentor profile
                 </div>
               ) : (
                 <Button
                   onClick={() => setConnectModalOpen(true)}
-                  className="w-full md:w-48 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-900/30 font-medium py-2.5 rounded-xl"
+                  className="w-full md:w-48 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white shadow-lg shadow-brand-900/30 font-medium py-2.5 rounded-xl"
                 >
                   <MessageSquare className="w-4 h-4 mr-2" /> Request to Connect
                 </Button>
@@ -299,7 +299,7 @@ export const MentorProfilePage = () => {
                   </>
                 ) : (
                   <>
-                    <HeartHandshake className="w-5 h-5 mr-2 text-purple-400" /> My Journey & Story
+                    <HeartHandshake className="w-5 h-5 mr-2 text-accent-400" /> My Journey & Story
                   </>
                 )}
               </h2>
@@ -311,7 +311,7 @@ export const MentorProfilePage = () => {
             {/* Tags Card */}
             <div className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6 sm:p-7">
               <h2 className="text-lg font-semibold text-white mb-4 flex items-center">
-                <Sparkles className="w-5 h-5 mr-2 text-purple-400" /> Areas of Expertise & Support
+                <Sparkles className="w-5 h-5 mr-2 text-accent-400" /> Areas of Expertise & Support
               </h2>
               <div className="flex flex-wrap gap-2">
                 {mentor.expertiseTags?.map((tag) => (
@@ -322,7 +322,7 @@ export const MentorProfilePage = () => {
                   >
                     <Badge
                       variant="outline"
-                      className="bg-zinc-950/80 text-zinc-300 hover:text-white hover:border-purple-500/50 transition-colors border-zinc-800 text-xs px-3 py-1.5"
+                      className="bg-zinc-950/80 text-zinc-300 hover:text-white hover:border-accent-500/50 transition-colors border-zinc-800 text-xs px-3 py-1.5"
                     >
                       #{tag}
                     </Badge>
@@ -359,7 +359,7 @@ export const MentorProfilePage = () => {
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-full bg-purple-600/30 border border-purple-500/40 flex items-center justify-center text-xs font-semibold text-purple-200">
+                          <div className="w-8 h-8 rounded-full bg-accent-500/20 border border-accent-500/30 flex items-center justify-center text-xs font-semibold text-accent-200">
                             {rev.user?.name?.slice(0, 2).toUpperCase() || 'ST'}
                           </div>
                           <div>
@@ -403,9 +403,9 @@ export const MentorProfilePage = () => {
           {/* Sidebar / Context Card */}
           <div className="space-y-6">
             {/* Why Human Guidance Box */}
-            <div className="bg-gradient-to-br from-purple-950/40 via-zinc-900/60 to-zinc-900 border border-purple-900/30 rounded-2xl p-6">
+            <div className="bg-gradient-to-br from-brand-950/40 via-zinc-900/60 to-zinc-900 border border-brand-900/30 rounded-2xl p-6">
               <h3 className="text-base font-semibold text-white mb-2 flex items-center">
-                <HeartHandshake className="w-4 h-4 mr-2 text-purple-400" /> The Human Trust Layer
+                <HeartHandshake className="w-4 h-4 mr-2 text-accent-400" /> The Human Trust Layer
               </h3>
               <p className="text-xs text-zinc-300 leading-relaxed mb-4">
                 While CareerCompassAI generates roadmap milestones and market data, conversations with
@@ -439,7 +439,7 @@ export const MentorProfilePage = () => {
                 </p>
                 <Button
                   onClick={() => setConnectModalOpen(true)}
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white font-medium"
+                  className="w-full bg-brand-600 hover:bg-brand-600 text-white font-medium"
                 >
                   <Send className="w-3.5 h-3.5 mr-2" /> Message {mentor.user?.name}
                 </Button>
@@ -461,7 +461,7 @@ export const MentorProfilePage = () => {
             </button>
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400">
+              <div className="w-10 h-10 rounded-xl bg-accent-500/20 border border-accent-500/30 flex items-center justify-center text-accent-400">
                 <HeartHandshake className="w-5 h-5" />
               </div>
               <div>
@@ -485,7 +485,7 @@ export const MentorProfilePage = () => {
                   placeholder="e.g. Hi! I'm currently preparing for a switch into cloud architecture. I saw your journey from civil engineering and would love your guidance on resume prioritization..."
                   rows={4}
                   required
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-accent-500"
                 />
                 <p className="text-[11px] text-zinc-500 mt-1">
                   Be specific about your questions so the mentor can prepare helpful advice.
@@ -504,7 +504,7 @@ export const MentorProfilePage = () => {
                 <Button
                   type="submit"
                   disabled={isSubmittingRequest || !requestMessage.trim()}
-                  className="bg-purple-600 hover:bg-purple-500 text-white"
+                  className="bg-brand-600 hover:bg-brand-600 text-white"
                 >
                   {isSubmittingRequest ? (
                     <LoadingSpinner size="sm" text="Sending..." />

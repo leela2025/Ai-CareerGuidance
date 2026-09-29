@@ -419,25 +419,25 @@ export const SkillVerificationPage = () => {
           {/* FEATURE 3: LEARNING MISTAKE DETECTOR */}
           {/* "Here's what's really going on" - AHA Moment */}
           {mistakeAnalysis && (
-            <div className="bg-gradient-to-r from-purple-950/60 via-zinc-900 to-indigo-950/50 border border-purple-500/40 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl shadow-purple-950/40 animate-quick-fade">
+            <div className="bg-gradient-to-r from-brand-950/60 via-zinc-900 to-accent-950/40 border border-brand-500/40 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl shadow-brand-950/40 animate-quick-fade">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/40 shrink-0">
-                  <Lightbulb className="w-6 h-6 text-purple-300 animate-pulse" />
+                <div className="p-2.5 rounded-xl bg-accent-500/20 text-accent-300 border border-accent-500/40 shrink-0">
+                  <Lightbulb className="w-6 h-6 text-accent-300 animate-pulse" />
                 </div>
                 <div>
-                  <div className="text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
+                  <div className="text-xs font-mono font-bold uppercase tracking-wider text-accent-400">
                     Learning Mistake Diagnostic • The "Aha!" Insight
                   </div>
                   <h3 className="text-xl font-extrabold text-white">Here's what's really going on</h3>
                 </div>
               </div>
 
-              <div className="space-y-3 bg-zinc-950/70 border border-purple-500/20 rounded-2xl p-5">
+              <div className="space-y-3 bg-zinc-950/70 border border-accent-500/20 rounded-2xl p-5">
                 <div>
                   <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-bold mb-1">
                     Root-Cause Misconception:
                   </div>
-                  <p className="text-sm font-semibold text-purple-200 leading-relaxed">
+                  <p className="text-sm font-semibold text-accent-200 leading-relaxed">
                     {mistakeAnalysis.rootCauseMisconception}
                   </p>
                 </div>

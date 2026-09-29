@@ -10,8 +10,8 @@ export const AlertBanner = ({ type = 'error', message, onClose }) => {
       icon: <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />,
     },
     success: {
-      bg: 'bg-emerald-950/70 border-emerald-800 text-emerald-200',
-      icon: <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />,
+      bg: 'bg-brand-950/70 border-brand-800 text-brand-200',
+      icon: <CheckCircle2 className="w-5 h-5 text-brand-400 shrink-0 mt-0.5" />,
     },
     info: {
       bg: 'bg-brand-950/70 border-brand-800 text-brand-200',

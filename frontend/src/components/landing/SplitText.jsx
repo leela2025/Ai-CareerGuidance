@@ -4,7 +4,7 @@ import React from "react";
  * SplitText / HeroText component inspired by ReactBits & Aceternity UI.
  * Reliably animates the hero headline with smooth word-level reveals,
  * flawless CSS gradient clipping that never disappears or glitches on WebKit,
- * and a glowing purple-emerald shimmer with zero blue.
+ * and a glowing forest green and warm gold shimmer with zero blue.
  */
 export const SplitText = ({
   text = "Your AI-Powered Path to the Right Career",
@@ -32,11 +32,11 @@ export const SplitText = ({
           >
             {isHighlighted ? (
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-purple-300 via-fuchsia-300 to-emerald-300 bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(168,85,247,0.4)]">
+                <span className="bg-gradient-to-r from-[#FAF1D4] via-[#E8C468] to-[#D4A017] bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(212,160,23,0.45)]">
                   {word}
                 </span>
-                {/* Subtle radiant glow underline/accent on highlighted words */}
-                <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-500/0 via-emerald-400/80 to-purple-500/0 rounded-full" />
+                {/* Subtle radiant warm gold glow underline/accent on highlighted words */}
+                <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-gradient-to-r from-[#D4A017]/0 via-[#E8C468]/90 to-[#D4A017]/0 rounded-full" />
               </span>
             ) : (
               <span className="text-white drop-shadow-sm">{word}</span>

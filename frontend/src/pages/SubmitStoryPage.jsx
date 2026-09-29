@@ -35,7 +35,7 @@ export const SubmitStoryPage = () => {
     return (
       <div className="min-h-screen bg-zinc-950 text-zinc-100 flex items-center justify-center p-4">
         <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 max-w-md w-full text-center">
-          <BookOpen className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+          <BookOpen className="w-12 h-12 text-accent-400 mx-auto mb-4" />
           <h2 className="text-xl font-bold text-white mb-2">Sign In to Share Your Story</h2>
           <p className="text-zinc-400 text-sm mb-6">
             Log in to your account so your story can be attributed to your profile and inspire the
@@ -43,7 +43,7 @@ export const SubmitStoryPage = () => {
           </p>
           <div className="flex gap-3 justify-center">
             <Link to="/login?redirect=/stories/submit">
-              <Button className="bg-purple-600 hover:bg-purple-500 text-white">Log In</Button>
+              <Button className="bg-brand-600 hover:bg-brand-500 text-white">Log In</Button>
             </Link>
             <Link to="/register">
               <Button variant="outline" className="border-zinc-800 text-zinc-300">
@@ -104,7 +104,7 @@ export const SubmitStoryPage = () => {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-12 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-2xl mx-auto relative z-10">
         <div className="mb-6">
@@ -118,7 +118,7 @@ export const SubmitStoryPage = () => {
 
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-medium mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-300 text-xs font-medium mb-3">
             <Sparkles className="w-3.5 h-3.5" /> Community Empowerment
           </div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight">
@@ -165,7 +165,7 @@ export const SubmitStoryPage = () => {
 
             <div className="flex flex-wrap gap-3 justify-center">
               <Link to="/stories/mine">
-                <Button className="bg-purple-600 hover:bg-purple-500 text-white font-medium">
+                <Button className="bg-brand-600 hover:bg-brand-500 text-white font-medium">
                   Track in My Stories
                 </Button>
               </Link>
@@ -194,7 +194,7 @@ export const SubmitStoryPage = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. From Non-CS Mechanical Graduate to Backend Engineer in 8 Months"
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-accent-500"
               />
               <p className="text-[11px] text-zinc-500 mt-1">
                 Make it catchy and descriptive of your career progression.
@@ -213,7 +213,7 @@ export const SubmitStoryPage = () => {
                   value={beforeDesc}
                   onChange={(e) => setBeforeDesc(e.target.value)}
                   placeholder="e.g. Paralyzed by choices with zero coding skills"
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs sm:text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs sm:text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-accent-500"
                 />
               </div>
 
@@ -227,7 +227,7 @@ export const SubmitStoryPage = () => {
                   value={afterDesc}
                   onChange={(e) => setAfterDesc(e.target.value)}
                   placeholder="e.g. Software Engineer building high-scale APIs"
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs sm:text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs sm:text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-accent-500"
                 />
               </div>
             </div>
@@ -242,7 +242,7 @@ export const SubmitStoryPage = () => {
                 value={lifeStageJourney}
                 onChange={(e) => setLifeStageJourney(e.target.value)}
                 placeholder="e.g. school → engineering → software developer"
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs sm:text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-2.5 text-xs sm:text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-accent-500"
               />
               <div className="flex flex-wrap gap-1.5 mt-2">
                 <span className="text-[10px] text-zinc-500 font-mono">Suggestions:</span>
@@ -276,7 +276,7 @@ export const SubmitStoryPage = () => {
                 value={storyText}
                 onChange={(e) => setStoryText(e.target.value)}
                 placeholder="Tell your authentic story: Where were you stuck? What tools or milestones helped? What mistakes did you avoid? What advice would you give someone in your old shoes?"
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-purple-500 leading-relaxed"
+                className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-accent-500 leading-relaxed"
               />
             </div>
 
@@ -299,7 +299,7 @@ export const SubmitStoryPage = () => {
               <Button
                 type="submit"
                 disabled={loading || !title.trim() || storyText.length < 50}
-                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium px-6 py-2.5 rounded-xl shadow-lg shadow-purple-900/30"
+                className="bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-medium px-6 py-2.5 rounded-xl shadow-lg shadow-brand-900/30"
               >
                 {loading ? (
                   <LoadingSpinner size="sm" text="Submitting..." />

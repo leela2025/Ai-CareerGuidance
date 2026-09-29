@@ -12,16 +12,16 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="border-t border-zinc-800/80 bg-zinc-950 py-12 mt-auto">
+    <footer className="border-t border-[#233F31]/80 bg-[#0F2A1D] py-12 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-800/60">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[#233F31]/60">
           {/* Brand Logo & Academic Note */}
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 p-1 flex items-center justify-center shadow-md">
               <img
                 src="/logo-icon.png"
                 alt="CareerCompassAI Logo"
-                className="w-full h-full object-contain drop-shadow-[0_0_6px_rgba(168,85,247,0.4)]"
+                className="w-full h-full object-contain drop-shadow-[0_0_6px_rgba(212,160,23,0.4)]"
               />
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
@@ -73,13 +73,13 @@ export const Footer = () => {
                 </Link>
               </>
             )}
-            <Link to="/mentors" className="hover:text-purple-400 transition-colors">
+            <Link to="/mentors" className="hover:text-accent-400 transition-colors">
               Mentors
             </Link>
-            <Link to="/stories" className="hover:text-purple-400 transition-colors">
+            <Link to="/stories" className="hover:text-accent-400 transition-colors">
               Stories
             </Link>
-            <Link to="/feedback" className="hover:text-amber-400 transition-colors">
+            <Link to="/feedback" className="hover:text-accent-400 transition-colors">
               Feedback
             </Link>
             <Link to="/login" className="hover:text-white transition-colors">

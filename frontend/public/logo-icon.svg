@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="forestGold" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1B4332" />
+      <stop offset="40%" stop-color="#2D6A4F" />
+      <stop offset="80%" stop-color="#D4A017" />
+      <stop offset="100%" stop-color="#E8C468" />
+    </linearGradient>
+    <linearGradient id="goldShimmer" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF1D4" />
+      <stop offset="30%" stop-color="#E8C468" />
+      <stop offset="70%" stop-color="#D4A017" />
+      <stop offset="100%" stop-color="#A67C00" />
+    </linearGradient>
+    <linearGradient id="emeraldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D6A4F" />
+      <stop offset="100%" stop-color="#1B4332" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Ambient Backdrop -->
+  <circle cx="256" cy="256" r="220" fill="#1B4332" opacity="0.15" filter="url(#glow)" />
+  <circle cx="256" cy="256" r="160" fill="#D4A017" opacity="0.1" filter="url(#glow)" />
+
+  <!-- Outer Compass Ring -->
+  <circle cx="256" cy="256" r="185" fill="none" stroke="url(#forestGold)" stroke-width="6" stroke-dasharray="6 10" opacity="0.65" />
+  <circle cx="256" cy="256" r="205" fill="none" stroke="url(#goldShimmer)" stroke-width="4" opacity="0.85" />
+
+  <!-- Cardinal Node Diamonds -->
+  <polygon points="256,36 266,56 256,76 246,56" fill="url(#goldShimmer)" filter="url(#glow)" />
+  <polygon points="256,436 264,456 256,476 248,456" fill="url(#forestGold)" />
+  <polygon points="36,256 56,246 76,256 56,266" fill="url(#forestGold)" />
+  <polygon points="436,256 456,246 476,256 456,266" fill="url(#goldShimmer)" filter="url(#glow)" />
+
+  <!-- Radiant Compass Ray Markers -->
+  <g stroke="url(#goldShimmer)" stroke-width="3" stroke-linecap="round" opacity="0.75">
+    <line x1="256" y1="76" x2="256" y2="100" />
+    <line x1="256" y1="412" x2="256" y2="436" />
+    <line x1="76" y1="256" x2="100" y2="256" />
+    <line x1="412" y1="256" x2="436" y2="256" />
+
+    <line x1="128" y1="128" x2="146" y2="146" />
+    <line x1="384" y1="128" x2="366" y2="146" />
+    <line x1="128" y1="384" x2="146" y2="366" />
+    <line x1="384" y1="384" x2="366" y2="366" />
+  </g>
+
+  <!-- Stepping Stones / Foundation Milestones -->
+  <g fill="url(#emeraldGlow)" stroke="url(#goldShimmer)" stroke-width="3">
+    <rect x="165" y="412" width="182" height="20" rx="6" />
+    <rect x="190" y="378" width="132" height="18" rx="5" />
+    <rect x="216" y="346" width="80" height="16" rx="4" />
+  </g>
+
+  <!-- Ascending Trajectory Pathway Arrow -->
+  <path d="M 90 410 L 210 280 L 246 316 L 360 160" 
+        fill="none" stroke="#1B4332" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" opacity="0.4" filter="url(#glow)" />
+  <path d="M 90 410 L 210 280 L 246 316 L 350 176" 
+        fill="none" stroke="url(#forestGold)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M 90 410 L 210 280 L 246 316 L 350 176" 
+        fill="none" stroke="url(#goldShimmer)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+
+  <!-- Pathway Arrowhead -->
+  <polygon points="325,120 415,130 380,215 362,175 320,165" 
+           fill="url(#goldShimmer)" stroke="#1B4332" stroke-width="4" stroke-linejoin="round" filter="url(#glow)" />
+
+  <!-- Milestone Node Circles -->
+  <circle cx="90" cy="410" r="12" fill="#1B4332" stroke="url(#goldShimmer)" stroke-width="5" />
+  <circle cx="210" cy="280" r="13" fill="#2D6A4F" stroke="url(#goldShimmer)" stroke-width="5" />
+  <circle cx="246" cy="316" r="11" fill="#D4A017" stroke="#FAF1D4" stroke-width="4" />
+
+  <!-- Top-Right Sparkle Stars -->
+  <g transform="translate(400, 70)" fill="url(#goldShimmer)" filter="url(#glow)">
+    <path d="M 0 -22 Q 0 0 22 0 Q 0 0 0 22 Q 0 0 -22 0 Q 0 0 0 -22 Z" />
+  </g>
+  <g transform="translate(110, 110)" fill="url(#goldShimmer)" opacity="0.85">
+    <path d="M 0 -12 Q 0 0 12 0 Q 0 0 0 12 Q 0 0 -12 0 Q 0 0 0 -12 Z" />
+  </g>
+</svg>

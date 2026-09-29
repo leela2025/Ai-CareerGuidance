@@ -200,7 +200,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
           onClick={() => setActiveTab('analytics')}
           className={`flex items-center gap-2 pb-3 px-4 font-semibold text-sm transition-all border-b-2 cursor-pointer ${
             activeTab === 'analytics'
-              ? 'border-purple-500 text-purple-400'
+              ? 'border-accent-500 text-accent-400'
               : 'border-transparent text-zinc-400 hover:text-zinc-200'
           }`}
         >
@@ -212,7 +212,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
           onClick={() => setActiveTab('stories')}
           className={`flex items-center gap-2 pb-3 px-4 font-semibold text-sm transition-all border-b-2 cursor-pointer ${
             activeTab === 'stories'
-              ? 'border-purple-500 text-purple-400'
+              ? 'border-accent-500 text-accent-400'
               : 'border-transparent text-zinc-400 hover:text-zinc-200'
           }`}
         >
@@ -224,7 +224,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
           onClick={() => setActiveTab('feedback')}
           className={`flex items-center gap-2 pb-3 px-4 font-semibold text-sm transition-all border-b-2 cursor-pointer ${
             activeTab === 'feedback'
-              ? 'border-purple-500 text-purple-400'
+              ? 'border-accent-500 text-accent-400'
               : 'border-transparent text-zinc-400 hover:text-zinc-200'
           }`}
         >
@@ -236,7 +236,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
           onClick={() => setActiveTab('mentors')}
           className={`flex items-center gap-2 pb-3 px-4 font-semibold text-sm transition-all border-b-2 cursor-pointer ${
             activeTab === 'mentors'
-              ? 'border-purple-500 text-purple-400'
+              ? 'border-accent-500 text-accent-400'
               : 'border-transparent text-zinc-400 hover:text-zinc-200'
           }`}
         >
@@ -347,7 +347,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
                 onClick={() => setStoryFilter(f)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all cursor-pointer ${
                   storyFilter === f
-                    ? 'bg-purple-600 text-white shadow-md'
+                    ? 'bg-brand-600 text-white shadow-md'
                     : 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white'
                 }`}
               >
@@ -394,7 +394,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
                           {story.status}
                         </Badge>
                         {story.featured && (
-                          <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/40 text-[10px]">
+                          <Badge className="bg-accent-500/20 text-accent-300 border-accent-500/40 text-[10px]">
                             ★ Featured
                           </Badge>
                         )}
@@ -498,7 +498,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
               </div>
 
               <div className="p-3 bg-zinc-950/60 rounded-xl border border-zinc-800/80">
-                <span className="text-[11px] font-mono uppercase text-purple-400 block mb-0.5">
+                <span className="text-[11px] font-mono uppercase text-accent-400 block mb-0.5">
                   AI Accuracy
                 </span>
                 <span className="text-xl font-bold text-white">
@@ -520,7 +520,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
               </div>
 
               <div className="p-3 bg-zinc-950/60 rounded-xl border border-zinc-800/80">
-                <span className="text-[11px] font-mono uppercase text-blue-400 block mb-0.5">
+                <span className="text-[11px] font-mono uppercase text-brand-400 block mb-0.5">
                   UI Usability
                 </span>
                 <span className="text-xl font-bold text-white">
@@ -571,7 +571,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
                   {item.featureRatings && (
                     <div className="flex flex-wrap gap-2 text-[11px] font-mono">
                       {item.featureRatings.aiAccuracy && (
-                        <span className="px-2 py-0.5 rounded bg-purple-950/40 text-purple-300 border border-purple-800/40">
+                        <span className="px-2 py-0.5 rounded bg-accent-950/40 text-accent-300 border border-accent-800/40">
                           AI: {item.featureRatings.aiAccuracy}★
                         </span>
                       )}
@@ -581,7 +581,7 @@ export const AdminDashboardPage = ({ defaultTab }) => {
                         </span>
                       )}
                       {item.featureRatings.uiExperience && (
-                        <span className="px-2 py-0.5 rounded bg-blue-950/40 text-blue-300 border border-blue-800/40">
+                        <span className="px-2 py-0.5 rounded bg-brand-950/40 text-brand-300 border border-brand-800/40">
                           UI: {item.featureRatings.uiExperience}★
                         </span>
                       )}

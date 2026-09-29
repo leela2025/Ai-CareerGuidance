@@ -70,21 +70,21 @@ export const Navbar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 bg-zinc-950/85 backdrop-blur-xl border-b border-zinc-800/80 transition-all">
+    <header className="sticky top-0 z-50 bg-[#10231A]/90 backdrop-blur-xl border-b border-[#233F31]/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Brand Logo with Official CareerCompassAI Icon */}
           <Link
             to={isAuthenticated ? '/dashboard' : '/'}
-            className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 rounded-xl"
+            className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 rounded-xl"
             title="CareerCompassAI"
             aria-label="CareerCompassAI Home"
           >
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-900/90 border border-zinc-800/80 p-1.5 shadow-lg shadow-purple-500/10 group-hover:scale-105 group-hover:border-purple-500/40 group-hover:shadow-purple-500/25 transition-all">
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-900/90 border border-zinc-800/80 p-1.5 shadow-lg shadow-accent-500/10 group-hover:scale-105 group-hover:border-accent-500/40 group-hover:shadow-accent-500/25 transition-all">
               <img
                 src="/logo-icon.png"
                 alt="CareerCompassAI Logo"
-                className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(168,85,247,0.5)]"
+                className="w-full h-full object-contain drop-shadow-[0_0_8px_rgba(212,160,23,0.4)]"
               />
             </div>
           </Link>
@@ -140,16 +140,16 @@ export const Navbar = () => {
               </button>
               <Link
                 to="/mentors"
-                className="hover:text-purple-400 text-zinc-300 transition-colors flex items-center gap-1.5"
+                className="hover:text-accent-400 text-zinc-300 transition-colors flex items-center gap-1.5"
               >
                 <span>Mentors</span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 font-mono">
+                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-accent-500/20 text-accent-300 border border-accent-500/30 font-mono">
                   Peer & Expert
                 </span>
               </Link>
               <Link
                 to="/stories"
-                className="hover:text-purple-400 text-zinc-300 transition-colors flex items-center gap-1"
+                className="hover:text-accent-400 text-zinc-300 transition-colors flex items-center gap-1"
               >
                 <span>Stories</span>
               </Link>
@@ -164,7 +164,7 @@ export const Navbar = () => {
               </Link>
               <Link
                 to="/mentors"
-                className="text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors"
+                className="text-sm font-medium text-accent-400 hover:text-accent-300 transition-colors"
               >
                 Mentors
               </Link>

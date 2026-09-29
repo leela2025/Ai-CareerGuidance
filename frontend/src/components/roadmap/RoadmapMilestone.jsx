@@ -19,8 +19,8 @@ export const RoadmapMilestone = ({ milestone, onUpdateStatus, isUpdating }) => {
     switch (st) {
       case 'completed':
         return {
-          bg: 'bg-emerald-950/70 border-emerald-700/60 text-emerald-300',
-          icon: <CheckCircle className="w-4 h-4 text-emerald-400" />,
+          bg: 'bg-brand-950/70 border-brand-700/60 text-brand-300',
+          icon: <CheckCircle className="w-4 h-4 text-brand-400" />,
           label: 'Completed',
         };
       case 'in-progress':
@@ -55,9 +55,9 @@ export const RoadmapMilestone = ({ milestone, onUpdateStatus, isUpdating }) => {
 
   return (
     <div
-      className={`relative bg-slate-900 border rounded-2xl p-6 transition-all duration-300 ${
+      className={`relative bg-zinc-900 border rounded-2xl p-6 transition-all duration-300 ${
         status === 'completed'
-          ? 'border-emerald-500/40 bg-slate-900/90'
+          ? 'border-brand-500/40 bg-zinc-900/90'
           : status === 'in-progress'
           ? 'border-brand-500/60 shadow-lg shadow-brand-950/60 ring-1 ring-brand-500/20'
           : 'border-slate-800'
@@ -69,7 +69,7 @@ export const RoadmapMilestone = ({ milestone, onUpdateStatus, isUpdating }) => {
           <div
             className={`w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shrink-0 border ${
               status === 'completed'
-                ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+                ? 'bg-brand-500/20 text-brand-300 border-brand-500/30'
                 : status === 'in-progress'
                 ? 'bg-brand-500/20 text-brand-300 border-brand-500/30'
                 : 'bg-slate-800 text-slate-400 border-slate-700'
@@ -87,8 +87,8 @@ export const RoadmapMilestone = ({ milestone, onUpdateStatus, isUpdating }) => {
                 {currentBadge.label}
               </span>
               {milestone.verified && (
-                <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm shadow-emerald-500/10">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40 shadow-sm shadow-brand-500/10">
+                  <ShieldCheck className="w-3.5 h-3.5 text-brand-400" />
                   Verified ✓
                 </span>
               )}
@@ -104,7 +104,7 @@ export const RoadmapMilestone = ({ milestone, onUpdateStatus, isUpdating }) => {
             to={`/skills/${encodeURIComponent(skillName)}/verify`}
             className={`text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all flex items-center gap-1.5 ${
               milestone.verified
-                ? 'bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-300 border-emerald-600/40'
+                ? 'bg-brand-950/40 hover:bg-brand-900/60 text-brand-300 border-brand-600/40'
                 : 'bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white border-brand-500/40 shadow-sm'
             }`}
             title="Take an AI-powered quiz or practical task to verify this skill"
@@ -117,7 +117,7 @@ export const RoadmapMilestone = ({ milestone, onUpdateStatus, isUpdating }) => {
             <button
               disabled={isUpdating}
               onClick={() => onUpdateStatus(skillId, 'completed')}
-              className="text-xs font-medium px-3 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/40 transition-all disabled:opacity-50"
+              className="text-xs font-medium px-3 py-1.5 rounded-xl bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white border border-brand-500/40 transition-all disabled:opacity-50"
             >
               Mark Completed
             </button>

@@ -284,14 +284,14 @@ export const ProjectDetailPage = () => {
 
             {/* Suggested Framing Improvements */}
             {reality.suggestedFramingImprovements?.length > 0 && (
-              <div className="bg-purple-950/20 border border-purple-500/30 rounded-2xl p-5 space-y-2">
-                <div className="text-xs font-mono uppercase tracking-wider text-purple-400 font-bold flex items-center gap-1.5">
+              <div className="bg-brand-950/30 border border-brand-500/30 rounded-2xl p-5 space-y-2">
+                <div className="text-xs font-mono uppercase tracking-wider text-accent-400 font-bold flex items-center gap-1.5">
                   <Lightbulb className="w-4 h-4" /> How to Frame This to Maximize Interview Invitations:
                 </div>
                 <ul className="space-y-1.5 text-xs text-zinc-300">
                   {reality.suggestedFramingImprovements.map((sugg, idx) => (
                     <li key={idx} className="flex items-start gap-2">
-                      <span className="text-purple-400 font-bold">•</span>
+                      <span className="text-accent-400 font-bold">•</span>
                       <span>{sugg}</span>
                     </li>
                   ))}
@@ -310,11 +310,11 @@ export const ProjectDetailPage = () => {
       <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 sm:p-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-purple-500/10 text-purple-300 border border-purple-500/20">
+            <div className="p-2 rounded-xl bg-accent-500/10 text-accent-300 border border-accent-500/20">
               <FolderGit2 className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-accent-400">
                 Phase 2 • Technical Mock Interview
               </div>
               <h2 className="text-xl font-bold text-white">Project-Specific Deep Technical Interview</h2>
@@ -325,7 +325,7 @@ export const ProjectDetailPage = () => {
             <button
               onClick={handleStartInterview}
               disabled={startingInterview}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white text-xs font-bold transition-all shadow-md flex items-center gap-2 disabled:opacity-50"
             >
               {startingInterview ? (
                 <LoadingSpinner message="Generating questions..." size="sm" />
@@ -341,10 +341,10 @@ export const ProjectDetailPage = () => {
 
         {/* ACTIVE INTERVIEW Q&A RUNNER */}
         {isInterviewing && interviewQuestions.length > 0 && (
-          <div className="space-y-6 bg-zinc-950/70 border border-purple-500/30 rounded-2xl p-6 animate-quick-fade">
+          <div className="space-y-6 bg-zinc-950/70 border border-accent-500/30 rounded-2xl p-6 animate-quick-fade">
             {/* Question Tracker */}
             <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs">
-              <span className="font-mono text-purple-400 font-bold">
+              <span className="font-mono text-accent-400 font-bold">
                 Question {currentIdx + 1} of {interviewQuestions.length} • {interviewQuestions[currentIdx]?.focusArea}
               </span>
               <span className="text-zinc-500">Live Mock Interview</span>
@@ -366,7 +366,7 @@ export const ProjectDetailPage = () => {
                   })
                 }
                 placeholder="Walk through your technical reasoning, trade-offs, and how you solved this..."
-                className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 focus:border-purple-500 rounded-xl text-xs sm:text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors resize-none"
+                className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 focus:border-accent-500 rounded-xl text-xs sm:text-sm text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-accent-500 transition-colors resize-none"
               />
             </div>
 
@@ -384,7 +384,7 @@ export const ProjectDetailPage = () => {
               {currentIdx < interviewQuestions.length - 1 ? (
                 <button
                   onClick={() => setCurrentIdx(currentIdx + 1)}
-                  className="px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold transition-all flex items-center gap-1.5"
                 >
                   <span>Next Question</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -393,7 +393,7 @@ export const ProjectDetailPage = () => {
                 <button
                   onClick={handleSubmitInterview}
                   disabled={submittingInterview}
-                  className="px-6 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold shadow-md transition-all flex items-center gap-1.5 disabled:opacity-50"
+                  className="px-6 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white text-xs font-bold shadow-md transition-all flex items-center gap-1.5 disabled:opacity-50"
                 >
                   {submittingInterview ? (
                     <LoadingSpinner message="Auditing interview..." size="sm" />
@@ -413,9 +413,9 @@ export const ProjectDetailPage = () => {
         {!isInterviewing && hasInterviewResult && (
           <div className="space-y-6 animate-quick-fade">
             {/* Overall Score & Readiness Banner */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-zinc-950/80 border border-purple-500/30">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-zinc-950/80 border border-accent-500/30">
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-bold">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-accent-400 font-bold">
                   Technical Readiness Verdict:
                 </span>
                 <h3 className="text-xl font-bold text-white mt-0.5">
@@ -423,7 +423,7 @@ export const ProjectDetailPage = () => {
                 </h3>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-black text-purple-300">
+                <div className="text-3xl font-black text-accent-300">
                   {interview.overallScore}
                   <span className="text-sm text-zinc-500 font-normal">/100</span>
                 </div>
@@ -456,7 +456,7 @@ export const ProjectDetailPage = () => {
                     "{item.answer}"
                   </div>
 
-                  <p className="text-xs text-purple-200/90 italic pl-3 border-l-2 border-purple-500/40">
+                  <p className="text-xs text-accent-200/90 italic pl-3 border-l-2 border-accent-500/40">
                     "{item.feedback}"
                   </p>
                 </div>

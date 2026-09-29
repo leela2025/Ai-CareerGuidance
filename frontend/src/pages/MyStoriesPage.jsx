@@ -86,7 +86,7 @@ export const MyStoriesPage = () => {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-10 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Navigation Breadcrumb */}
@@ -99,7 +99,7 @@ export const MyStoriesPage = () => {
           </Link>
 
           <Link to="/stories/submit">
-            <Button className="bg-purple-600 hover:bg-purple-500 text-white text-xs">
+            <Button className="bg-brand-600 hover:bg-brand-500 text-white text-xs">
               <PlusCircle className="w-4 h-4 mr-1.5" /> Submit New Story
             </Button>
           </Link>
@@ -132,7 +132,7 @@ export const MyStoriesPage = () => {
               learners on the platform.
             </p>
             <Link to="/stories/submit">
-              <Button className="bg-purple-600 hover:bg-purple-500 text-white">
+              <Button className="bg-brand-600 hover:bg-brand-500 text-white">
                 <PlusCircle className="w-4 h-4 mr-2" /> Share Your Story
               </Button>
             </Link>
@@ -149,7 +149,7 @@ export const MyStoriesPage = () => {
                     <div className="flex flex-wrap items-center gap-2">
                       {renderStatusBadge(story.status)}
                       {story.featured && (
-                        <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/40 text-[10px] font-mono">
+                        <Badge className="bg-accent-500/20 text-accent-300 border-accent-500/40 text-[10px] font-mono">
                           <Sparkles className="w-3 h-3 mr-1" /> Featured
                         </Badge>
                       )}

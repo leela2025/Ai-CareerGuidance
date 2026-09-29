@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 260" width="960" height="260">
+  <rect width="960" height="260" rx="24" fill="#10231A" stroke="#233F31" stroke-width="2" />
+  
+  <defs>
+    <linearGradient id="t_forestGold" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1B4332" />
+      <stop offset="45%" stop-color="#2D6A4F" />
+      <stop offset="80%" stop-color="#D4A017" />
+      <stop offset="100%" stop-color="#E8C468" />
+    </linearGradient>
+    <linearGradient id="t_gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF1D4" />
+      <stop offset="30%" stop-color="#E8C468" />
+      <stop offset="70%" stop-color="#D4A017" />
+      <stop offset="100%" stop-color="#A67C00" />
+    </linearGradient>
+    <linearGradient id="t_emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D6A4F" />
+      <stop offset="100%" stop-color="#1B4332" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left Icon -->
+  <g transform="translate(15, 20) scale(0.4296875)">
+    <circle cx="256" cy="256" r="205" fill="none" stroke="url(#t_gold)" stroke-width="5" />
+    <circle cx="256" cy="256" r="185" fill="none" stroke="url(#t_forestGold)" stroke-width="6" stroke-dasharray="6 10" opacity="0.7" />
+    <polygon points="256,36 266,56 256,76 246,56" fill="url(#t_gold)" />
+    <polygon points="256,436 264,456 256,476 248,456" fill="url(#t_forestGold)" />
+    <polygon points="36,256 56,246 76,256 56,266" fill="url(#t_forestGold)" />
+    <polygon points="436,256 456,246 476,256 456,266" fill="url(#t_gold)" />
+    <g fill="url(#t_emerald)" stroke="url(#t_gold)" stroke-width="3">
+      <rect x="165" y="412" width="182" height="20" rx="6" />
+      <rect x="190" y="378" width="132" height="18" rx="5" />
+      <rect x="216" y="346" width="80" height="16" rx="4" />
+    </g>
+    <path d="M 90 410 L 210 280 L 246 316 L 350 176" fill="none" stroke="url(#t_forestGold)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 90 410 L 210 280 L 246 316 L 350 176" fill="none" stroke="url(#t_gold)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <polygon points="325,120 415,130 380,215 362,175 320,165" fill="url(#t_gold)" stroke="#1B4332" stroke-width="4" />
+    <circle cx="90" cy="410" r="12" fill="#1B4332" stroke="url(#t_gold)" stroke-width="5" />
+    <circle cx="210" cy="280" r="13" fill="#2D6A4F" stroke="url(#t_gold)" stroke-width="5" />
+    <circle cx="246" cy="316" r="11" fill="#D4A017" stroke="#FAF1D4" stroke-width="4" />
+    <g transform="translate(400, 70)" fill="url(#t_gold)"><path d="M 0 -22 Q 0 0 22 0 Q 0 0 0 22 Q 0 0 -22 0 Q 0 0 0 -22 Z" /></g>
+  </g>
+
+  <!-- Typography -->
+  <text x="215" y="128" font-family="'Inter', system-ui, sans-serif" font-size="64" font-weight="800" fill="#FAF7F0" letter-spacing="-1.5">CareerCompass<tspan fill="url(#t_gold)" font-weight="900">AI</tspan></text>
+  <line x1="218" y1="152" x2="890" y2="152" stroke="url(#t_forestGold)" stroke-width="2.5" opacity="0.8" />
+  <text x="218" y="180" font-family="'Inter', system-ui, sans-serif" font-size="15" font-weight="700" fill="#A1B2A7" letter-spacing="3">AI CAREER GUIDANCE &amp; PERSONALIZED SKILL ROADMAP</text>
+  <rect x="218" y="198" width="138" height="22" rx="6" fill="#1B4332" stroke="#2D6A4F" stroke-width="1.5" />
+  <text x="226" y="213" font-family="'Inter', system-ui, sans-serif" font-size="10.5" font-weight="800" fill="#E8C468" letter-spacing="1.5">FOREST &amp; GOLD</text>
+  <circle cx="375" cy="209" r="3.5" fill="#D4A017" />
+  <text x="388" y="213" font-family="'Inter', monospace" font-size="11" font-weight="600" fill="#74DFA2">HONEST REALITY-CHECK</text>
+
+</svg>

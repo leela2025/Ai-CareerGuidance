@@ -215,15 +215,15 @@ export const JourneyPage = () => {
       case 'school':
         return { label: 'School Student', color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' };
       case 'undergraduate':
-        return { label: 'Undergraduate', color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' };
+        return { label: 'Undergraduate', color: 'bg-accent-500/10 text-accent-400 border-accent-500/20' };
       case 'fresher':
-        return { label: 'Fresher / Entry-Level', color: 'bg-blue-500/10 text-blue-400 border-blue-500/20' };
+        return { label: 'Fresher / Entry-Level', color: 'bg-brand-500/10 text-brand-400 border-brand-500/20' };
       case 'working-professional':
         return { label: 'Working Professional', color: 'bg-amber-500/10 text-amber-400 border-amber-500/20' };
       case 'career-shift':
         return { label: 'Career Switch', color: 'bg-rose-500/10 text-rose-400 border-rose-500/20' };
       case 're-entering':
-        return { label: 'Workforce Re-Entry', color: 'bg-teal-500/10 text-teal-400 border-teal-500/20' };
+        return { label: 'Workforce Re-Entry', color: 'bg-accent-500/10 text-accent-300 border-accent-500/20' };
       default:
         return { label: 'Career Trajectory', color: 'bg-zinc-800 text-zinc-300 border-zinc-700' };
     }
@@ -275,9 +275,9 @@ export const JourneyPage = () => {
               variant="outline"
               size="sm"
               onClick={() => openBranchModal(currentStage.stageId)}
-              className="flex items-center gap-2 text-xs border-purple-500/30 bg-purple-950/20 hover:bg-purple-900/40 text-purple-300"
+              className="flex items-center gap-2 text-xs border-accent-500/30 bg-accent-950/20 hover:bg-accent-900/40 text-accent-300"
             >
-              <Split className="w-3.5 h-3.5 text-purple-400" />
+              <Split className="w-3.5 h-3.5 text-accent-400" />
               <span>Not Feeling This Path? Branch</span>
             </Button>
           )}
@@ -294,7 +294,7 @@ export const JourneyPage = () => {
             Current Life Stage
           </span>
           <div className="flex items-center gap-2">
-            <GraduationCap className="w-5 h-5 text-purple-400" />
+            <GraduationCap className="w-5 h-5 text-accent-400" />
             <span className="text-base font-bold text-white capitalize">
               {profile?.lifeStage?.replace('-', ' ') || 'Undergraduate'}
             </span>
@@ -343,7 +343,7 @@ export const JourneyPage = () => {
                     ? 'bg-emerald-950 border-emerald-500 text-emerald-400 shadow-emerald-500/20'
                     : isRevisited
                     ? 'bg-amber-950 border-amber-500 text-amber-400 shadow-amber-500/20'
-                    : 'bg-purple-950 border-purple-500 text-purple-300 ring-4 ring-purple-500/20'
+                    : 'bg-accent-950 border-accent-500 text-accent-300 ring-4 ring-accent-500/20'
                 }`}
               >
                 {isCommitted ? <Check className="w-4 h-4" /> : index + 1}
@@ -353,7 +353,7 @@ export const JourneyPage = () => {
               <div
                 className={`rounded-3xl p-6 sm:p-8 border transition-all ${
                   isCurrent
-                    ? 'bg-zinc-900/90 border-purple-500/50 shadow-2xl shadow-purple-500/10'
+                    ? 'bg-zinc-900/90 border-accent-500/50 shadow-2xl shadow-accent-500/10'
                     : 'bg-zinc-900/60 border-zinc-800/80 hover:border-zinc-700'
                 }`}
               >
@@ -372,7 +372,7 @@ export const JourneyPage = () => {
                           ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
                           : isRevisited
                           ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                          : 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                          : 'bg-accent-500/20 text-accent-300 border border-accent-500/30'
                       }`}
                     >
                       {stage.status}
@@ -453,7 +453,7 @@ export const JourneyPage = () => {
                     )}
 
                     {/* Skill Verification Credibility Prompt */}
-                    <div className="my-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-zinc-950 to-purple-950/30 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md">
+                    <div className="my-4 p-4 rounded-2xl bg-gradient-to-r from-brand-950/40 via-zinc-950 to-accent-950/30 border border-brand-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md">
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
                           <ShieldCheck className="w-5 h-5 text-emerald-400" />
@@ -547,7 +547,7 @@ export const JourneyPage = () => {
                         onClick={() => openCompareModal(stage.stageId)}
                         className="text-xs"
                       >
-                        <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
+                        <BarChart3 className="w-3.5 h-3.5 text-accent-400" />
                         <span>Side-by-Side Comparison</span>
                       </Button>
                     </div>
@@ -556,11 +556,11 @@ export const JourneyPage = () => {
                       {stage.alternativePaths.map((alt, aIdx) => (
                         <div
                           key={aIdx}
-                          className="p-5 rounded-2xl bg-zinc-950/90 border border-zinc-800 hover:border-purple-500/40 flex flex-col justify-between transition-all group/alt shadow-md"
+                          className="p-5 rounded-2xl bg-zinc-950/90 border border-zinc-800 hover:border-accent-500/40 flex flex-col justify-between transition-all group/alt shadow-md"
                         >
                           <div>
                             <div className="flex items-start justify-between gap-2 mb-2">
-                              <h4 className="font-bold text-white text-base group-hover/alt:text-purple-300 transition-colors">
+                              <h4 className="font-bold text-white text-base group-hover/alt:text-accent-300 transition-colors">
                                 {alt.title}
                               </h4>
                               <span className="px-2 py-0.5 rounded bg-brand-500/15 text-brand-300 text-xs font-mono font-bold shrink-0">
@@ -579,7 +579,7 @@ export const JourneyPage = () => {
                                 </span>
                                 {alt.nextSteps.slice(0, 2).map((st, i) => (
                                   <div key={i} className="flex items-start gap-1.5 truncate">
-                                    <span className="text-purple-400">•</span>
+                                    <span className="text-accent-400">•</span>
                                     <span>{st}</span>
                                   </div>
                                 ))}
@@ -623,15 +623,15 @@ export const JourneyPage = () => {
 
                 {/* Contextual Human Mentorship Prompt: Ties Human Layer to the AI Journey */}
                 {isCurrent && (
-                  <div className="mt-6 p-5 rounded-2xl bg-gradient-to-r from-purple-950/40 via-indigo-950/30 to-zinc-950 border border-purple-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg">
+                  <div className="mt-6 p-5 rounded-2xl bg-gradient-to-r from-brand-950/40 via-accent-950/20 to-zinc-950 border border-brand-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg">
                     <div className="flex items-start gap-3.5">
-                      <div className="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-accent-500/20 border border-accent-500/30 flex items-center justify-center text-accent-400 shrink-0">
                         <Users className="w-5 h-5" />
                       </div>
                       <div>
                         <h4 className="text-sm font-bold text-white flex items-center gap-1.5">
                           <span>Want to talk to someone who's been through this?</span>
-                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-mono">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-500/20 text-accent-300 font-mono">
                             Human Guidance Layer
                           </span>
                         </h4>
@@ -648,7 +648,7 @@ export const JourneyPage = () => {
                       )}`}
                       className="shrink-0"
                     >
-                      <Button className="bg-purple-600 hover:bg-purple-500 text-white text-xs w-full sm:w-auto font-medium">
+                      <Button className="bg-brand-600 hover:bg-brand-500 text-white text-xs w-full sm:w-auto font-medium">
                         <Users className="w-3.5 h-3.5 mr-1.5" /> Connect with Mentors
                       </Button>
                     </Link>
@@ -724,7 +724,7 @@ export const JourneyPage = () => {
               </div>
 
               <div className="p-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-xs text-zinc-400 flex items-start gap-2">
-                <Sparkles className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                <Sparkles className="w-4 h-4 text-accent-400 shrink-0 mt-0.5" />
                 <span>
                   Claude Sonnet 4.6 will evaluate your past decisions and formulate at least 3 fresh,
                   divergent trajectories directly addressing your reason.
@@ -875,7 +875,7 @@ export const JourneyPage = () => {
                             ? 'bg-amber-500/20 text-amber-300'
                             : log.action.includes('login')
                             ? 'bg-emerald-500/20 text-emerald-300'
-                            : 'bg-purple-500/20 text-purple-300'
+                            : 'bg-accent-500/20 text-accent-300'
                         }`}
                       >
                         {log.action}

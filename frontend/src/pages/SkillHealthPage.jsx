@@ -168,7 +168,7 @@ export const SkillHealthPage = () => {
           onClick={() => setActiveTab('graph')}
           className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'graph'
-              ? 'bg-purple-600/20 text-purple-300 border border-purple-500/40'
+              ? 'bg-accent-500/20 text-accent-300 border border-accent-500/40'
               : 'text-zinc-400 hover:text-white'
           }`}
         >

@@ -19,7 +19,7 @@ export const ProgressBar = ({ progress = 0, completedCount = 0, totalCount = 0 }
 
         <div className="flex items-center gap-2">
           {progress === 100 && (
-            <span className="flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+            <span className="flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/40">
               <CheckCircle2 className="w-3.5 h-3.5" /> Ready for Industry Placement
             </span>
           )}
@@ -30,7 +30,7 @@ export const ProgressBar = ({ progress = 0, completedCount = 0, totalCount = 0 }
       {/* Progress Bar Track */}
       <div className="w-full bg-slate-800 h-3 rounded-full overflow-hidden p-0.5 border border-slate-700/50">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-brand-500 via-accent-500 to-emerald-400 transition-all duration-700 ease-out"
+          className="h-full rounded-full bg-gradient-to-r from-brand-600 via-brand-500 to-accent-500 transition-all duration-700 ease-out"
           style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
         />
       </div>

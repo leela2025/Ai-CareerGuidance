@@ -131,7 +131,7 @@ export const DashboardPage = () => {
         <div className="flex flex-wrap gap-3">
           <Link
             to="/journey"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm shadow-md transition-all"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm shadow-md transition-all"
           >
             <GitFork className="w-4 h-4" />
             <span>Lifelong Journey</span>
@@ -154,10 +154,10 @@ export const DashboardPage = () => {
 
       {/* Brand-New User Quick-Start Guide (Clarity for First-Time Students) */}
       {isBrandNewUser && (
-        <div className="bg-gradient-to-r from-purple-900/30 via-zinc-900 to-emerald-950/20 border border-purple-500/40 rounded-3xl p-6 sm:p-8 shadow-xl">
+        <div className="bg-gradient-to-r from-brand-950/40 via-zinc-900 to-accent-950/20 border border-brand-500/40 rounded-3xl p-6 sm:p-8 shadow-xl">
           <div className="flex items-center gap-3 mb-4">
-            <div className="p-2.5 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30">
-              <Rocket className="w-5 h-5 text-purple-400" />
+            <div className="p-2.5 rounded-xl bg-accent-500/20 text-accent-300 border border-accent-500/30">
+              <Rocket className="w-5 h-5 text-accent-400" />
             </div>
             <div>
               <h2 className="text-xl font-bold text-white">Your Guided 3-Step Setup</h2>
@@ -171,20 +171,20 @@ export const DashboardPage = () => {
             {/* Step 1 */}
             <Link
               to="/career-guidance"
-              className="p-5 rounded-2xl bg-zinc-950/80 border border-zinc-800 hover:border-purple-500/50 hover:bg-zinc-900 transition-all flex flex-col justify-between group"
+              className="p-5 rounded-2xl bg-zinc-950/80 border border-zinc-800 hover:border-accent-500/50 hover:bg-zinc-900 transition-all flex flex-col justify-between group"
             >
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-purple-400 font-bold bg-purple-500/10 px-2 py-0.5 rounded-full border border-purple-500/20">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-accent-400 font-bold bg-accent-500/10 px-2 py-0.5 rounded-full border border-accent-500/20">
                   Step 1 • 2 Mins
                 </span>
-                <h3 className="text-sm font-bold text-white mt-2 group-hover:text-purple-300 transition-colors">
+                <h3 className="text-sm font-bold text-white mt-2 group-hover:text-accent-300 transition-colors">
                   Run AI Career Match
                 </h3>
                 <p className="text-xs text-zinc-400 mt-1">
                   Discover target tech roles mapped to your life stage, skills, and academic interests.
                 </p>
               </div>
-              <div className="mt-4 flex items-center text-xs font-semibold text-purple-400 group-hover:text-purple-300">
+              <div className="mt-4 flex items-center text-xs font-semibold text-accent-400 group-hover:text-accent-300">
                 <span>Start AI Match</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -215,20 +215,20 @@ export const DashboardPage = () => {
             {/* Step 3 */}
             <Link
               to="/resume-analyzer"
-              className="p-5 rounded-2xl bg-zinc-950/80 border border-zinc-800 hover:border-emerald-500/50 hover:bg-zinc-900 transition-all flex flex-col justify-between group"
+              className="p-5 rounded-2xl bg-zinc-950/80 border border-zinc-800 hover:border-brand-500/50 hover:bg-zinc-900 transition-all flex flex-col justify-between group"
             >
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-brand-400 font-bold bg-brand-500/10 px-2 py-0.5 rounded-full border border-brand-500/20">
                   Step 3 • Benchmark
                 </span>
-                <h3 className="text-sm font-bold text-white mt-2 group-hover:text-emerald-300 transition-colors">
+                <h3 className="text-sm font-bold text-white mt-2 group-hover:text-brand-300 transition-colors">
                   Scan Resume with ATS
                 </h3>
                 <p className="text-xs text-zinc-400 mt-1">
                   Check your ATS compliance score and identify exact missing keywords before applying.
                 </p>
               </div>
-              <div className="mt-4 flex items-center text-xs font-semibold text-emerald-400 group-hover:text-emerald-300">
+              <div className="mt-4 flex items-center text-xs font-semibold text-brand-400 group-hover:text-brand-300">
                 <span>Audit Resume</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -239,13 +239,13 @@ export const DashboardPage = () => {
 
       {/* Lifelong Career Navigator Active Path Widget with "Not Satisfied?" Branch Prompt */}
       {journey?.stages?.length > 0 && (
-        <div className="bg-gradient-to-r from-purple-950/40 via-zinc-900 to-zinc-950 border border-purple-500/30 rounded-3xl p-6 sm:p-7 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+        <div className="bg-gradient-to-r from-brand-950/40 via-zinc-900 to-zinc-950 border border-brand-500/30 rounded-3xl p-6 sm:p-7 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 inline-flex">
+              <span className="p-1.5 rounded-lg bg-accent-500/20 text-accent-300 border border-accent-500/30 inline-flex">
                 <GitFork className="w-4 h-4" />
               </span>
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
+              <span className="text-xs font-mono font-bold uppercase tracking-wider text-accent-400">
                 Lifelong Career Navigator • Stage {journey.stages.length}
               </span>
               <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">
@@ -273,7 +273,7 @@ export const DashboardPage = () => {
             </Link>
             <Link
               to="/journey"
-              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-md transition-all"
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-md transition-all"
             >
               <span>View Full Journey</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -283,13 +283,13 @@ export const DashboardPage = () => {
       )}
 
       {/* Human Guidance Layer Contextual Prompt Banner */}
-      <div className="bg-gradient-to-r from-purple-950/40 via-indigo-950/30 to-zinc-900 border border-purple-500/30 rounded-3xl p-6 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+      <div className="bg-gradient-to-r from-brand-950/40 via-accent-950/20 to-zinc-900 border border-brand-500/30 rounded-3xl p-6 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="p-1.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 inline-flex">
+            <span className="p-1.5 rounded-lg bg-accent-500/20 text-accent-300 border border-accent-500/30 inline-flex">
               <Users className="w-4 h-4" />
             </span>
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-accent-400">
               Human Guidance Layer • Peer & Expert Mentorship
             </span>
           </div>
@@ -305,7 +305,7 @@ export const DashboardPage = () => {
         <div className="flex flex-wrap items-center gap-3 shrink-0">
           <Link
             to="/mentors"
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-semibold shadow-md transition-all"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white text-xs font-semibold shadow-md transition-all"
           >
             <Users className="w-3.5 h-3.5" />
             <span>Explore Mentors & Peers</span>
@@ -314,21 +314,21 @@ export const DashboardPage = () => {
             to="/connections"
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-zinc-300 text-xs font-semibold transition-all"
           >
-            <MessageSquare className="w-3.5 h-3.5 text-purple-400" />
+            <MessageSquare className="w-3.5 h-3.5 text-accent-400" />
             <span>My Connections</span>
           </Link>
         </div>
       </div>
 
       {/* Verification Status & Reality-Check Layer Widget */}
-      <div className="bg-gradient-to-br from-zinc-900 via-zinc-900 to-purple-950/30 border border-purple-500/30 rounded-3xl p-6 sm:p-7 shadow-xl space-y-5">
+      <div className="bg-gradient-to-br from-zinc-900 via-zinc-900 to-brand-950/30 border border-brand-500/30 rounded-3xl p-6 sm:p-7 shadow-xl space-y-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-zinc-800">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30">
-              <ShieldCheck className="w-5 h-5 text-purple-400" />
+            <div className="p-2 rounded-xl bg-accent-500/20 text-accent-300 border border-accent-500/30">
+              <ShieldCheck className="w-5 h-5 text-accent-400" />
             </div>
             <div>
-              <div className="text-xs font-mono font-bold uppercase tracking-wider text-purple-400">
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-accent-400">
                 Credibility & Proof Layer • Verification Summary
               </div>
               <h3 className="text-lg font-bold text-white">
@@ -339,7 +339,7 @@ export const DashboardPage = () => {
 
           <Link
             to="/skill-health"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-semibold transition-all self-start sm:self-auto"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-accent-500/20 hover:bg-accent-500/30 border border-accent-500/40 text-accent-300 text-xs font-semibold transition-all self-start sm:self-auto"
           >
             <ShieldAlert className="w-3.5 h-3.5" />
             <span>Prerequisite Health Report</span>
@@ -352,14 +352,14 @@ export const DashboardPage = () => {
           <div className="bg-zinc-950/70 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
             <div>
               <div className="flex items-center justify-between text-xs text-zinc-400 mb-1">
-                <span className="font-mono uppercase font-bold text-emerald-400">Skill Proof</span>
+                <span className="font-mono uppercase font-bold text-brand-400">Skill Proof</span>
                 <span className="text-white font-bold">
                   {skillStats ? `${skillStats.verifiedMilestones} of ${skillStats.totalMilestones}` : '0 of 0'} Verified ✓
                 </span>
               </div>
               <div className="w-full bg-zinc-800 h-2 rounded-full overflow-hidden mb-2">
                 <div
-                  className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-brand-600 via-brand-500 to-accent-500 rounded-full transition-all duration-500"
                   style={{
                     width: `${skillStats?.verificationPercentage || 0}%`,
                   }}
@@ -371,7 +371,7 @@ export const DashboardPage = () => {
             </div>
             <Link
               to="/roadmap"
-              className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+              className="text-xs font-semibold text-brand-400 hover:text-brand-300 flex items-center gap-1"
             >
               <span>Prove roadmap skills</span>
               <ArrowRight className="w-3 h-3" />
@@ -382,9 +382,9 @@ export const DashboardPage = () => {
           <div className="bg-zinc-950/70 border border-zinc-800 rounded-2xl p-4 flex flex-col justify-between space-y-3">
             <div>
               <div className="flex items-center justify-between text-xs text-zinc-400 mb-1">
-                <span className="font-mono uppercase font-bold text-purple-400">Resume Defense</span>
+                <span className="font-mono uppercase font-bold text-accent-400">Resume Defense</span>
                 {latestResume?.defenseResult?.overallCredibilityScore ? (
-                  <span className="font-bold text-purple-300">
+                  <span className="font-bold text-accent-300">
                     {latestResume.defenseResult.overallCredibilityScore}/100 Credibility
                   </span>
                 ) : (
@@ -399,7 +399,7 @@ export const DashboardPage = () => {
             </div>
             <Link
               to="/resume-analyzer"
-              className="text-xs font-semibold text-purple-400 hover:text-purple-300 flex items-center gap-1"
+              className="text-xs font-semibold text-accent-400 hover:text-accent-300 flex items-center gap-1"
             >
               <span>{latestResume?.defenseResult?.overallCredibilityScore ? 'View defense report' : 'Take Defense Test'}</span>
               <ArrowRight className="w-3 h-3" />
@@ -520,8 +520,8 @@ export const DashboardPage = () => {
         <div className="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-3xl p-6 flex flex-col justify-between transition-all group">
           <div>
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">ATS Resume</span>
-              <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="text-xs font-bold text-brand-400 uppercase tracking-wider">ATS Resume</span>
+              <div className="p-2 rounded-xl bg-emerald-500/10 text-brand-400 border border-emerald-500/20">
                 <FileCheck className="w-5 h-5" />
               </div>
             </div>
@@ -536,7 +536,7 @@ export const DashboardPage = () => {
 
             {latestResume && (
               <div className="p-3 rounded-xl bg-slate-800/50 border border-slate-700/50 text-xs text-slate-300">
-                <span className="font-semibold text-emerald-300">Top Strength: </span>
+                <span className="font-semibold text-brand-300">Top Strength: </span>
                 {latestResume.strengths?.[0] || 'Clean project presentation.'}
               </div>
             )}

@@ -57,7 +57,7 @@ export const RegisterPage = () => {
         {/* Brand Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-block group mb-4">
-            <div className="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-xl inline-flex items-center justify-center group-hover:border-purple-500/40 group-hover:shadow-purple-500/10 transition-all">
+            <div className="p-3 rounded-2xl bg-zinc-900/90 border border-zinc-800 shadow-xl inline-flex items-center justify-center group-hover:border-accent-500/40 group-hover:shadow-accent-500/10 transition-all">
               <img
                 src="/logo-transparent.png"
                 alt="CareerCompassAI Logo"

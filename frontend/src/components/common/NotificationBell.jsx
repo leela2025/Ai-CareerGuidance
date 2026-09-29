@@ -84,7 +84,7 @@ export const NotificationBell = () => {
       case 'mentor-status':
         return <CheckCircle2 className="w-4 h-4 text-emerald-400" />;
       case 'connection-accepted':
-        return <Users className="w-4 h-4 text-purple-400" />;
+        return <Users className="w-4 h-4 text-accent-400" />;
       case 'connection-request':
         return <Users className="w-4 h-4 text-amber-400" />;
       case 'new-message':
@@ -106,7 +106,7 @@ export const NotificationBell = () => {
       >
         <Bell className="w-5 h-5" />
         {unreadCount > 0 && (
-          <span className="absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold font-mono text-white bg-purple-600 rounded-full border-2 border-zinc-950 animate-pulse">
+          <span className="absolute top-1 right-1 flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold font-mono text-white bg-accent-500 text-[#0F2A1D] rounded-full border-2 border-zinc-950 animate-pulse">
             {unreadCount > 9 ? '9+' : unreadCount}
           </span>
         )}
@@ -120,7 +120,7 @@ export const NotificationBell = () => {
             <div className="flex items-center gap-2">
               <span className="text-sm font-bold text-white">Notifications</span>
               {unreadCount > 0 && (
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-semibold">
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-accent-500/20 text-accent-300 font-semibold">
                   {unreadCount} new
                 </span>
               )}
@@ -129,7 +129,7 @@ export const NotificationBell = () => {
             {unreadCount > 0 && (
               <button
                 onClick={handleMarkAllRead}
-                className="text-[11px] text-zinc-400 hover:text-purple-300 flex items-center gap-1 font-medium transition-colors cursor-pointer"
+                className="text-[11px] text-zinc-400 hover:text-accent-300 flex items-center gap-1 font-medium transition-colors cursor-pointer"
               >
                 <Check className="w-3 h-3" />
                 <span>Mark all as read</span>
@@ -150,7 +150,7 @@ export const NotificationBell = () => {
                   key={n.id}
                   onClick={() => handleMarkAsRead(n.id, n.link)}
                   className={`p-3.5 hover:bg-zinc-800/60 cursor-pointer transition-colors flex items-start gap-3 ${
-                    !n.read ? 'bg-purple-950/20' : ''
+                    !n.read ? 'bg-accent-950/30' : ''
                   }`}
                 >
                   <div className="mt-0.5 p-1.5 rounded-lg bg-zinc-800/80 border border-zinc-700/60">
@@ -166,7 +166,7 @@ export const NotificationBell = () => {
                         {n.title}
                       </span>
                       {!n.read && (
-                        <span className="w-2 h-2 rounded-full bg-purple-500 shrink-0" />
+                        <span className="w-2 h-2 rounded-full bg-accent-500 shrink-0" />
                       )}
                     </div>
                     <p className="text-[11px] text-zinc-400 leading-snug mt-0.5 line-clamp-2">

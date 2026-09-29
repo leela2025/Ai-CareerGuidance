@@ -44,7 +44,7 @@ export function App() {
           v7_relativeSplatPath: true,
         }}
       >
-        <div className="min-h-screen flex flex-col bg-zinc-950 text-zinc-100 selection:bg-brand-500 selection:text-white">
+        <div className="min-h-screen flex flex-col bg-[#10231A] text-zinc-100 selection:bg-accent-500 selection:text-[#0F2A1D]">
           <Navbar />
           <main className="flex-1">
             <Routes>

@@ -4,9 +4,9 @@ import * as THREE from 'three';
 /**
  * Hero3DCompass — ThreeUI Inspired 3D Career Compass Core
  *
- * Visual Storytelling (Zero-Blue Palette: Electric Violet, Radiant Emerald, Warm Amber):
+ * Visual Storytelling (Forest Green and Warm Gold Palette):
  * - Concentric glowing orbital rings (Degrees of exploration)
- * - Inner luminous neural core (Claude AI Engine in Electric Violet)
+ * - Inner luminous neural core (Claude AI Engine in Forest Green & Warm Gold)
  * - Orbiting data nodes (Student Profile, Skills, Roadmap checkpoints)
  * - Interactive mouse parallax tilt and smooth inertia
  */
@@ -61,10 +61,10 @@ export const Hero3DCompass = () => {
       compassGroup = new THREE.Group();
       scene.add(compassGroup);
 
-      // --- 1. Inner Neural Core (Claude AI Engine in Electric Violet) ---
+      // --- 1. Inner Neural Core (Claude AI Engine in Forest Green) ---
       coreGeo = new THREE.IcosahedronGeometry(3.2, 1);
       coreMat = new THREE.MeshBasicMaterial({
-        color: 0xa855f7, // Electric Violet (Zero Blue)
+        color: 0x2D6A4F, // Forest Green (Primary Light)
         wireframe: true,
         transparent: true,
         opacity: 0.85,
@@ -72,10 +72,10 @@ export const Hero3DCompass = () => {
       coreMesh = new THREE.Mesh(coreGeo, coreMat);
       compassGroup.add(coreMesh);
 
-      // Inner glowing point light (Emerald Mint)
+      // Inner glowing point light (Warm Gold)
       innerCoreGlowGeo = new THREE.SphereGeometry(2.0, 16, 16);
       innerCoreGlowMat = new THREE.MeshBasicMaterial({
-        color: 0x10b981, // Vibrant Emerald
+        color: 0xD4A017, // Warm Gold Accent
         transparent: true,
         opacity: 0.28,
       });
@@ -83,10 +83,10 @@ export const Hero3DCompass = () => {
       compassGroup.add(innerGlow);
 
       // --- 2. Concentric Gyroscopic Rings (Workflow axes) ---
-      // Ring 1: Lavender Violet Orbit
+      // Ring 1: Warm Gold Orbit
       ring1Geo = new THREE.TorusGeometry(5.2, 0.04, 8, 80);
       ring1Mat = new THREE.MeshBasicMaterial({
-        color: 0xc084fc, // Lavender Purple
+        color: 0xD4A017, // Warm Gold
         transparent: true,
         opacity: 0.65,
       });
@@ -94,10 +94,10 @@ export const Hero3DCompass = () => {
       ring1.rotation.x = Math.PI / 4;
       compassGroup.add(ring1);
 
-      // Ring 2: Mint Emerald Trajectory Orbit
+      // Ring 2: Forest Green Trajectory Orbit
       ring2Geo = new THREE.TorusGeometry(6.6, 0.04, 8, 80);
       ring2Mat = new THREE.MeshBasicMaterial({
-        color: 0x34d399, // Mint Emerald
+        color: 0x2D6A4F, // Forest Green Light
         transparent: true,
         opacity: 0.7,
       });
@@ -106,10 +106,10 @@ export const Hero3DCompass = () => {
       ring2.rotation.x = -Math.PI / 6;
       compassGroup.add(ring2);
 
-      // Ring 3: Amber Gold Milestones Orbit
+      // Ring 3: Light Warm Gold Milestones Orbit
       ring3Geo = new THREE.TorusGeometry(8.0, 0.03, 8, 90);
       ring3Mat = new THREE.MeshBasicMaterial({
-        color: 0xf59e0b, // Warm Amber Gold
+        color: 0xE8C468, // Lighter Warm Gold
         transparent: true,
         opacity: 0.55,
       });
@@ -118,17 +118,17 @@ export const Hero3DCompass = () => {
       ring3.rotation.x = Math.PI / 2.5;
       compassGroup.add(ring3);
 
-      // --- 3. Orbiting Workflow Satellites (Purple, Emerald, Amber, Rose) ---
+      // --- 3. Orbiting Workflow Satellites (Forest Green + Warm Gold) ---
       satellitesGroup = new THREE.Group();
       compassGroup.add(satellitesGroup);
 
       const satelliteData = [
-        { radius: 5.2, angle: 0, color: 0xa855f7, size: 0.35, label: 'Profile' },
-        { radius: 6.6, angle: Math.PI * 0.6, color: 0xec4899, size: 0.4, label: 'AI' },
-        { radius: 6.6, angle: Math.PI * 1.4, color: 0x10b981, size: 0.4, label: 'Match' },
-        { radius: 8.0, angle: Math.PI * 0.3, color: 0xf59e0b, size: 0.35, label: 'Gaps' },
-        { radius: 8.0, angle: Math.PI * 1.1, color: 0x84cc16, size: 0.45, label: 'Roadmap' },
-        { radius: 8.0, angle: Math.PI * 1.8, color: 0xf43f5e, size: 0.4, label: 'Growth' },
+        { radius: 5.2, angle: 0, color: 0xD4A017, size: 0.35, label: 'Profile' },
+        { radius: 6.6, angle: Math.PI * 0.6, color: 0x2D6A4F, size: 0.4, label: 'AI' },
+        { radius: 6.6, angle: Math.PI * 1.4, color: 0xE8C468, size: 0.4, label: 'Match' },
+        { radius: 8.0, angle: Math.PI * 0.3, color: 0x1B4332, size: 0.35, label: 'Gaps' },
+        { radius: 8.0, angle: Math.PI * 1.1, color: 0x40C281, size: 0.45, label: 'Roadmap' },
+        { radius: 8.0, angle: Math.PI * 1.8, color: 0xA67C00, size: 0.4, label: 'Growth' },
       ];
 
       const satelliteMeshes = satelliteData.map((data) => {
@@ -147,7 +147,7 @@ export const Hero3DCompass = () => {
         return mesh;
       });
 
-      // --- 4. Ambient Particle Nebula (Violet Stardust) ---
+      // --- 4. Ambient Particle Nebula (Warm Gold Stardust) ---
       const particleCount = isMobile ? 60 : 140;
       const particlePositions = new Float32Array(particleCount * 3);
       for (let i = 0; i < particleCount; i++) {
@@ -161,7 +161,7 @@ export const Hero3DCompass = () => {
       particleGeo = new THREE.BufferGeometry();
       particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
       particleMat = new THREE.PointsMaterial({
-        color: 0xa855f7, // Violet particle stardust
+        color: 0xE8C468, // Warm Gold Stardust
         size: 0.12,
         transparent: true,
         opacity: 0.55,
@@ -274,15 +274,15 @@ export const Hero3DCompass = () => {
         className="w-full h-full cursor-grab active:cursor-grabbing transition-opacity duration-700"
       />
 
-      {/* Atmospheric Ambient Lighting & Glow rings (Electric Violet & Emerald) */}
+      {/* Atmospheric Ambient Lighting & Glow rings (Forest Green & Warm Gold) */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-        <div className="w-72 h-72 rounded-full bg-purple-600/15 blur-3xl" />
-        <div className="w-56 h-56 rounded-full bg-emerald-500/15 blur-2xl" />
+        <div className="w-72 h-72 rounded-full bg-[#1B4332]/25 blur-3xl" />
+        <div className="w-56 h-56 rounded-full bg-[#D4A017]/15 blur-2xl" />
       </div>
 
       {/* Overlay Badges explaining the 3D Nexus */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 pointer-events-none flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-[11px] font-mono text-zinc-400 backdrop-blur-md shadow-lg">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#D4A017] animate-pulse" />
         <span>3D Nexus: Profile → Claude Analysis → Verified Milestones</span>
       </div>
     </div>

@@ -84,8 +84,8 @@ Key Architecture Decisions:
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800 pb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold uppercase mb-2">
-            <FolderGit2 className="w-3.5 h-3.5 text-purple-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-300 text-xs font-semibold uppercase mb-2">
+            <FolderGit2 className="w-3.5 h-3.5 text-accent-400" />
             Project Reality-Check & Mock Interview
           </div>
           <h1 className="text-3xl font-extrabold text-white tracking-tight">

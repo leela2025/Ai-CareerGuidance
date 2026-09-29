@@ -44,7 +44,7 @@ export const HeroBackground = () => {
       container.innerHTML = '';
       container.appendChild(renderer.domElement);
 
-      // Particle nodes (Electric Violet Theme - Zero Blue)
+      // Particle nodes (Forest Green & Warm Gold Theme - Zero Blue)
       const particleCount = 55;
       const maxDistance = 68;
       const maxConnections = particleCount * 6;
@@ -73,15 +73,15 @@ export const HeroBackground = () => {
       canvas.height = 32;
       const ctx = canvas.getContext('2d');
       const grad = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
-      grad.addColorStop(0, 'rgba(192, 132, 252, 1)'); // Lavender Violet
-      grad.addColorStop(0.4, 'rgba(168, 85, 247, 0.7)');
-      grad.addColorStop(1, 'rgba(168, 85, 247, 0)');
+      grad.addColorStop(0, 'rgba(232, 196, 104, 1)'); // Warm Gold Light
+      grad.addColorStop(0.4, 'rgba(212, 160, 23, 0.7)'); // Warm Gold
+      grad.addColorStop(1, 'rgba(212, 160, 23, 0)');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 32, 32);
       const texture = new THREE.CanvasTexture(canvas);
 
       particleMat = new THREE.PointsMaterial({
-        color: 0xc084fc,
+        color: 0xE8C468, // Warm Gold
         size: 5,
         map: texture,
         transparent: true,
@@ -98,7 +98,7 @@ export const HeroBackground = () => {
       linesGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
 
       linesMat = new THREE.LineBasicMaterial({
-        color: 0xa855f7, // Electric violet
+        color: 0x2D6A4F, // Forest green light
         transparent: true,
         opacity: 0.35,
         blending: THREE.AdditiveBlending,
@@ -219,10 +219,10 @@ export const HeroBackground = () => {
       {/* Sleek Gradient Overlay to blend seamlessly into zinc-950 */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/40 via-zinc-950/70 to-zinc-950" />
 
-      {/* Radiant Glow Orbs (Purple & Emerald - Zero Blue) */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-purple-600/20 via-emerald-500/15 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse duration-1000" />
-      <div className="absolute top-1/3 -left-32 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -right-32 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Radiant Glow Orbs (Forest Green & Warm Gold) */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-brand-600/20 via-accent-500/15 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse duration-1000" />
+      <div className="absolute top-1/3 -left-32 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 -right-32 w-96 h-96 bg-accent-600/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* Cyber Grid Pattern for depth (Neutral Zinc) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a22_1px,transparent_1px),linear-gradient(to_bottom,#27272a22_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />

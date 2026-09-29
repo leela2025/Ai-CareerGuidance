@@ -259,10 +259,10 @@ export const MentorVerificationSection = () => {
             <span className="text-xs font-mono uppercase tracking-wider text-zinc-400">
               Peer Motivators
             </span>
-            <Users className="w-4 h-4 text-purple-400" />
+            <Users className="w-4 h-4 text-accent-400" />
           </div>
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-extrabold font-mono text-purple-300">
+            <span className="text-2xl sm:text-3xl font-extrabold font-mono text-accent-300">
               {stats.totalPeers}
             </span>
             <span className="text-xs text-zinc-400">Auto-approved</span>
@@ -293,7 +293,7 @@ export const MentorVerificationSection = () => {
             onClick={() => setSubTab('pending')}
             className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
               subTab === 'pending'
-                ? 'bg-purple-600/20 text-purple-300 border border-purple-500/40 shadow-sm'
+                ? 'bg-accent-500/20 text-accent-300 border border-accent-500/40 shadow-sm'
                 : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60'
             }`}
           >
@@ -310,7 +310,7 @@ export const MentorVerificationSection = () => {
             onClick={() => setSubTab('all')}
             className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
               subTab === 'all'
-                ? 'bg-purple-600/20 text-purple-300 border border-purple-500/40 shadow-sm'
+                ? 'bg-accent-500/20 text-accent-300 border border-accent-500/40 shadow-sm'
                 : 'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/60'
             }`}
           >
@@ -342,7 +342,7 @@ export const MentorVerificationSection = () => {
               </h3>
               <p className="text-sm text-zinc-400 max-w-md mx-auto mb-6">
                 All expert applications have been reviewed. When new industry leaders apply at{' '}
-                <span className="text-purple-300 font-mono">/mentors/apply</span>, they will appear
+                <span className="text-accent-300 font-mono">/mentors/apply</span>, they will appear
                 here for credential evaluation.
               </p>
               <Button
@@ -370,7 +370,7 @@ export const MentorVerificationSection = () => {
                       {/* Left: Applicant Bio & Credentials */}
                       <div className="flex-1 space-y-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-purple-600/20 border border-purple-500/30 text-purple-300 flex items-center justify-center font-bold font-mono text-sm">
+                          <div className="w-10 h-10 rounded-full bg-accent-500/20 border border-accent-500/30 text-accent-300 flex items-center justify-center font-bold font-mono text-sm">
                             {app.user?.name ? app.user.name[0].toUpperCase() : 'M'}
                           </div>
                           <div>
@@ -412,7 +412,7 @@ export const MentorVerificationSection = () => {
                         <div className="flex flex-wrap gap-2 text-xs">
                           {app.companyOrCollege && (
                             <span className="px-2.5 py-1 rounded-lg bg-zinc-800/80 border border-zinc-700/60 text-zinc-200 flex items-center gap-1.5 font-medium">
-                              <Briefcase className="w-3.5 h-3.5 text-purple-400" />
+                              <Briefcase className="w-3.5 h-3.5 text-accent-400" />
                               {app.companyOrCollege}
                             </span>
                           )}
@@ -436,7 +436,7 @@ export const MentorVerificationSection = () => {
                             {app.expertiseTags.map((tag) => (
                               <span
                                 key={tag}
-                                className="px-2 py-0.5 rounded-md bg-purple-950/40 border border-purple-800/60 text-purple-300 text-xs font-mono"
+                                className="px-2 py-0.5 rounded-md bg-accent-950/40 border border-accent-800/60 text-accent-300 text-xs font-mono"
                               >
                                 #{tag}
                               </span>
@@ -459,7 +459,7 @@ export const MentorVerificationSection = () => {
                           {app.bio?.length > 140 && (
                             <button
                               onClick={() => toggleBio(app.id)}
-                              className="text-xs text-purple-400 hover:text-purple-300 mt-1 flex items-center gap-1 font-medium cursor-pointer"
+                              className="text-xs text-accent-400 hover:text-accent-300 mt-1 flex items-center gap-1 font-medium cursor-pointer"
                             >
                               <span>{isExpanded ? 'Show less' : 'Read full bio'}</span>
                               {isExpanded ? (
@@ -478,7 +478,7 @@ export const MentorVerificationSection = () => {
                           size="sm"
                           disabled={isActioning}
                           onClick={() => handleApprove(app.id, app.user?.name)}
-                          className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs h-9 shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-1.5 cursor-pointer"
+                          className="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs h-9 shadow-lg shadow-brand-600/20 flex items-center justify-center gap-1.5 cursor-pointer"
                         >
                           <CheckCircle2 className="w-4 h-4" />
                           <span>Approve</span>
@@ -489,7 +489,7 @@ export const MentorVerificationSection = () => {
                           variant="outline"
                           disabled={isActioning}
                           onClick={() => openRejectDialog(app.id)}
-                          className="w-full border-rose-800/60 text-rose-300 hover:bg-rose-950/40 hover:border-rose-600 hover:text-white text-xs h-9 flex items-center justify-center gap-1.5 cursor-pointer"
+                          className="w-full border-[#9B2C2C]/60 text-[#E8A5A5] hover:bg-[#9B2C2C]/30 hover:border-[#9B2C2C] hover:text-white text-xs h-9 flex items-center justify-center gap-1.5 cursor-pointer"
                         >
                           <XCircle className="w-4 h-4" />
                           <span>Reject</span>
@@ -501,7 +501,7 @@ export const MentorVerificationSection = () => {
                     {rejectingId === app.id && (
                       <div className="mt-4 pt-4 border-t border-zinc-800 space-y-3 animate-quick-fade">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-rose-400 flex items-center gap-1.5">
+                          <span className="text-xs font-bold text-[#E8A5A5] flex items-center gap-1.5">
                             <AlertTriangle className="w-3.5 h-3.5" />
                             Specify rejection feedback (sent via notification to applicant):
                           </span>
@@ -517,7 +517,7 @@ export const MentorVerificationSection = () => {
                           value={rejectionReason}
                           onChange={(e) => setRejectionReason(e.target.value)}
                           placeholder="e.g. Bio too brief, please provide verifiable industry experience or LinkedIn"
-                          className="w-full p-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-rose-500"
+                          className="w-full p-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-[#9B2C2C]"
                         />
                         <div className="flex justify-end gap-2">
                           <Button
@@ -532,7 +532,7 @@ export const MentorVerificationSection = () => {
                             size="sm"
                             disabled={isActioning || !rejectionReason.trim()}
                             onClick={handleConfirmReject}
-                            className="bg-rose-600 hover:bg-rose-500 text-white text-xs h-8 font-bold"
+                            className="bg-[#9B2C2C] hover:bg-[#852525] text-white text-xs h-8 font-bold"
                           >
                             {isActioning ? 'Rejecting...' : 'Confirm Rejection'}
                           </Button>
@@ -559,7 +559,7 @@ export const MentorVerificationSection = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search mentors by name, company, skill..."
-                className="w-full pl-9 pr-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-purple-500"
+                className="w-full pl-9 pr-3 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-accent-500"
               />
             </div>
 
@@ -625,7 +625,7 @@ export const MentorVerificationSection = () => {
                             variant="outline"
                             className={
                               m.type === 'expert'
-                                ? 'border-purple-500/40 text-purple-300 bg-purple-500/10 text-[10px]'
+                                ? 'border-accent-500/40 text-accent-300 bg-accent-500/10 text-[10px]'
                                 : 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10 text-[10px]'
                             }
                           >
@@ -639,7 +639,7 @@ export const MentorVerificationSection = () => {
                               <CheckCircle2 className="w-3.5 h-3.5" /> Verified Expert ✓
                             </span>
                           ) : isRejected ? (
-                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-500/15 border border-rose-500/30 text-rose-400 text-[11px] font-semibold">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-500/15 border border-rose-500/30 text-[#E8A5A5] text-[11px] font-semibold">
                               <XCircle className="w-3.5 h-3.5" /> Rejected
                             </span>
                           ) : (
@@ -667,7 +667,7 @@ export const MentorVerificationSection = () => {
                               <Button
                                 size="sm"
                                 onClick={() => handleApprove(m.id, m.user?.name)}
-                                className="bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] h-7 px-2.5"
+                                className="bg-brand-600 hover:bg-brand-500 text-white text-[11px] h-7 px-2.5"
                               >
                                 Approve
                               </Button>

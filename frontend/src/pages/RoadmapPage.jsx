@@ -146,9 +146,9 @@ export const RoadmapPage = () => {
         <div className="flex flex-wrap items-center gap-3 shrink-0">
           <Link
             to="/skill-health"
-            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-semibold transition-all shadow-sm"
+            className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-accent-500/20 hover:bg-accent-500/30 border border-accent-500/40 text-accent-300 text-xs font-semibold transition-all shadow-sm"
           >
-            <ShieldCheck className="w-4 h-4 text-purple-400" />
+            <ShieldCheck className="w-4 h-4 text-accent-400" />
             <span>Dependency Health ({verifiedCount}/{milestones.length} Verified)</span>
           </Link>
 
@@ -169,9 +169,9 @@ export const RoadmapPage = () => {
       <AlertBanner type="success" message={successMsg} onClose={() => setSuccessMsg('')} />
 
       {/* Lifelong Career Navigator Branching Prompt Banner */}
-      <div className="bg-gradient-to-r from-amber-950/30 via-zinc-900 to-zinc-950 border border-amber-500/30 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg">
+      <div className="bg-gradient-to-r from-accent-950/30 via-zinc-900 to-zinc-950 border border-accent-500/30 rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-lg">
         <div className="flex items-start sm:items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">
+          <div className="p-2.5 rounded-xl bg-accent-500/10 text-accent-400 border border-accent-500/20 shrink-0">
             <Split className="w-5 h-5" />
           </div>
           <div>
@@ -186,7 +186,7 @@ export const RoadmapPage = () => {
 
         <Link
           to="/journey?branch=true"
-          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-xs font-semibold shrink-0 transition-all"
+          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-accent-500/20 hover:bg-accent-500/30 border border-accent-500/40 text-accent-300 text-xs font-semibold shrink-0 transition-all"
         >
           <Split className="w-3.5 h-3.5" />
           <span>Explore Alternative Paths</span>
@@ -230,22 +230,22 @@ export const RoadmapPage = () => {
                 onClick={() => setFilter('completed')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                   filter === 'completed'
-                    ? 'bg-emerald-600 text-white shadow-sm'
+                    ? 'bg-brand-600 text-white shadow-sm'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                <CheckCircle2 className="w-3 h-3 text-emerald-300" />
+                <CheckCircle2 className="w-3 h-3 text-brand-300" />
                 Completed ({completedCount})
               </button>
               <button
                 onClick={() => setFilter('verified')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                   filter === 'verified'
-                    ? 'bg-emerald-500/25 text-emerald-300 border border-emerald-500/50 shadow-sm'
-                    : 'text-emerald-400/80 hover:text-emerald-300'
+                    ? 'bg-emerald-500/25 text-brand-300 border border-emerald-500/50 shadow-sm'
+                    : 'text-brand-400/80 hover:text-brand-300'
                 }`}
               >
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <ShieldCheck className="w-3.5 h-3.5 text-brand-400" />
                 Verified ✓ ({verifiedCount})
               </button>
               <button

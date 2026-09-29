@@ -50,7 +50,7 @@ export const StarRating = ({
               <Star
                 className={`${starSizes[size] || starSizes.md} ${
                   isFilled
-                    ? 'text-amber-400 fill-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.4)]'
+                    ? 'text-accent-400 fill-accent-400 drop-shadow-[0_0_8px_rgba(212,160,23,0.5)]'
                     : 'text-zinc-700 hover:text-zinc-500'
                 } transition-colors`}
               />
@@ -60,7 +60,7 @@ export const StarRating = ({
       </div>
 
       {showLabel && currentDisplay > 0 && (
-        <span className="text-xs text-amber-300/90 font-medium animate-fade-in">
+        <span className="text-xs text-accent-300 font-medium animate-fade-in">
           {ratingDescriptions[currentDisplay] || `${currentDisplay} / 5 Stars`}
         </span>
       )}

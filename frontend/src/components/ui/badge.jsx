@@ -20,7 +20,7 @@ const badgeVariants = cva(
         accent:
           "border border-accent-500/30 bg-accent-500/10 text-accent-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]",
         emerald:
-          "border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]",
+          "border border-brand-500/30 bg-brand-500/10 text-brand-300 shadow-[0_0_15px_rgba(45,106,79,0.25)]",
         amber:
           "border border-amber-500/30 bg-amber-500/10 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)]",
       },

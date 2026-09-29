@@ -228,7 +228,7 @@ export const OnboardingPage = () => {
     <div className="max-w-4xl mx-auto px-4 py-12">
       {/* Wizard Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono uppercase mb-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-400 text-xs font-mono uppercase mb-3">
           <GitFork className="w-3.5 h-3.5" />
           <span>Lifelong Career Navigator Setup</span>
         </div>
@@ -251,9 +251,9 @@ export const OnboardingPage = () => {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                   step === item.num
-                    ? 'bg-brand-600 text-white ring-4 ring-brand-500/20'
+                    ? 'bg-accent-500 text-[#0F2A1D] font-extrabold ring-4 ring-accent-500/25'
                     : step > item.num
-                    ? 'bg-emerald-500 text-white'
+                    ? 'bg-brand-500 text-white font-bold'
                     : 'bg-zinc-800 text-zinc-400'
                 }`}
               >
@@ -262,7 +262,7 @@ export const OnboardingPage = () => {
               {item.num < 4 && (
                 <div
                   className={`w-8 sm:w-12 h-0.5 ${
-                    step > item.num ? 'bg-emerald-500' : 'bg-zinc-800'
+                    step > item.num ? 'bg-brand-500' : 'bg-zinc-800'
                   }`}
                 />
               )}
@@ -282,7 +282,7 @@ export const OnboardingPage = () => {
         {step === 1 && (
           <div className="space-y-6">
             <div className="flex items-center gap-3 pb-4 border-b border-zinc-800">
-              <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+              <div className="p-2.5 rounded-xl bg-accent-500/10 text-accent-400 border border-accent-500/20">
                 <Split className="w-6 h-6" />
               </div>
               <div>
@@ -305,7 +305,7 @@ export const OnboardingPage = () => {
                     onClick={() => setLifeStage(opt.id)}
                     className={`p-4 rounded-2xl border text-left flex flex-col justify-between transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-purple-950/40 border-purple-500 ring-2 ring-purple-500/30'
+                        ? 'bg-brand-950/40 border-brand-500 ring-2 ring-brand-500/30'
                         : 'bg-zinc-950/80 border-zinc-800 hover:border-zinc-700'
                     }`}
                   >
@@ -314,7 +314,7 @@ export const OnboardingPage = () => {
                         <div
                           className={`p-2 rounded-xl ${
                             isSelected
-                              ? 'bg-purple-500 text-white'
+                              ? 'bg-accent-500 text-[#0F2A1D]'
                               : 'bg-zinc-900 text-zinc-400'
                           }`}
                         >
@@ -325,7 +325,7 @@ export const OnboardingPage = () => {
                         </span>
                       </div>
                       <h3 className="font-bold text-white text-sm mb-0.5">{opt.title}</h3>
-                      <span className="text-[11px] font-mono text-purple-400 block mb-2">
+                      <span className="text-[11px] font-mono text-accent-400 block mb-2">
                         {opt.subtitle}
                       </span>
                       <p className="text-xs text-zinc-400 leading-relaxed">{opt.desc}</p>
@@ -333,7 +333,7 @@ export const OnboardingPage = () => {
 
                     <div className="pt-3 mt-3 border-t border-zinc-800/80 flex items-center justify-end text-xs font-mono">
                       {isSelected ? (
-                        <span className="text-purple-400 font-bold flex items-center gap-1">
+                        <span className="text-brand-400 font-bold flex items-center gap-1">
                           <Check className="w-3.5 h-3.5" /> Selected
                         </span>
                       ) : (
@@ -521,7 +521,7 @@ export const OnboardingPage = () => {
                       onClick={() => toggleConstraint(c)}
                       className={`px-3 py-1.5 rounded-xl text-xs font-mono transition-colors ${
                         active
-                          ? 'bg-purple-600 text-white font-bold'
+                          ? 'bg-brand-600 text-white font-bold'
                           : 'bg-zinc-800 text-zinc-400 hover:text-white'
                       }`}
                     >
@@ -762,7 +762,7 @@ export const OnboardingPage = () => {
         {step === 4 && (
           <div className="space-y-6">
             <div className="flex items-center gap-3 pb-4 border-b border-zinc-800">
-              <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+              <div className="p-2.5 rounded-xl bg-accent-500/10 text-accent-400 border border-accent-500/20">
                 <HeartHandshake className="w-6 h-6" />
               </div>
               <div>
@@ -812,13 +812,13 @@ export const OnboardingPage = () => {
                   {interests.map((interest) => (
                     <span
                       key={interest}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-medium"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-accent-500/15 border border-accent-500/30 text-accent-300 text-xs font-medium"
                     >
                       {interest}
                       <button
                         type="button"
                         onClick={() => handleRemoveInterest(interest)}
-                        className="text-purple-400 hover:text-white"
+                        className="text-accent-400 hover:text-white"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
@@ -845,7 +845,7 @@ export const OnboardingPage = () => {
                       className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
                         isSelected
                           ? 'bg-zinc-800/40 text-zinc-600 border border-zinc-800 cursor-default'
-                          : 'bg-zinc-950 border border-zinc-800 text-zinc-300 hover:border-purple-500/50 hover:text-white'
+                          : 'bg-zinc-950 border border-zinc-800 text-zinc-300 hover:border-accent-500/50 hover:text-white'
                       }`}
                     >
                       {isSelected ? '✓ ' : '+ '}
@@ -884,7 +884,7 @@ export const OnboardingPage = () => {
                 type="button"
                 disabled={isSubmitting}
                 onClick={handleFinish}
-                className="flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-purple-600 hover:from-brand-500 hover:to-purple-500 text-white font-bold text-sm transition-all shadow-lg shadow-brand-500/25 cursor-pointer disabled:opacity-50"
+                className="flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold text-sm transition-all shadow-lg shadow-brand-500/25 cursor-pointer disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <>

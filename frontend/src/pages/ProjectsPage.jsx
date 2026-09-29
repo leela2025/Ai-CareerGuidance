@@ -53,8 +53,8 @@ export const ProjectsPage = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold uppercase mb-2">
-            <FolderGit2 className="w-3.5 h-3.5 text-purple-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-300 text-xs font-semibold uppercase mb-2">
+            <FolderGit2 className="w-3.5 h-3.5 text-accent-400" />
             Project Reality-Check & Mock Interview Layer
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -102,7 +102,7 @@ export const ProjectsPage = () => {
                         </span>
                       )}
                       {hasInterview && (
-                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-accent-500/20 text-accent-300 border border-accent-500/30">
                           Interview: {project.interviewResult.overallScore}/100
                         </span>
                       )}
@@ -159,7 +159,7 @@ export const ProjectsPage = () => {
         </div>
       ) : (
         <div className="bg-zinc-900 border border-dashed border-zinc-800 rounded-3xl p-16 text-center max-w-xl mx-auto space-y-4">
-          <div className="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center mx-auto">
+          <div className="w-14 h-14 rounded-2xl bg-accent-500/10 text-accent-400 border border-accent-500/20 flex items-center justify-center mx-auto">
             <FolderGit2 className="w-7 h-7" />
           </div>
           <h3 className="text-xl font-bold text-white">No Projects Submitted Yet</h3>

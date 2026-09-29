@@ -105,7 +105,7 @@ export const StoryDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-10 px-4 sm:px-6 lg:px-8 relative">
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-3xl mx-auto relative z-10">
         {/* Navigation Breadcrumb */}
@@ -133,7 +133,7 @@ export const StoryDetailPage = () => {
           {/* Metadata & Author */}
           <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-zinc-800 mb-6">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center font-bold text-sm text-purple-300">
+              <div className="w-11 h-11 rounded-2xl bg-brand-600/20 border border-brand-500/30 flex items-center justify-center font-bold text-sm text-brand-300">
                 {story.author?.avatar ? (
                   <img
                     src={story.author.avatar}
@@ -159,8 +159,8 @@ export const StoryDetailPage = () => {
 
             <div className="flex items-center gap-2">
               {story.featured && (
-                <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/40 text-xs font-mono">
-                  <Sparkles className="w-3.5 h-3.5 mr-1 text-purple-400" /> Featured
+                <Badge className="bg-accent-500/20 text-accent-300 border-accent-500/40 text-xs font-mono">
+                  <Sparkles className="w-3.5 h-3.5 mr-1 text-accent-400" /> Featured
                 </Badge>
               )}
               {story.lifeStageJourney && (
@@ -233,8 +233,8 @@ export const StoryDetailPage = () => {
         </article>
 
         {/* Call to Action: Share your story too */}
-        <div className="bg-gradient-to-r from-purple-950/40 via-indigo-950/30 to-zinc-900 border border-purple-500/30 rounded-3xl p-6 sm:p-8 text-center shadow-xl">
-          <BookOpen className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+        <div className="bg-gradient-to-r from-brand-950/40 via-accent-950/20 to-zinc-900 border border-brand-500/30 rounded-3xl p-6 sm:p-8 text-center shadow-xl">
+          <BookOpen className="w-8 h-8 text-accent-400 mx-auto mb-3" />
           <h3 className="text-lg font-bold text-white mb-2">
             Have you reached a career milestone?
           </h3>
@@ -243,7 +243,7 @@ export const StoryDetailPage = () => {
             mid-career professionals taking their first leap.
           </p>
           <Link to="/stories/submit">
-            <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-medium shadow-lg shadow-purple-900/30">
+            <Button className="bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-medium shadow-lg shadow-brand-900/30">
               <PlusCircle className="w-4 h-4 mr-2" /> Share Your Story Too
             </Button>
           </Link>
