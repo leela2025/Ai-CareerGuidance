@@ -21,6 +21,7 @@ import {
   Building2,
   UserCheck,
   Shield,
+  GitFork,
 } from 'lucide-react';
 import { AlertBanner } from '../components/common/AlertBanner';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';

@@ -20,11 +20,33 @@ export const NotificationBell = () => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
+  const endpointAvailableRef = useRef(true);
+
+  const fetchNotifications = async () => {
+    if (!endpointAvailableRef.current) return;
+    try {
+      const res = await api.get('/notifications');
+      if (res.data?.success) {
+        setNotifications(res.data.notifications || []);
+        setUnreadCount(res.data.unreadCount || 0);
+      }
+    } catch (e) {
+      if (e.response?.status === 404) {
+        // Backend service is still deploying or notifications route is not yet active
+        endpointAvailableRef.current = false;
+      }
+    }
+  };
+
   useEffect(() => {
     fetchNotifications();
 
-    // Poll every 30 seconds for live updates
-    const interval = setInterval(fetchNotifications, 30000);
+    // Poll every 45 seconds for live updates if supported
+    const interval = setInterval(() => {
+      if (endpointAvailableRef.current) {
+        fetchNotifications();
+      }
+    }, 45000);
     return () => clearInterval(interval);
   }, []);
 
@@ -40,18 +62,6 @@ export const NotificationBell = () => {
     }
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
-
-  const fetchNotifications = async () => {
-    try {
-      const res = await api.get('/notifications');
-      if (res.data.success) {
-        setNotifications(res.data.notifications || []);
-        setUnreadCount(res.data.unreadCount || 0);
-      }
-    } catch (e) {
-      // ignore background poll errors
-    }
-  };
 
   const handleMarkAsRead = async (id, link) => {
     try {

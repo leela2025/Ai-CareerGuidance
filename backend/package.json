@@ -1,6 +1,6 @@
 {
   "name": "career-compass-ai-backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Backend API for CareerCompassAI - AI-powered career guidance and personalized skill roadmap platform",
   "main": "server.js",
   "type": "commonjs",
